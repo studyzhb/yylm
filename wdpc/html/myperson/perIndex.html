@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <link href="../../css/reset.css" rel="stylesheet">
+        <link href="../../css/perIndex.css" rel="stylesheet">
+         <link href="../../iconfont/iconfont.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="rightWrap" id="app">
+            <div class="R_top">
+               <dl class="user">
+                   <dt><img src="../../img/personImg.png"></dt>
+                   <dd v-text="user.name">用户名</dd>
+                   <dd><span><i class="iconfont icon-icon"></i><span><span><i class="iconfont icon-icon"></i><span></dd>
+               </dl>
+               <dl class="userEval">
+                   <dd>
+                      <p><img src="../../img/nouse.png"></p>
+                      <p>未使用<span class="color">0</span></p>
+                   </dd>
+                   <dd>
+                      <p><img src="../../img/noeval.png"></p>
+                      <p>未评价<span  class="color">0</span></p>
+                   </dd>
+               </dl>
+               <dl class="money">
+                   <dd>当前余额</dd>
+                   <dd><span  class="color" >${{user.balance}}</span></dd>
+               </dl>
+            </div>
+            <div class="R_bottom">
+                <div class="Nolog" >
+                    <p  class="lognav"><span class="mylog">我的订单</span><span class="checklog">查看全部订单</span></p>
+                    <div class="haveLog" >
+                        <ul class="listLog" v-for="item in userOrderArr">
+                            <li style="width: 120px;"><img src="../../img/logImg.png" style="width:120px;height: 70px"></li>
+                            <li class="activemess" style="width: 795px;">
+                                <p class="logshopname">{{item.shopname}}</p>
+                                <p class="logshoptime">
+                                    <span>有效期到：{{item.addtime}}</span>
+                                    <span style="color: #C70D1B">￥{{item.price}}</span>
+                                    <span>{{item.addtime}}</span>
+                                    <span><a href="javascript:;">查看</a></span>
+                                </p>
+                                <p class="logshopmess"><a class="color">{{item.shopname}}</a></p>
+                            </li>
+                        </ul>
+                  
+                    </div>
+                    <p class="kongkong" style="display: none"><img src="../../img/kongkong.png"></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="../../js/common.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/ajaxAddress.js"></script>
+
+<script src="../../js/lib/vue2.js"></script>
+<script src="../../js/lib/vue-resource.min.js"></script>
+<script src="../../js/userOrder.js" type="text/javascript"></script>

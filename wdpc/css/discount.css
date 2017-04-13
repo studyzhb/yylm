@@ -1,0 +1,43 @@
+.de-info {
+  width: 1123px; }
+
+.shopname {
+  font-size: 26px;
+  font-weight: bold;
+  text-indent: -14px; }
+
+.shopdetail {
+  margin-top: 86px; }
+  .shopdetail .discMessage {
+    color: red;
+    font-size: 18px;
+    font-weight: bold; }
+  .shopdetail li {
+    font-size: 12px;
+    color: #666; }
+    .shopdetail li span {
+      margin-right: 12px; }
+
+.shopcenter {
+  margin: 10px 38px;
+  width: auto; }
+  .shopcenter li {
+    margin-top: 22px; }
+
+.discdetail {
+  font-size: 14px; }
+  .discdetail dl dt {
+    margin: 72px 0px 23px 0px; }
+  .discdetail dl dd {
+    margin-top: 12px; }
+    .discdetail dl dd span {
+      margin-right: 16px; }
+  .discdetail .remind {
+    background: #F8F8F8;
+    padding: 12px 14px;
+    overflow: hidden;
+    margin-top: 40px; }
+    .discdetail .remind p {
+      margin: 0px 0px 20px 0px; }
+
+/*# sourceMappingURL=discount.css.map */

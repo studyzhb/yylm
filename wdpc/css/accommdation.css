@@ -1,0 +1,240 @@
+.delicacy-wrap {
+  width: 100%;
+  margin: 0 auto;
+  background: #F8F8F8; }
+  .delicacy-wrap .contentInfo {
+    background: #fff;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    overflow: hidden; }
+  .delicacy-wrap .de-info {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #fff; }
+    .delicacy-wrap .de-info .shop {
+      overflow: hidden; }
+  .delicacy-wrap .nav-bar {
+    overflow: hidden;
+    padding: 0px 43px; }
+    .delicacy-wrap .nav-bar li {
+      float: left;
+      margin-right: 10px; }
+      .delicacy-wrap .nav-bar li a {
+        border: 1px solid gray;
+        padding: 5px 10px;
+        color: #333;
+        display: inline-block;
+        font-size: 14px; }
+      .delicacy-wrap .nav-bar li i {
+        margin-top: 5px;
+        display: inline-block; }
+
+.choice {
+  font-size: 14px; }
+  .choice .datetime {
+    margin-right: 40px; }
+    .choice .datetime .time {
+      width: 192px;
+      height: 30px;
+      border: 1px solid #D8D8D8;
+      margin: 0px  20px;
+      display: inline-block;
+      position: relative;
+      top: 10px; }
+      .choice .datetime .time i {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #333; }
+  .choice .search {
+    position: relative; }
+    .choice .search input {
+      width: 192px;
+      height: 30px;
+      border: 1px solid #D8D8D8;
+      text-indent: 10px;
+      display: inline-block; }
+    .choice .search i {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      background: #333; }
+
+.choiceTerm {
+  margin-top: 18px; }
+
+.areaChoice {
+  padding: 16px 43px;
+  border-top: 1px solid #D8D8D8; }
+  .areaChoice p {
+    float: left;
+    margin-top: 13px; }
+  .areaChoice ul {
+    overflow: hidden; }
+    .areaChoice ul li {
+      float: left;
+      margin: 7px 0px 0px 30px;
+      cursor: pointer;
+      padding: 5px 5px;
+      font-size: 12px; }
+
+.sortInfo {
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1200px; }
+  .sortInfo .sortLBot {
+    background: #fff; }
+
+.sortChoiceLeft {
+  float: left; }
+
+.sortChoiceRight {
+  float: right;
+  padding-right: 7px;
+  background: #fff; }
+
+.sortChoiceinfo {
+  font-size: 14px; }
+  .sortChoiceinfo .sortNav {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #eee;
+    width: 901px;
+    margin-left: 20px; }
+    .sortChoiceinfo .sortNav li {
+      float: left;
+      padding: 12px 40px;
+      cursor: pointer; }
+  .sortChoiceinfo .sortContent {
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 20px 0px 0px 16px; }
+    .sortChoiceinfo .sortContent li {
+      float: left;
+      margin-right: 32px; }
+      .sortChoiceinfo .sortContent li p {
+        margin-bottom: 36px; }
+        .sortChoiceinfo .sortContent li p i {
+          margin-right: 20px; }
+        .sortChoiceinfo .sortContent li p em {
+          border: 1px solid #c70d1b;
+          color: #c70d1b;
+          padding: 2px 5px;
+          margin-right: 20px;
+          font-size: 12px;
+          border-radius: 3px;
+          -ms-border-radius: 3px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px; }
+      .sortChoiceinfo .sortContent li .sortname {
+        width: 226px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+    .sortChoiceinfo .sortContent .sortEval {
+      text-align: center;
+      margin-top: 30px;
+      border-right: 1px solid #d2d1d1;
+      border-left: 1px solid #d2d1d1;
+      padding: 16px 40px; }
+      .sortChoiceinfo .sortContent .sortEval i {
+        color: #c70d1b;
+        margin-right: 6px; }
+      .sortChoiceinfo .sortContent .sortEval span {
+        margin: 0px 10px; }
+      .sortChoiceinfo .sortContent .sortEval div {
+        color: #999;
+        margin-top: 10px; }
+        .sortChoiceinfo .sortContent .sortEval div span {
+          font-size: 20px;
+          color: #c70d1b; }
+    .sortChoiceinfo .sortContent .sortEvalPrice {
+      color: #999;
+      font-size: 20px;
+      text-align: center;
+      line-height: 140px; }
+
+.color-red {
+  color: #c70d1b; }
+
+.color-bg {
+  background: #c70d1b;
+  color: #fff; }
+
+.typeHouse li {
+  padding: 10px 0px;
+  text-align: center;
+  border-top: 1px solid #d2d1d1; }
+  .typeHouse li span {
+    margin-left: 62px; }
+    .typeHouse li span a {
+      display: inline-block;
+      padding: 8px 26px;
+      border: 1px solid #999;
+      border-radius: 10px;
+      cursor: pointer; }
+  .typeHouse li .shopPrice {
+    text-decoration: line-through;
+    color: #999; }
+  .typeHouse li i {
+    margin-left: 10px; }
+
+.downArrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #333; }
+
+.sortAll {
+  display: inline-block;
+  padding: 5px 5px;
+  margin-left: 30px;
+  font-size: 12px;
+  cursor: pointer; }
+
+.areaConInfo {
+  background: #eee;
+  margin-top: 20px;
+  padding-bottom: 8px; }
+
+.bussiList li {
+  position: relative;
+  z-index: 1;
+  display: inline; }
+  .bussiList li img {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    z-index: 2; }
+
+.sigle {
+  position: relative; }
+  .sigle .sigleImg {
+    width: 28px;
+    height: 19px; }
+  .sigle .sigleImg1 {
+    position: absolute;
+    top: 1px;
+    left: 60px; }
+  .sigle .sigleImg2 {
+    position: absolute;
+    top: 1px;
+    left: 132px; }
+  .sigle .sigleImg3 {
+    position: absolute;
+    top: 1px;
+    left: 213px; }
+
+.hotPro {
+  padding: 20px 30px; }
+
+/*# sourceMappingURL=accommdation.css.map */

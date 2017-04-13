@@ -1,0 +1,7 @@
+/*分页*/
+a:hover{ text-decoration:none;}
+.tcdPageCode{padding: 36px 20px;text-align: left;color: #ccc;text-align:center;font-size: 12px;}
+.tcdPageCode a{display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #333;	margin: 0 2px;vertical-align: middle;background: #FFFFFF;color: #333;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid gainsboro}
+.tcdPageCode a.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #C72D1B;	vertical-align: middle;}
+.tcdPageCode a.disabled{	display: none;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #000000;background: #FFFFFF;border: 1px solid #bfbfbf;vertical-align: middle;font-size: 12px;}

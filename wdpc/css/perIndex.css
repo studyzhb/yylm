@@ -1,0 +1,417 @@
+.rightWrap {
+  width: 945px;
+  background: #eee;
+  margin: 0 auto;
+  font-size: 14px;
+  overflow: hidden; }
+  .rightWrap .R_top {
+    background: #fff;
+    display: flex;
+    padding-bottom: 20px; }
+    .rightWrap .R_top dl {
+      flex: 1;
+      margin-top: 20px; }
+    .rightWrap .R_top .user dt {
+      float: left;
+      margin: 0px 20px; }
+    .rightWrap .R_top .user dd {
+      margin-top: 20px; }
+      .rightWrap .R_top .user dd span {
+        margin-right: 10px; }
+    .rightWrap .R_top .userEval {
+      border-left: 1px solid #d0cfcf;
+      border-right: 1px solid #d0cfcf;
+      overflow: hidden;
+      text-align: center; }
+      .rightWrap .R_top .userEval dd {
+        float: left;
+        margin-left: 75px;
+        margin-top: 18px;
+        line-height: 30px;
+        overflow: hidden; }
+    .rightWrap .R_top .money {
+      text-align: center; }
+      .rightWrap .R_top .money dd {
+        margin-top: 20px; }
+  .rightWrap .kongkong {
+    text-align: center;
+    padding: 126px 0px; }
+  .rightWrap .R_bottom {
+    background: #fff;
+    margin-top: 20px; }
+    .rightWrap .R_bottom .mylog {
+      float: left; }
+    .rightWrap .R_bottom .lognav {
+      overflow: hidden; }
+      .rightWrap .R_bottom .lognav span {
+        margin: 20px; }
+    .rightWrap .R_bottom .checklog {
+      float: right;
+      font-size: 12px;
+      color: gray;
+      cursor: pointer; }
+    .rightWrap .R_bottom .listLog {
+      border-bottom: 1px dashed #EEEEEE;
+      overflow: hidden;
+      padding: 20px 0px; }
+      .rightWrap .R_bottom .listLog li {
+        float: left; }
+      .rightWrap .R_bottom .listLog .activemess {
+        margin-left: 20px;
+        font-size: 12px; }
+        .rightWrap .R_bottom .listLog .activemess .logshopname {
+          font-size: 16px; }
+        .rightWrap .R_bottom .listLog .activemess .logshoptime {
+          margin: 13px 0px; }
+          .rightWrap .R_bottom .listLog .activemess .logshoptime span {
+            margin-right: 90px;
+            color: gray; }
+            .rightWrap .R_bottom .listLog .activemess .logshoptime span a {
+              color: #000; }
+  .rightWrap .orderList {
+    margin-top: 20px; }
+  .rightWrap .orderNav {
+    overflow: hidden;
+    background: #fff;
+    padding: 10px 28px; }
+    .rightWrap .orderNav li {
+      float: left;
+      padding: 6px 8px;
+      font-size: 12px;
+      margin-right: 20px;
+      cursor: pointer; }
+  .rightWrap .ordertop {
+    width: 100%;
+    height: 42px;
+    background: #FCFCFC; }
+    .rightWrap .ordertop li {
+      float: left;
+      margin-left: 134px;
+      line-height: 42px; }
+  .rightWrap .orderNum {
+    background: #fff;
+    padding: 14px 0px;
+    font-size: 12px;
+    color: #999; }
+    .rightWrap .orderNum span {
+      margin-left: 20px; }
+    .rightWrap .orderNum .del {
+      float: right;
+      position: relative;
+      bottom: 7px;
+      right: 33px; }
+
+.color {
+  color: #C70D1B !important; }
+
+.bg_color {
+  background: #C70D1B;
+  color: #fff !important; }
+
+.disOrderList {
+  overflow: hidden;
+  padding: 18px 20px;
+  background: #FCFCFC; }
+  .disOrderList dd {
+    float: left;
+    /*margin-right: 14px;*/
+    font-size: 12px; }
+    .disOrderList dd .orderGoodsName {
+      margin-left: 20px; }
+      .disOrderList dd .orderGoodsName .goodsName {
+        font-size: 16px;
+        color: #000; }
+      .disOrderList dd .orderGoodsName p {
+        color: gray;
+        font-size: 12px; }
+    .disOrderList dd span {
+      font-size: 14px; }
+  .disOrderList .edit {
+    position: relative;
+    top: 30px;
+    color: gray;
+    width: 80px;
+    text-align: center;
+    cursor: pointer; }
+    .disOrderList .edit p {
+      border: 1px solid gray;
+      background: #fff;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      padding: 5px 0px;
+      position: relative;
+      top: -32px;
+      margin-top: 9px;
+      cursor: pointer; }
+
+.con {
+  background: #FCFCFC; }
+
+.judge {
+  margin-left: 78px; }
+  .judge span {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border: 1px solid #d4d1d1;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: #666;
+    margin-left: 10px; }
+
+.judgeContent {
+  overflow: hidden; }
+  .judgeContent ul {
+    float: left;
+    font-size: 12px; }
+  .judgeContent .judgelevel {
+    padding: 52px 140px; }
+    .judgeContent .judgelevel li {
+      margin-top: 10px; }
+      .judgeContent .judgelevel li textarea {
+        border-radius: 5px; }
+    .judgeContent .judgelevel i {
+      color: #F8C31F; }
+  .judgeContent .judgewrite {
+    padding: 16px 0px; }
+    .judgeContent .judgewrite li {
+      margin-top: 10px;
+      color: #666; }
+    .judgeContent .judgewrite .confirm {
+      background: #C70D1B;
+      padding: 8px 22px;
+      color: #fff;
+      float: right;
+      cursor: pointer;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -webkit-border-radius: 5px; }
+
+.judgeData {
+  margin-left: 140px;
+  color: #999;
+  font-size: 12px; }
+  .judgeData li {
+    padding: 5px 0px; }
+    .judgeData li .judgetime {
+      float: right; }
+    .judgeData li .judgeitem {
+      display: inline-block;
+      line-height: 20px;
+      width: 658px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+
+.fundrecord {
+  width: 825px;
+  margin: 0 auto;
+  background: #fff; }
+  .fundrecord p {
+    margin: 16px 0px; }
+  .fundrecord .refundTbl tr {
+    color: #666;
+    font-size: 12px; }
+    .fundrecord .refundTbl tr th {
+      background: #FCFCFC;
+      padding: 10px 55px; }
+    .fundrecord .refundTbl tr td {
+      padding: 30px 0px;
+      border-bottom: 2px solid #eee; }
+
+.applyContent {
+  width: 428px;
+  margin: 40px auto;
+  font-size: 12px;
+  color: #666; }
+  .applyContent li {
+    overflow: hidden;
+    margin-top: 16px; }
+    .applyContent li span {
+      color: #333; }
+    .applyContent li em {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 3px;
+      border: 1px solid gray;
+      margin-right: 5px; }
+    .applyContent li table {
+      float: right; }
+      .applyContent li table td {
+        padding: 18px 10px 0px 0px; }
+  .applyContent .decision {
+    text-align: center;
+    margin-top: 42px; }
+    .applyContent .decision .apply, .applyContent .decision .think {
+      padding: 10px 10px;
+      margin: 0 auto;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0px 10px;
+      color: #C70D1B; }
+
+.border {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+
+.sumwrap {
+  background: #eee;
+  margin: 0 auto;
+  overflow: hidden; }
+  .sumwrap .sum {
+    height: 130px;
+    background: #fff;
+    width: 100%;
+    margin: 20px 0px;
+    line-height: 130px; }
+    .sumwrap .sum p {
+      font-size: 18px;
+      color: #666;
+      margin-left: 40px; }
+      .sumwrap .sum p .recharge {
+        border: 1px solid #C70D1B;
+        display: inline-block;
+        padding: 12px 20px;
+        margin-left: 90px;
+        line-height: 0px;
+        font-size: 12px;
+        cursor: pointer; }
+  .sumwrap .sumdata {
+    background: #fff; }
+    .sumwrap .sumdata p {
+      padding: 20px;
+      font-weight: bold; }
+    .sumwrap .sumdata table th {
+      background: #FCFCFC;
+      padding: 10px 47px; }
+    .sumwrap .sumdata table td {
+      padding: 18px 0px;
+      border-bottom: 2px solid #eee;
+      font-size: 12px; }
+
+.accountSet {
+  margin-top: 20px; }
+  .accountSet p {
+    background: #eee;
+    padding: 8px 0px; }
+    .accountSet p span {
+      padding: 6px 8px;
+      margin-left: 20px;
+      display: inline-block;
+      cursor: pointer; }
+  .accountSet ul {
+    padding: 14px 23px; }
+    .accountSet ul li {
+      margin-top: 20px;
+      font-size: 12px; }
+      .accountSet ul li span {
+        margin-left: 35px;
+        display: inline-block; }
+
+.perMess ul {
+  float: left;
+  overflow: hidden; }
+.perMess .getImg li {
+  text-align: center;
+  padding: 0px 68px; }
+.perMess .nickname {
+  margin: 30px 0px;
+  overflow: hidden; }
+  .perMess .nickname li input {
+    width: 162px;
+    height: 30px;
+    display: inline-block;
+    border-bottom: 2px solid #eee;
+    border-top: none;
+    border-left: none;
+    border-right: none; }
+  .perMess .nickname li .sex {
+    margin-right: 5px;
+    cursor: pointer; }
+    .perMess .nickname li .sex img {
+      vertical-align: middle; }
+  .perMess .nickname li .success {
+    display: inline-block;
+    padding: 10px 28px;
+    cursor: pointer; }
+
+.inputFile {
+  position: relative;
+  display: inline-block;
+  overflow: hidden; }
+  .inputFile .fileImg {
+    position: absolute;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    z-index: 9999;
+    width: 162px;
+    height: 172px; }
+
+.helpwrap {
+  width: 100%;
+  overflow: hidden;
+  background: #eee; }
+  .helpwrap .helpinfo {
+    width: 1200px;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 40px; }
+    .helpwrap .helpinfo .help {
+      width: 1020px;
+      margin: 0 auto; }
+    .helpwrap .helpinfo .helpTop {
+      position: relative; }
+      .helpwrap .helpinfo .helpTop .movesigle {
+        position: absolute;
+        bottom: 0px;
+        left: 121px; }
+      .helpwrap .helpinfo .helpTop ul {
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: flex;
+        padding: 70px 0px;
+        border-bottom: 1px solid #d2d0d0; }
+        .helpwrap .helpinfo .helpTop ul li {
+          flex: 1;
+          -ms-flex: 1;
+          -moz-flex: 1;
+          -webkit-flex: 1;
+          text-align: center;
+          font-size: 16px;
+          cursor: pointer; }
+          .helpwrap .helpinfo .helpTop ul li span {
+            width: 80px;
+            height: 80px;
+            display: inline-block;
+            border: 1px solid #d2d0d0;
+            color: #C70D1B;
+            text-align: center;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -moz-moz-radius: 50%;
+            -moz-ms-radius: 50%;
+            line-height: 80px; }
+          .helpwrap .helpinfo .helpTop ul li p {
+            margin-top: 40px; }
+    .helpwrap .helpinfo .helpMain {
+      font-size: 14px;
+      padding-bottom: 70px; }
+      .helpwrap .helpinfo .helpMain .marginComm {
+        margin: 20px 0px; }
+      .helpwrap .helpinfo .helpMain .helpProgress {
+        border: 1px solid #C70D1B;
+        margin: 35px 0px; }
+
+/*# sourceMappingURL=perIndex.css.map */
