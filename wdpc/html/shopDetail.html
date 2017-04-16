@@ -83,13 +83,10 @@
               <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
             </ul>
             <ul class="right-menu-area">
-              <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a>|</li> 
+              <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a>|</li> 
               <li class="wd-my-order"><a>我的订单</a></li>
               <li class="wd-business"><a>招商</a></li>
-              <li class="wd-help-center"><a>帮助中心</a></li>
-              <li class="wd-serve-cus"><a>联系客服</a></li>
-              <li class="nav-website"><a>网站导航</a></li>
-              <li class="phone-alliance"><a>手机异业联盟</a></li>
+            
             </ul>
           </div>
         </div>
@@ -118,7 +115,7 @@
                
             </dl>
           </li>
-          <li class="Notclear"><a href="javascript:;" data-url="index.html">首页</a></li>
+          <li class="Notclear"><a href="index.html" data-url="index.html">首页</a></li>
           <li v-for="navItem in navData" ><a href="javascript:;" v-on:click="parseUrl(navItem)" v-bind:data-id="navItem.id" v-text="navItem.name"></a></li>
           <li ><a href="javascript:;" data-url="">同城便利</a></li>
           

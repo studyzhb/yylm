@@ -103,13 +103,10 @@
               <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
             </ul>
             <ul class="right-menu-area">
-              <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a>|</li> 
+              <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
               <li class="wd-my-order"><a>我的订单</a></li>
               <li class="wd-business"><a>招商</a></li>
-              <li class="wd-help-center"><a>帮助中心</a></li>
-              <li class="wd-serve-cus"><a>联系客服</a></li>
-              <li class="nav-website"><a>网站导航</a></li>
-              <li class="phone-alliance"><a>手机异业联盟</a></li>
+            
             </ul>
           </div>
         </div>
@@ -138,7 +135,7 @@
                
             </dl>
           </li>
-          <li class="Notclear"><a href="javascript:;" data-url="index.html">首页</a></li>
+          <li class="Notclear"><a href="index.html" data-url="index.html">首页</a></li>
           <li v-for="navItem in navData" ><a href="javascript:;" v-on:click="parseUrl(navItem)" v-bind:data-id="navItem.id" v-text="navItem.name"></a></li>
           <li ><a href="javascript:;" data-url="">同城便利</a></li>
           
@@ -294,9 +291,9 @@
                                     </ul>
                                     <div class="sortLBot" v-for="singleItem in shoplistArr">
                                         <ul class="sortContent">
-                                            <li><img :src="singleItem.logo | json2single" style="width:250px;height:172px;"></li>
+                                            <li @click="gotoShopDetail(singleItem.id)" style="cursor: pointer"><img :src="singleItem.logo | json2single" style="width:250px;height:172px;"></li>
                                             <li>
-                                                <p class="sortname" style="font-size: 16px;" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
+                                                <p class="sortname" style="font-size: 16px;cursor: pointer" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
                                                 <p><em v-for="labelItem in getLabelInfo(singleItem.shop_label,'labelB')" v-text="labelItem.name">地铁口</em></p>
                                                 <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
                                                 <p class="sortname" v-text="singleItem.address">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
@@ -338,32 +335,7 @@
                                     
                                 </div>
                                 <!--第二-->
-                                <div class="sortLBot">
-                                    <div class="sortChoiceinfo">
-                                        <ul class="sortContent">
-                                            <li><img src="../img/sortimg.png"></li>
-                                            <li>
-                                                <p class="sortname" style="font-size: 16px;">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
-                                                <p ><em>地铁口</em></p>
-                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
-                                                <p class="sortname">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
-                                            </li>
-                                            <li class="sortEval">
-                                                <div><span>4.0</span>/5分</div>
-                                                <div>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                </div>
-                                            </li>
-                                            <li class="sortEvalPrice">
-                                            人均<span class="color-red">￥36</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                         
@@ -373,7 +345,7 @@
                                 <h3>优惠信息</h3>
                                 <div class="discount-con">
                                 <dl class="clearfix" v-for="beItem in benefitlistArr" :data-id="beItem.id">
-                                    <dt> <img :src="beItem.pic_url"></dt>
+                                    <dt @click="gotoDiscount(beItem.id)" style="cursor:pointer"> <img :src="beItem.pic_url"></dt>
                                     <dd>
                                     <h4 >
                                         <a v-text="beItem.name" style="color:#3c3c3c;" href="javascript:;" @click="gotoDiscount(beItem.id)">
