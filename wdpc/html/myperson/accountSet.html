@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="chrome=1" />
         <link href="../../css/reset.css" rel="stylesheet">
         <link href="../../css/perIndex.css" rel="stylesheet">
+         <link href="../../css/sign.css" rel="stylesheet">
          <!-- <link href="../../iconfont/iconfont.css" rel="stylesheet"> -->
     </head>
     <body>
@@ -12,16 +13,18 @@
             <div class='accountSet'>
                 <!--基本信息-->
                 <div class="basemessage">
-                    <p class="personNav"><span class="bg_color">基本信息</span><span>个人资料</span></p>
-                    <div class="personMess"> 
+                    <p class="personNav"><span :class="{bg_color:selectedIndex==0}" @click="selectedIndex=0">基本信息</span>
+                    <!--<span :class="{bg_color:selectedIndex==1}" @click="selectedIndex=1">个人资料</span>-->
+                    </p>
+                    <div class="personMess" v-show="selectedIndex==0"> 
                          <ul>
-                            <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span><span class="color">更换</span></li>
-                            <li>密 &nbsp;&nbsp;码：<span class="accountpwd"  style="width: 110px;">***********</span><span class="color">修改</span></li>
-                            <li>昵 &nbsp;&nbsp;称：<span class="phoneNum"  style="width: 110px;">{{userDetailArr.nickname}}</span><span class="color">设置</span></li>
+                            <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span><span class="color" @click="changeIndex=1">更换</span></li>
+                            <li>密 &nbsp;&nbsp;码：<span class="accountpwd"  style="width: 110px;">***********</span><span class="color" @click="changeIndex=2">修改</span></li>
+                            <li>昵 &nbsp;&nbsp;称：<span class="phoneNum"  style="width: 110px;">{{userDetailArr.nickname}}</span><span class="color" @click="changeIndex=3">设置</span></li>
                         </ul>
                     </div>
                     <!--个人资料-->
-                    <div class="perMess personMess" style="display: none;">
+                    <div class="perMess personMess" style="display: none;" v-show="selectedIndex==1">
                         <ul class="getImg">
                             <li>上传一张头像吧</li>
                             <li class="inputFile"><input type="file" class="fileImg"><img src="../../img/file.png"></li>
@@ -38,7 +41,67 @@
                     </div>
                 </div>
             </div>
+
+            <!--修改绑定手机号-->
+        <div class="dialog" v-show="changeIndex==1" >
+        <div class="dialog-info"></div>
+        <div class="dia-content">
+          <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
+          <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../../img/logo.png"></div>
+          <div class="dia-main">
+            <ul class="sign">
+              <li><input type="text" v-model="registerUser.phone" placeholder="新手机号"></li>
+              <li class="sign-check"><input v-model="registerUser.code" type="text" id="checkText" class="checkText" placeholder="验证码"><span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span><span class="notsee" @click="updatePicCode">看不清楚，换一张</span></li>
+              <li class="phone-check"><input type="text" v-model="registerUser.phonecode" placeholder="短信验证码"><button  class='checkbtn' @click="getMesscode">获取短信验证码</button></li>
+              <!--<li><input type="password" v-model="registerUser.password" placeholder="新手机号"></li>-->
+              <li><input type="password" placeholder=""></li>
+              
+              <li><span class="reset" @click="updateUserInfo">立即修改</span></li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+       <!--修改密码-->
+        <div class="dialog" v-show="changeIndex==2" >
+        <div class="dialog-info"></div>
+        <div class="dia-content">
+          <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
+          <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../../img/logo.png"></div>
+          <div class="dia-main">
+            <ul class="sign">
+              
+              <li><input type="password" v-model="changePass.oldpassword" placeholder="原密码"></li>
+              <li><input type="password" v-model="changePass.newpassword" placeholder="新密码"></li>
+              <li><input type="password" placeholder="再次输入新密码"></li>
+              
+              <li><span class="reset" @click="updatePassInfo">立即修改</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!--设置昵称-->
+        <div class="dialog" v-show="changeIndex==3" >
+        <div class="dialog-info"></div>
+        <div class="dia-content">
+          <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
+          <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../../img/logo.png"></div>
+          <div class="dia-main">
+            <ul class="sign">
+              
+              <li><input type="password" v-model="nikeName" placeholder="请输入新昵称"></li>
+              
+              
+              <li><span class="reset" @click="updateNikeName">立即修改</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+        </div>
+        
     </body>
     <script src="../../js/common.js"></script>
     <script src="../../js/config.js"></script>

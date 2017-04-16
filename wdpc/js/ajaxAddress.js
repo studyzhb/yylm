@@ -15,7 +15,11 @@ var ajaxAddress={
         resetLoginCode:'/login/code',
         //
         getRegisterMessCode:'/register/code',
-        register:'/register/register'
+        register:'/register/register',
+        getUpdateMessCode:'/User/getcode',//修改绑定手机号,获取图片验证码
+        updateUserInfo:'/User/boundPhone',//提交修改手机号
+        updatePassInfo:'/User/updatePassword',
+        updateNikeName:'/user/update',
     },
     list:{
         shoplist:'/lists/shop',

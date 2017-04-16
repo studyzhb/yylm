@@ -7,6 +7,7 @@
         <link href="../css/personCenter.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
+        <link href="../css/sign.css" rel="stylesheet">
     </head>
     <body>
 
@@ -128,12 +129,12 @@
             <div class="perInfo">
                 <div class="perLeft">
                     <dl class="listNav">
-                        <dt style="cursor: pointer;" class="color"><span class="circleImg "></span>个人主页</dt>
+                        <dt data-url="./myperson/perIndex.html" style="cursor: pointer;" class="color personIndex"><span class="circleImg "></span>个人主页</dt>
                         <dd>
                             <dl>
                                 <dt><span></span>我的订单</dt>
                                 <dd data-url="./myperson/discountOrder.html">优惠订单</dd>
-                                <dd data-url="./myperson/eOrder.html">e+便利订单</dd>
+                                <!--<dd data-url="./myperson/eOrder.html">e+便利订单</dd>-->
                             </dl>
                         </dd>
                         <dd>
@@ -141,6 +142,7 @@
                                 <dt><span></span>我的评价</dt>
                                 <dd data-url="./myperson/discountOrder.html">待评价</dd>
                                 <dd data-url="./myperson/judged.html">已评价</dd>
+                                <dd data-url="./myperson/refundApply.html">退款/售后</dd>
                             </dl>
                         </dd>
                         <dd>
@@ -163,7 +165,7 @@
                         </dd>
                     </dl>
                 </div>
-                <div class="perRight">
+                <div class="perRight clearfix" style="height: auto;min-height: 540px;background: none;overflow: hidden;">
 
                 </div>
             </div>
@@ -178,8 +180,9 @@
     <script src="../js/lib/vue2.js"></script>
     <script src="../js/lib/vue-resource.min.js"></script>
 
-    <script src="../js/router.js"></script>
+    
     <script src="../js/header.js"></script>
     <script src="../js/personCenter.js"></script>
+    <script src="../js/router.js"></script>
 
 </html>

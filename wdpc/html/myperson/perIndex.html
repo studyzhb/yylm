@@ -11,7 +11,7 @@
         <div class="rightWrap" id="app">
             <div class="R_top">
                <dl class="user">
-                   <dt><img src="../../img/personImg.png"></dt>
+                   <dt><img src="../../img/personImg.png" style="width:90px;height: 90px;overflow: hidden;border-radius: 50%" :src="user.pic"></dt>
                    <dd v-text="user.name">用户名</dd>
                    <dd><span><i class="iconfont icon-icon"></i><span><span><i class="iconfont icon-icon"></i><span></dd>
                </dl>
@@ -27,10 +27,10 @@
                </dl>
                <dl class="money">
                    <dd>当前余额</dd>
-                   <dd><span  class="color" >${{user.balance}}</span></dd>
+                   <dd><span  class="color" >¥{{user.balance}}</span></dd>
                </dl>
             </div>
-            <div class="R_bottom">
+            <div class="R_bottom" style="display: none">
                 <div class="Nolog" >
                     <p  class="lognav"><span class="mylog">我的订单</span><span class="checklog">查看全部订单</span></p>
                     <div class="haveLog" >

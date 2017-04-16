@@ -29,10 +29,23 @@
         var url=$(this).data('url');
         
 		showSubIframe(url,sW,sH);
+        setTimeout(initWrapperHeight,1000);
+        initWrapperHeight();
     })
+    $('.personIndex').on('click',function(){
+        
+        var url=$(this).data('url');
+        console.log('11111111111')
+		showSubIframe(url,sW,sH);
 
-    showIframe('index.html',w,h);
+        setTimeout(initWrapperHeight,1000);
+        initWrapperHeight();
+		// startInit('subFrame',540)
+    })
+    
 
+    // showIframe('index.html',w,h);
+    showSubIframe('./myperson/perIndex.html',sW,sH);
     var browserVersion = window.navigator.userAgent.toUpperCase();
     var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
     var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
@@ -81,7 +94,7 @@
         setInterval(function(){
             reinitIframe(iframeId,minHeight);
         },100);
-        // window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+        window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
     }
 
 
@@ -132,11 +145,30 @@
         
 	}
 
-    window.onresize=function(){
-        var iframe=document.getElementById('YuFrame1');
+    // window.onresize=function(){
+    //     var iframe=document.getElementById('YuFrame1');
 
-        if(iframe){
-            iframe.style.width=$('.shop-content').width()+'px';
-        }
-    }
+    //     if(iframe){
+    //         iframe.style.width=$('.shop-content').width()+'px';
+    //     }
+    // }
 
+function initWrapperHeight(){
+    var $content = $('.perRight');
+    // $content.height($(this).height());
+    $content.find('iframe').each(function() {
+        console.log($(this.contentWindow.document.body).height());
+      $(this).height(Math.max($(this.contentWindow.document.body).height(),540));
+    });
+}
+
+//iframe自适应
+  $(window).on('resize load', function() {
+    // var $content = $('.perRight');
+    // $content.height($(this).height());
+    // $content.find('iframe').each(function() {
+    //     console.log($(this.contentWindow.document.body).height());
+    //   $(this).height($(this.contentWindow.document.body).height());
+    // });
+
+  }).resize();
