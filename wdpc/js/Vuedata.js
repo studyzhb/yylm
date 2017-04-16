@@ -132,21 +132,24 @@ new Vue({
 							self.shoplistArr=res.body.data;
 						})
 		},
+		//筛选标签
 		getLabelInfo:function(str,lField){
 			var arr=str.split(',');
 			var nArr=[];
 			var self=this;
 			//{id, type,field}
+			
 			this.labelArr.forEach(function(item){
 				arr.forEach(function(its){
-					if(its.id==item.id){
+					if(its==item.id){
+						
 						if(LabelField[lField]==item.field){
 							nArr.push(item);
 						}
 					}
 				})
 			})
-
+			
 			return nArr;
 		},
 		getBefenit:function(){

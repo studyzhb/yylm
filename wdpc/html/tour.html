@@ -317,7 +317,7 @@
                                         </ul>
                                         <ul class="typeHouse">
                                             <li v-for="item in singleItem.goods" :data-id="item.id">
-                                                <span v-text="item.goodsname">标准间</span>
+                                                <span v-text="item.goodsname" style="display: inline-block;width: 100px;line-height: 19px;vertical-align: middle;height: 19px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; ">标准间</span>
                                                 <span v-text="item.use_time_info || '暂无'">节假日通用</span>
                                                 <span v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
                                                 <span class="color-red">￥{{item.price_pay}}</span>

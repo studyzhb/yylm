@@ -10,9 +10,9 @@ var searchGoods='search-goods.html?tag=';
  * 标签位置属性
  */
 var LabelField={
-    labelA:'shop',
-    labelB:'server',
-    labelC:'fieldC'
+    labelA:'positionA',
+    labelB:'positionB',
+    labelC:'positionC'
 }
 var OrderTabStatus={
     all:'',

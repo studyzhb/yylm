@@ -153,9 +153,9 @@ new Vue({
 						self.navIdArr.push({id:data.id,typeShop:[],typeGoods:[],benefit:[],nav_name:data.name});
 						
 					})			
-					self.navIdArr.forEach(function(item) {
-						self.navfun(item);
-					});
+					// self.navIdArr.forEach(function(item) {
+						// self.navfun(item);
+					// });
 					
 					// console.log(self.navIdArr);
 					
