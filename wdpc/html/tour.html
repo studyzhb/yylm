@@ -363,7 +363,16 @@
                     </div>
                  </div>
                  <div class="page">
-                    <div class="tcdPageCode" id="pagecode"></div>
+                    <div class="tcdPageCode" id="pagecode">
+                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
+                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+
+
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" class="current">1</a>
+
+                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
+                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
+                    </div>
                 </div>
           </div>
           
