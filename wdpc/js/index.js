@@ -80,9 +80,9 @@ new Vue({
 					//获得标签方法
 		   this.$http.get(ajaxAddress.preFix+ajaxAddress.label.labelAll)
 			   .then(function(res){
-				   console.log(res);
+				   
 				   self.labelArr = res.body.data;
-				//    console.log(self.labelArr)
+				   
 			});
 			
 		},
@@ -157,6 +157,7 @@ new Vue({
 			
 			var nArr=[];
 			var self=this;
+			
 			//{id, type,field}
 			this.labelArr.forEach(function(item){
 				arr.forEach(function(its){
