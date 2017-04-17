@@ -29,7 +29,7 @@
         var url=$(this).data('url');
         
 		showSubIframe(url,sW,sH);
-        setTimeout(initWrapperHeight,1000);
+        setInterval(initWrapperHeight,100);
         initWrapperHeight();
     })
     $('.personIndex').on('click',function(){
@@ -38,7 +38,7 @@
         console.log('11111111111')
 		showSubIframe(url,sW,sH);
 
-        setTimeout(initWrapperHeight,1000);
+        setInterval(initWrapperHeight,100);
         initWrapperHeight();
 		// startInit('subFrame',540)
     })

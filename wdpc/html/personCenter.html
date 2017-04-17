@@ -85,8 +85,8 @@
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
-              <li class="wd-my-order"><a>我的订单</a></li>
-              <li class="wd-business"><a>招商</a></li>
+              <!--<li class="wd-my-order"><a>我的订单</a></li>
+              <li class="wd-business"><a>招商</a></li>-->
     
             </ul>
           </div>
@@ -140,8 +140,8 @@
                         <dd>
                             <dl>
                                 <dt><span></span>我的评价</dt>
-                                <dd data-url="./myperson/discountOrder.html">待评价</dd>
-                                <dd data-url="./myperson/judged.html">已评价</dd>
+                                <dd data-url="./myperson/wait_judge.html">待评价</dd>
+                                <dd data-url="./myperson/wait_judge.html">已评价</dd>
                                 <dd data-url="./myperson/refundApply.html">退款/售后</dd>
                             </dl>
                         </dd>
@@ -160,7 +160,7 @@
                         </dd>
                         <dd>
                             <dl>
-                                <dt data-url="./myperson/mycollect.html"><span></span>我的收藏</dt>
+                                <dt data-url="./myperson/mycollect.html" class="personIndex"><span></span>我的收藏</dt>
                             </dl>
                         </dd>
                     </dl>
@@ -179,7 +179,7 @@
     <script src="../js/jquery-2.1.4.min.js"></script>
     <script src="../js/lib/vue2.js"></script>
     <script src="../js/lib/vue-resource.min.js"></script>
-
+    <script src="../js/lib/vuerify.min.js"></script>
     
     <script src="../js/header.js"></script>
     <script src="../js/personCenter.js"></script>

@@ -39,8 +39,8 @@ new Vue({
                     .then(function(res){
                         if(res.body.code==200){
 
-                            // self.userOrderArr=res.body.data;
-                            self.handleData(res.body.data);   
+                            self.userOrderArr=res.body.data;
+                            // self.handleData(res.body.data);   
                         }
                     })
         },
@@ -54,6 +54,7 @@ new Vue({
         },
         showOrderList:function(index){
             this.tabIndex=index;
+            this.getUserOrder({status:index});
         },
         handleData:function(arrN){
             var self=this;

@@ -5,7 +5,7 @@ Vue.http.interceptors.push((request, next) => {
 	next()
 })
 
-
+Vue.use(Vuerify /*, add rules */);
 
 new Vue({
 	el:'#headerApp',
@@ -46,9 +46,30 @@ new Vue({
 		},
 		//搜索 //true加载商品,false加载店铺
 		searchTag:true,
-		mainCon:''
+		mainCon:'',
+		username:''
 	},
-
+	vuerify: {
+		username: {
+		test: 'email',
+		message: '邮箱错误'
+		},
+		password: {
+		test: /\w{4,}/,
+		message: '至少四位字符'
+		},
+		conform: {
+		test (val) {
+			return val && !this.$vuerify.$errors.password && val === this.password
+		},
+		message: '两次密码输入不一致'
+		},
+		email: [ // 支持传入数组
+		'required',
+		'email',
+		{ test: /@gmail\./, message: '只能是谷歌邮箱' }
+		]
+	},
 	filters:{
 		json2single:function(value){
 			
@@ -74,7 +95,7 @@ new Vue({
 		 * 用户登录
 		 */
 		userLogin:function(){
-
+			console.log(this.$vuerify.check())
 			var body=this.loginUser;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
 				.then(function(res){
@@ -123,7 +144,7 @@ new Vue({
 			}else{
 				url=searchShop+this.searchTag;
 			}
-			showIframe(url+'&con='+this.mainCon);
+			open(url+'&con='+this.mainCon);
 			this.isShowAllSortIndex=-1;
 		},
 		getResetMesscode:function(){

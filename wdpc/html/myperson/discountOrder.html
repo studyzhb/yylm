@@ -12,11 +12,11 @@
             <!--我的订单有信息-->
             <div class="orderList">
                 <ul class="orderNav">
-                    <li :class="{bg_color:tabIndex==0}" @click="showOrderList(0)">全部</li>
+                    <li :class="{bg_color:tabIndex==0}" @click="showOrderList()">全部</li>
                     <li :class="{bg_color:tabIndex==1}" @click="showOrderList(1)">未使用</li>
-                    <li :class="{bg_color:tabIndex==2}" @click="showOrderList(2)">未付款</li>
-                    <li :class="{bg_color:tabIndex==3}" @click="showOrderList(3)">已使用</li>
-                    <li :class="{bg_color:tabIndex==4}" @click="showOrderList(4)">退款</li>
+                    <li :class="{bg_color:tabIndex==2}" @click="showOrderList(0)">未付款</li>
+                    <li :class="{bg_color:tabIndex==3}" @click="showOrderList(6)">已使用</li>
+                    <li :class="{bg_color:tabIndex==4}" @click="showOrderList(4)">已退款</li>
                 </ul>
                 
                     <!--未使用-->
