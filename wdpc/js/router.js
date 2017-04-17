@@ -2,7 +2,7 @@
 	
 	var w=$('.shop-content').width();
 	var h=$('.shop-content').height();
-	
+	var timer;
 	$('.wd-nav-area').on('click','li a',function() {
         console.log('click');
 		var url=$(this).data('url');
@@ -29,7 +29,7 @@
         var url=$(this).data('url');
         
 		showSubIframe(url,sW,sH);
-        setInterval(initWrapperHeight,100);
+        timer=setInterval(initWrapperHeight,100);
         initWrapperHeight();
     })
     $('.personIndex').on('click',function(){
@@ -38,10 +38,11 @@
         console.log('11111111111')
 		showSubIframe(url,sW,sH);
 
-        setInterval(initWrapperHeight,100);
+        timer=setInterval(initWrapperHeight,100);
         initWrapperHeight();
 		// startInit('subFrame',540)
     })
+    
     
 
     // showIframe('index.html',w,h);
@@ -157,7 +158,7 @@ function initWrapperHeight(){
     var $content = $('.perRight');
     // $content.height($(this).height());
     $content.find('iframe').each(function() {
-        console.log($(this.contentWindow.document.body).height());
+        
       $(this).height(Math.max($(this.contentWindow.document.body).height(),540));
     });
 }

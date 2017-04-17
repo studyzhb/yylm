@@ -5,12 +5,19 @@ Vue.http.interceptors.push((request, next) => {
 	next()
 })
 
-Vue.use(Vuerify /*, add rules */);
+// Vue.use(Vuerify /*, add rules */);
 
 new Vue({
 	el:'#headerApp',
 	data:{
 		navData:[],
+		cityObj:{
+			id:'',
+			name:''
+		},
+		loginUserName:'',
+		isLogin:false,
+		cityArr:[],
 		banImgData:[],
 		mainData:[],
 		navIdArr:[],
@@ -97,9 +104,17 @@ new Vue({
 		userLogin:function(){
 			console.log(this.$vuerify.check())
 			var body=this.loginUser;
+			var self=this;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
 				.then(function(res){
-					console.log(res);
+					if(res.body.code==200){
+						self.isLogin=true;
+						self.loginIndex='-1';
+						
+						self.loginUserName=res.body.data||'***';
+						cookieUtil.setExpiresDate('username',self.loginUserName,7);
+					}
+		
 				})
 		},
 		//用户密码重置
@@ -144,7 +159,8 @@ new Vue({
 			}else{
 				url=searchShop+this.searchTag;
 			}
-			open(url+'&con='+this.mainCon);
+			console.log(this.mainCon)
+			open(url+'&con='+escape(this.mainCon),'_self');
 			this.isShowAllSortIndex=-1;
 		},
 		getResetMesscode:function(){
@@ -155,15 +171,56 @@ new Vue({
 		},
 		parseUrl:function(value){
             this.isShowAllSortIndex=1;
-			top.location.href=goToWhere+value.id+'&name='+escape(value.name);
-			console.log(top.location.href);
-			return goToWhere+value.id+'&name='+escape(value.name);
+			
+			top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);
+			
+			
+			return goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);
         },
+		getCityName:function(){
+			
+			var cName=cookieUtil.getCookie('cName');
+			var cId=cookieUtil.getCookie('cId');
+			if(!cId){
+				//获取城市
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.common.getCity)
+					.then(function(res){
+						
+							self.cityArr=res.body||[];
+							res.body.forEach(function(item){
+								if(item.status==true){
+									cookieUtil.setExpiresDate('cName',item.name,7);
+									cookieUtil.setExpiresDate('cId',item.id,7);
+									self.cityObj=item;
+								}
+							})
+							
+						
+					})
+			}else{
+				this.cityObj={
+					id:cId,
+					name:cName
+				}
+			}
+		},
+		getUserInfo:function(){
+			var userName=cookieUtil.getCookie('username');
+			if(userName){
+				this.isLogin=true;
+				this.loginUserName=userName;
+			}else{
+				this.isLogin=false;
+			}
+		},
 		renderView:function(){
 			
 			var self=this;
 			this.isShowAllSortIndex=location.href.indexOf('index.html')>-1||location.href.indexOf('.html')==-1?0:1;
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
+
+			this.getCityName();
+			this.getUserInfo();
             //获取导航
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.nav.showPrimaryNav+'?navtype=1')
 				.then(function(res){
@@ -174,11 +231,7 @@ new Vue({
 						self.navIdArr.push({id:data.id,typeShop:[],typeGoods:[],benefit:[],nav_name:data.name});
 						
 					})			
-					// self.navIdArr.forEach(function(item) {
-						// self.navfun(item);
-					// });
-					
-					// console.log(self.navIdArr);
+
 					
 				});
 			

@@ -7,6 +7,7 @@
         <link href="../css/shopindex.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
         <link href="../css/discount.css" rel="stylesheet">
+    <link href="../css/sign.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
     </head>
     <body>
@@ -80,8 +81,9 @@
         <div class="wd-title-bg">
           <div class="wd-title-container">
             <ul class="left-logo-name">
-              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span>郑州</span></a></li>
-              <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
+              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
@@ -185,49 +187,7 @@
                  </div>
             </div>
          </div>
-         <footer>
-      <div class="foot-serve">
-        <div  class="foot-serve-top clearfix">
-          <div class="barcode">
-            <span class="client"></span>
-            <span class="official"></span>
-            <img src="../img/foot.png">
-          </div>
-          <ul class="serve">
-            <li class="white">购物指南</li>
-            <li><a href="javascript:;">购物流程</a></li>
-            <li><a href="javascript:;">订购方式</a></li>
-            <li><a href="javascript:;">常见问题</a></li>
-          </ul>
-          <ul class="serve">
-            <li class="white">配送方式</li>
-            <li><a href="javascript:;">快速配送</a></li>
-            <li><a href="javascript:;">配送时间</a></li>
-            <li><a href="javascript:;">验货查收</a></li>
-          </ul>
-          <ul class="serve">
-            <li class="white">支付方式</li>
-            <li><a href="javascript:;">支付方式</a></li>
-            <li><a href="javascript:;">代金券</a></li>
-          </ul>
-          <ul class="serve">
-            <li class="white">售后服务</li>
-            <li><a href="javascript:;">退换货政策</a></li>
-            <li><a href="javascript:;">退款说明</a></li>
-            <li><a href="javascript:;">联系客服</a></li>
-          </ul>
-        </div>
-        <div class="foot-serve-bottom">
-          <img src="../img/360.png">
-          <img src="../img/website.png">
-        </div>
-      </div>
-
-      <div class="foot-about-bg">
-        <div class="foot-about">  <a>©2017 e+.RIGHT         </a><a>ICP备案号：豫ICP备15016705号-4         </a><a>         </a>
-        </div>
-      </div>
-    </footer>
+         
     </body>
     
 </html>
@@ -236,5 +196,5 @@
 <script src="../js/ajaxAddress.js"></script>
 <script src="../js/lib/vue2.js"></script>
 <script src="../js/lib/vue-resource.min.js"></script>
-<script src="../js/lib/header.js"></script>
+<script src="../js/header.js"></script>
 <script src="../js/discount.js"></script>

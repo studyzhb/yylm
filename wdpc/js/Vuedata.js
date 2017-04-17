@@ -123,10 +123,22 @@ new Vue({
 		},
 		getShopInfo:function(){
 			var self=this;
+
+			var body={};
+			console.log(this.parames);
+			for(var key in this.parames){
+				if(key!='field'){
+					body[key]=this.parames[key];
+				}else{
+					body.field=this.parames[key];
+				}
+			}
+
+			console.log(body);
 			/**
 			 * 获取店铺数据
 			 */ 
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.shoplist+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid+'&p='+this.currentPage)
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.shoplist,{params:body})
 						.then(function(res){
 							console.log(res);
 							self.shoplistArr=res.body.data;
@@ -165,30 +177,42 @@ new Vue({
 		},
 		searchResultInfo:function(obj,tag){
 			this.extendParams(obj,tag);
-			this.getGoodsInfo();
+			
+			this.getShopInfo();
 		},
 		extendParams:function(obj,tag){
-
+			console.log(obj);
 			if(tag){
-				if(!this.parames.field){
-					this.parames.field=[];
-				}
-				for(var i=0,j=this.parames.field;i<j.length;i++){
-					
+				// if(!this.parames.field){
+				// 	this.parames.field={};
+				// }
+
+				
 					for(var m in obj){
-						if(j[i][m]){
-							j[i][m]=obj[m];
-							break;
-						}
+						this.parames[m]=obj[m];
 					}
-				}
-				this.parames.field.push(obj);
+				
+				// for(var i=0,j=this.parames.field;i<j.length;i++){
+					
+				// 	for(var m in obj){
+				// 		if(!j[i][m]){
+				// 			j[i][m]=obj[m];
+				// 			break;
+				// 		}else{
+				// 			j[i][m]=obj[m];
+				// 			break;
+				// 		}
+				// 	}
+				// }
+				// this.parames.field.push(obj);
 				return;
+			}else{
+				for(var i in obj){
+					this.parames[i]=obj[i];
+				}
 			}
 
-			for(var i in obj){
-				this.parames[i]=obj[i];
-			}
+			
 		},
         getImageInfo:function(aIndex){
             var obj=this.$refs.aIndex[aIndex];

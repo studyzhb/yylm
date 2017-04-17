@@ -48,14 +48,15 @@ new Vue({
 			var self=this;
 			console.log(paraObj);
 			this.gOstag=paraObj.tag;
-			this.parames.keys=paraObj.con;
+			this.parames.keys=unescape(paraObj.con);
+
 			this.navName=unescape(paraObj.name);
 			//获取城市站点和导航
 			this.getCityAndNav();
 			
 			this.getAreaList();
 
-			this.getClassifyInfo();
+			// this.getClassifyInfo();
 
 			this.showLabelAllInfo();
 			//true加载商品,false加载店铺

@@ -7,6 +7,7 @@
         <link href="../css/accommdation.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
         <link href="../css/pageCode.css" rel="stylesheet">
+        <link href="../css/sign.css" rel="stylesheet">
     </head>
     <body>
         <link href="../css/header.css" rel="stylesheet">
@@ -99,8 +100,9 @@
         <div class="wd-title-bg">
           <div class="wd-title-container">
             <ul class="left-logo-name">
-              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span>郑州</span></a></li>
-              <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
+              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 

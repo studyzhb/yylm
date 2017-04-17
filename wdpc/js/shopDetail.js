@@ -32,6 +32,7 @@ new Vue({
 			var self=this;
 			this.shopId=paraObj.id;
 			this.navName=unescape(paraObj.name);
+			
             this.getShopInfo();
 			this.getHotInfo();
 		},

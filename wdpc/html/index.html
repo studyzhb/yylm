@@ -86,8 +86,9 @@
         <div class="wd-title-bg">
           <div class="wd-title-container">
             <ul class="left-logo-name">
-              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span>郑州</span></a></li>
-              <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
+              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
@@ -291,9 +292,9 @@
             <h3>优惠信息</h3>
             <div class="discount-con">
               <dl class="clearfix" v-for="disItem in mainItem.benefit">
-                <dt v-bind:data-url="disItem.url"> <img v-bind:src="disItem.pic_url"></dt>
+                <dt v-bind:data-url="disItem.url" @click="gotoDiscount(disItem.id,mainItem.nav_name)"> <img v-bind:src="disItem.pic_url"></dt>
                 <dd>
-                  <h4 v-text="disItem.name"></h4>
+                  <h4 @click="gotoDiscount(disItem.id)" v-text="disItem.name"></h4>
                   <p v-text="disItem.benefit_info"></p>
                 </dd>
               </dl>
@@ -335,6 +336,7 @@
     </div>
   </body>
   <script src="../js/common.js"></script>
+  <script src="../js/config.js"></script>
   <script src="../js/lib/vue2.js"></script>
   <script src="../js/lib/vue-resource.min.js"></script>
   <script src="../js/lib/vuerify.min.js"></script>

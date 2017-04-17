@@ -4,7 +4,8 @@ new Vue({
         userOrderArr:'',
         user:'',
         tabIndex:'0',
-        userOrderFilterArr:[]
+        userOrderFilterArr:[],
+        goodsValidCode:''
     },
     filters:{
         json2single:function(value){
@@ -48,13 +49,28 @@ new Vue({
             var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.user)
                     .then(function(res){
-                        self.user=res.body.data;
+                        if(res.body.code==200){
+                            self.user=res.body.data||{};
+                        }
                         console.log(self.user);
                     })
         },
-        showOrderList:function(index){
+        showOrderList:function(index,staIndex){
             this.tabIndex=index;
-            this.getUserOrder({status:index});
+            this.getUserOrder({status:staIndex});
+        },
+        //展示付完款中的已消费与未消费
+        showConsume:function(index,staIndex){
+            this.tabIndex=index;
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userConsume,{params:{status:staIndex}})
+                    .then(function(res){
+                        if(res.body.code==200){
+
+                            self.userOrderArr=res.body.data;
+                            // self.handleData(res.body.data);   
+                        }
+                    })
         },
         handleData:function(arrN){
             var self=this;
@@ -80,6 +96,17 @@ new Vue({
             }
             console.log(arr);
             self.userOrderFilterArr=arr;
+        },
+        checkCode:function(id){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.goods.goodsCode,{params:{id:id}})
+                    .then(function(res){
+                        if(res.body.code==200){
+
+                            self.goodsValidCode=res.body.data;
+                            // self.handleData(res.body.data);   
+                        }
+                    })
         }
     }
 })

@@ -1,5 +1,5 @@
 var ajaxAddress={
-    preFix:'/yylmserver/public/index.php/unionIndex',
+    preFix:'/yylmserver/yylm/public/index.php/unionIndex',
     formFix:'',
     area:{
         areaData:'/condition/getArea'
@@ -38,7 +38,7 @@ var ajaxAddress={
         discountMesData:'/index/Benefit'
     },
     label:{
-        labelAll:'/comment/LabelAll'
+        labelAll:'/common/LabelAll'
     },
     Banner:{
         banner:'/index/getBanner'
@@ -59,6 +59,14 @@ var ajaxAddress={
     userData:{
         user:'/User/user',
         userInfo:'/User/userInfo',//个人详细信息
-        userOder:'/User/purchaseOrderLst'
+        userOder:'/User/purchaseOrderLst',
+        //展示已消费与未消费的订单
+        userConsume:'/user/toConsume'
+    },
+    common:{
+        getCity:'/common/getCity',
+    },
+    goods:{
+        goodsCode:'/user/searchCode'
     }
 }

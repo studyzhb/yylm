@@ -7,6 +7,7 @@
         <link href="../css/shopindex.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
+        <link href="../css/sign.css" rel="stylesheet">
     </head>
     <body>
 
@@ -79,8 +80,9 @@
         <div class="wd-title-bg">
           <div class="wd-title-container">
             <ul class="left-logo-name">
-              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span>郑州</span></a></li>
-              <li class="wd-common-login"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
+              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a>|</li> 
@@ -149,7 +151,7 @@
                                 </div>
                                 <div class="de-center shopcenter">
                                     <ul class="shopdetail">
-                                        <li><span style="font-size: 18px;" v-text="shopDetailArr.name">杨靖宇黄焖鸡米饭套餐</span><span class="phoneSee"><i class="iconfont icon-icon"></i>手机浏览</span></li>
+                                        <li><span style="font-size: 18px;" v-text="shopDetailArr.name">杨靖宇黄焖鸡米饭套餐</span><span class="phoneSee" style="display: none;"><i class="iconfont icon-icon"></i>手机浏览</span></li>
                                         <li><i class="iconfont icon-xingxing"></i><i class="iconfont icon-xingxing"></i></li>
                                         <li>店铺介绍：<span class="count color-red">{{shopDetailArr.shop_info}}</span></li>
                                         <!--<li ><span class="color-red">有效期</span></li>

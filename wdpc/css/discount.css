@@ -4,7 +4,8 @@
 .shopname {
   font-size: 26px;
   font-weight: bold;
-  text-indent: -14px; }
+  /*text-indent: -14px;*/
+   }
 
 .shopdetail {
   margin-top: 86px; }
@@ -20,7 +21,8 @@
 
 .shopcenter {
   margin: 10px 38px;
-  width: auto; }
+  /*width: auto;*/
+   }
   .shopcenter li {
     margin-top: 22px; }
 

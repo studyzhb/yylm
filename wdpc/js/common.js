@@ -1,6 +1,6 @@
 var shopRecomendName  = "热门店铺";
 var goodsRecomendName = "热门商品";
-var goToWhere='tour.html?cityid=1&navid=';
+var goToWhere='tour.html?navid=';
 var shopDetailUrl='shopDetail.html?id=';
 var goodsDetailUrl="delicacy.html?id=";
 var discountInfo='discount.html?id=';

@@ -11,7 +11,7 @@
         <div class="rightWrap" style="background: #fff">
             <div class="sumwrap">
                 <div class="sum">
-                    <p>当前余额：<span class="color">￥9</span><span class="color border recharge">充值</span></p>
+                    <p>当前余额：<span class="color" v-text="user.balance">￥0</span><span class="color border recharge">充值</span></p>
                 </div>
                 <div class="sumdata">
                     <p>交易明细：</p>
@@ -49,4 +49,11 @@
             
         </div>
     </body>
+    <script src="../../js/common.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/ajaxAddress.js"></script>
+
+<script src="../../js/lib/vue2.js"></script>
+<script src="../../js/lib/vue-resource.min.js"></script>
+<script src="../../js/userOrder.js" type="text/javascript"></script>
 </html>

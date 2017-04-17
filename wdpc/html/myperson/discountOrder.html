@@ -12,11 +12,11 @@
             <!--我的订单有信息-->
             <div class="orderList">
                 <ul class="orderNav">
-                    <li :class="{bg_color:tabIndex==0}" @click="showOrderList()">全部</li>
-                    <li :class="{bg_color:tabIndex==1}" @click="showOrderList(1)">未使用</li>
-                    <li :class="{bg_color:tabIndex==2}" @click="showOrderList(0)">未付款</li>
-                    <li :class="{bg_color:tabIndex==3}" @click="showOrderList(6)">已使用</li>
-                    <li :class="{bg_color:tabIndex==4}" @click="showOrderList(4)">已退款</li>
+                    <li :class="{bg_color:tabIndex==0}" @click="showOrderList(0)">全部</li>
+                    <li :class="{bg_color:tabIndex==1}" @click="showConsume(1,0)">未使用</li>
+                    <li :class="{bg_color:tabIndex==2}" @click="showOrderList(2,0)">未付款</li>
+                    <li :class="{bg_color:tabIndex==3}" @click="showConsume(3,1)">已使用</li>
+                    <li :class="{bg_color:tabIndex==4}" @click="showOrderList(4,4)">已退款</li>
                 </ul>
                 
                     <!--未使用-->
@@ -44,8 +44,11 @@
                                     <dd style="margin-left: 67px;" class="edit"><span class="color">￥{{item.price}}</span></dd>
                                     <dd style="margin-left: 68px;" class="edit" v-text="item.status==1?'已使用':'未使用'">未使用</dd>
                                     <dd style="margin-left: 63px;" class="edit">
-                                        <p>查看券码</p>
-                                        <p>申请退款</p>
+                                        <p style="position:relative;" v-show="item.oderInfoStatus==0&&item.status!=0" @click="checkCode(item.orderinfoid)">查看券码
+                                            <span style="position:absolute;left:0;top:10px;height: 20px;line-height: 20px;font-size: 14px;color: #666;" v-text="goodsValidCode">123134</span>
+                                        </p>
+                                        <!--<p v-show="item.oderInfoStatus==1">去评论</p>-->
+                                        <p v-show="item.oderInfoStatus==0&&item.status!=0">申请退款</p>
                                     </dd>
                                 </dl>  
                         </div>

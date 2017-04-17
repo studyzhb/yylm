@@ -193,11 +193,15 @@ new Vue({
 			this.navid=id;
 		},
 		gotoShopDetail:function(id,name){
-			open(shopDetailUrl+id+'&name='+name,'_self');
+			open(shopDetailUrl+id+'&name='+escape(name),'_self');
 		},
 		goToGoodsDetail:function(id,name){
-			open(goodsDetailUrl+id+'&name='+name,'_self');
-		}
+			open(goodsDetailUrl+id+'&name='+escape(name),'_self');
+		},
+		gotoDiscount:function(id,name){
+
+			open(discountInfo+id+'&name='+escape(name),'_self');
+		},
 
 	}
 })
