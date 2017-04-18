@@ -58,10 +58,17 @@ new Vue({
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.Banner.banner+'?station=1')
 				.then(function(res){
 					// console.log(res);
-					self.bannerData=res.body.data;
-					if(self.bannerData.length>0){
-						this.active();
-					}		
+					
+					if(res.body.code==200){
+						self.bannerData=res.body.data.concat(res.body.data)||[];
+						if(self.bannerData.length>0){
+							setTimeout(function(){
+								self.active();
+							},1000);
+							
+						}	
+					}
+						
 					// console.log(self.bannerData);
 					
 				});
@@ -70,10 +77,12 @@ new Vue({
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.Banner.banner+'?station=2')
 				.then(function(res){
 					// console.log(res);
-					self.banImgData=res.body.data;
-					if(self.bannerData.length>0){
-						this.active();
-					}		
+				
+					if(res.body.code==200){
+						self.banImgData=res.body.data||[];
+							
+					}
+							
 					// console.log(self.banImgData);
 					
 				});
@@ -176,17 +185,23 @@ new Vue({
 		},
 		active:function(){
 			var self=this;
+			var len=$(".notice-pic>li").size();
+			
+			$(".notice-pic").width(len*$('.notice-pic>li').width());
+			clearInterval(this.timer);
 			this.timer=setInterval(function () {
+				self.index==len/2?self.index=0:self.index++;
+                self.index==0?$('.notice-pic').css({left:0}):'';
 				go();
 			},2000)
 			function go(){
-				self.index++;
-				if(self.index > $('.notice-pic>li').size()-1){
-					self.index = 0;
-				}
-				$('.notice-pic').stop(true,true).animate({
-				'left':-$('.notice-pic>li').width()*self.index
-				},300);
+				// self.index++;
+				// if(self.index > $('.notice-pic>li').size()-1){
+				// 	self.index = 0;
+				// }
+				$('.notice-pic').animate({
+				'left':-$('.notice-pic>li').width()*self.index+'px'
+				},1000);
 			};
 		},
 		updateNav:function(id){
