@@ -84,6 +84,7 @@
               <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
               <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
               <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
+              <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit">退出</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 

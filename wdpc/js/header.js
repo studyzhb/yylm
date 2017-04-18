@@ -112,7 +112,7 @@ new Vue({
 						self.loginIndex='-1';
 						
 						self.loginUserName=res.body.data||'***';
-						cookieUtil.setExpiresDate('username',self.loginUserName,7);
+						cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
 					}
 		
 				})
@@ -150,6 +150,9 @@ new Vue({
 				.then(function(res){
 					console.log(res);
 				})
+		},
+		exit:function(){
+
 		},
 		//搜索
 		searchInfoFromData:function(){
@@ -205,7 +208,7 @@ new Vue({
 			}
 		},
 		getUserInfo:function(){
-			var userName=cookieUtil.getCookie('username');
+			var userName=cookieUtil.getCookie('wdusername');
 			if(userName){
 				this.isLogin=true;
 				this.loginUserName=userName;

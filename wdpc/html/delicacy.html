@@ -83,6 +83,7 @@
               <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
               <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
               <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
+              <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit">退出</a></li>
             </ul>
             <ul class="right-menu-area">
                <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
@@ -197,7 +198,7 @@
                         <div class="hotPro">
                             <ul>
                                 <li v-for="goodsItem in hotGoodsArr">
-                                    <p><img style="width:253px;height: 155px;" src="../img/hotgoods-img1.png" :src="goodsItem.goods_logo | json2single"></p>
+                                    <p @click="goToGoodsDetail(goodsItem.id)"><img style="width:253px;height: 155px;" src="../img/hotgoods-img1.png" :src="goodsItem.goods_logo | json2single"></p>
                                     <p style="width: 252px;overflow:hidden;"><span class="color-9" v-text="goodsItem.goodsname">土大力单人套餐<span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
                                     <p><span class="color-red">￥{{goodsItem.price_pay}}</span><span class="delprice">￥{{goodsItem.price_sell}}</span><span class="right color-9">5.0</span></p>
                                 </li>
@@ -291,8 +292,8 @@
                                             <div class="eval-content">
                                                 <div class="eval-all content-info">
                                                     <!--第一-->
-                                                    <div class="parents">
-                                                        <div class="userPic"><img src="../img/userPic.png"><p>用户昵称</p></div>
+                                                    <div class="parents" v-for="userItem in commentArr">
+                                                        <div class="userPic"><img style="width: 40px;height: 40px;border-radius: 50%;overflow: hidden;" src="../img/userPic.png" :src="userItem.pic"><p >用户昵称</p></div>
                                                         <div class="evalText">
                                                             <ul>
                                                                 <li>
@@ -300,9 +301,9 @@
                                                                     <i class="iconfont icon-xingxing color-red"></i>
                                                                     <i class="iconfont icon-xingxing color-red"></i>
                                                                     <i class="iconfont icon-xingxing color-red"></i>
-                                                                    <i class="time">2017-02-03</i>
+                                                                    <i class="time" v-text="userItem.addtime">2017-02-03</i>
                                                                 </li>
-                                                                <li class="_text">
+                                                                <li class="_text" v-text="userItem.contents">
                                                                     环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
                                                                     环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
                                                                     环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
@@ -318,32 +319,7 @@
                                                         </div>
                                                     </div>
                                                     <!--第二-->
-                                                    <div class="parents" >
-                                                        <div class="userPic"><img src="../img/userPic.png"><p>用户昵称</p></div>
-                                                        <div class="evalText">
-                                                            <ul>
-                                                                <li>
-                                                                    <i class="iconfont icon-xingxing color-red"></i>
-                                                                    <i class="iconfont icon-xingxing color-red"></i>
-                                                                    <i class="iconfont icon-xingxing color-red"></i>
-                                                                    <i class="iconfont icon-xingxing color-red"></i>
-                                                                    <i class="time">2017-02-03</i>
-                                                                </li>
-                                                                <li class="_text">
-                                                                    环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
-                                                                    环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
-                                                                    环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
-                                                                    环境还算OK，菜品也挺多的，不管熟菜还是烤品样式都挺多的，个人比较喜欢。。。。
-                                                                </li>
-                                                                <li class="evaluate-Pic">
-                                                                    <img src="../img/evaluate-Pic.png">
-                                                                    <img src="../img/evaluate-Pic.png">
-                                                                    <img src="../img/evaluate-Pic.png">
-                                                                </li>
-                                                            </ul>
-                                                            <P class="color-9">状元路烤场（大学路总店）</p>
-                                                        </div>
-                                                    </div>                                        
+                                                                                           
                                                 </div>
                                                 <div class="eval-PicProg content-info" style="display: none;">
                                                     <!--晒图评价-->

@@ -125,7 +125,7 @@ new Vue({
 			var self=this;
 
 			var body={};
-			console.log(this.parames);
+			
 			for(var key in this.parames){
 				if(key!='field'){
 					body[key]=this.parames[key];
@@ -134,14 +134,40 @@ new Vue({
 				}
 			}
 
-			console.log(body);
+			
 			/**
 			 * 获取店铺数据
 			 */ 
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.shoplist,{params:body})
 						.then(function(res){
-							console.log(res);
-							self.shoplistArr=res.body.data;
+							if(res.body.code==200){
+								self.shoplistArr=res.body.data||[];
+
+								self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
+								self.pageSize=res.body.limit;
+
+								//循环添加商品数据
+								self.shoplistArr.forEach(function(item){
+									self.getGoodsListByShopId(item.id,item)
+								})
+							}
+						})
+		},
+		//通过店铺ID过去商品信息
+		getGoodsListByShopId:function(id,obj){
+			var self=this;
+			/**
+			 * 获取店铺数据
+			 */ 
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getGoodsListByShopId+'?shopid='+id)
+						.then(function(res){
+							if(res.body.code==200){
+								if(!obj.goods){
+									self.$set(obj,'goods',[]);
+								}
+								obj.goods=res.body.data||[];
+								
+							}
 						})
 		},
 		//筛选标签

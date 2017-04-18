@@ -24,11 +24,13 @@ var ajaxAddress={
     list:{
         shoplist:'/lists/shop',
         goodslist:'/lists/goods',
-        benefit:'/lists/Benefit'
+        benefit:'/lists/Benefit',
+        getGoodsListByShopId:'/lists/shopGoods'
     },
     detail:{
         goodsDetail:'/goods/GoodsDetail',
         shopDetail:'/goods/shopDetail',
+
         hotSale:'/goods/hotSale'
     },
     discount:{
@@ -67,6 +69,8 @@ var ajaxAddress={
         getCity:'/common/getCity',
     },
     goods:{
-        goodsCode:'/user/searchCode'
+        goodsCode:'/user/searchCode',
+        getComment:'/goods/evaluate',
+        comment:'/user/goodsEvaluate',
     }
 }

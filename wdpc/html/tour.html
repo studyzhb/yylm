@@ -103,6 +103,7 @@
               <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
               <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
               <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
+              <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit">退出</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
@@ -297,7 +298,7 @@
                                             <li>
                                                 <p class="sortname" style="font-size: 16px;cursor: pointer" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
                                                 <p><em v-for="labelItem in getLabelInfo(singleItem.shop_label,'labelB')" v-text="labelItem.name">地铁口</em></p>
-                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
+                                                <p><i class="iconfont" v-for="labelicon in getLabelInfo(singleItem.shop_label,'labelC')" v-text="labelicon.name"></i></p>
                                                 <p class="sortname" v-text="singleItem.address">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
                                             </li>
                                             <li class="sortEval">
@@ -370,7 +371,7 @@
                     <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
 
 
-                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" class="current">1</a>
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}">1</a>
 
                     <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
                     <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>

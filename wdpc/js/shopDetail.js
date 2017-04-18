@@ -56,6 +56,9 @@ new Vue({
                         console.log(res);
                         self.hotGoodsArr=res.body.data;
                     })
+		},
+		goToGoodsDetail:function(id){
+			open(goodsDetailUrl+id+'&name='+escape(this.navName),'_self');
 		}
 
 	}
