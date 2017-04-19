@@ -9,7 +9,7 @@
     margin-top: 20px;
     overflow: hidden; }
   .delicacy-wrap .de-info {
-    width: 1200px;
+    width: 1280px;
     margin: 0 auto;
     overflow: hidden;
     background: #fff; }
@@ -90,7 +90,7 @@
   overflow: hidden;
   margin: 0 auto;
   margin-top: 20px;
-  width: 1200px; }
+  width: 1280px; }
   .sortInfo .sortLBot {
     background: #fff; }
 
@@ -99,6 +99,7 @@
 
 .sortChoiceRight {
   float: right;
+  width: 263px;
   padding-right: 7px;
   background: #fff; }
 
@@ -108,8 +109,9 @@
     overflow: hidden;
     background: #fff;
     border: 1px solid #eee;
-    width: 901px;
-    margin-left: 20px; }
+    /*width: 901px;*/
+    /*margin-left: 20px;*/
+     }
     .sortChoiceinfo .sortNav li {
       float: left;
       padding: 12px 40px;
@@ -164,18 +166,30 @@
       line-height: 140px; }
 
 .color-red {
-  color: #c70d1b; }
+  color: #c70d1b;
+  background:#fff7f7;
+   }
 
 .color-bg {
   background: #c70d1b;
   color: #fff; }
 
+ul.typeHouse{
+  padding:0 54px 0 36px; 
+}
+
 .typeHouse li {
   padding: 10px 0px;
-  text-align: center;
+  /*text-align: center;*/
   border-top: 1px solid #d2d1d1; }
-  .typeHouse li span {
-    margin-left: 40px; }
+  .typeHouse li span{
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+  /*.typeHouse li span {
+    margin-left: 40px; }*/
     .typeHouse li span a {
       display: inline-block;
       padding: 8px 26px;

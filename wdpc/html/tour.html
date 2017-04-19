@@ -15,12 +15,13 @@
         <style>
                         .choice{
                             border: 1px solid #cecaca;
-                            width: 1136px;
+                            width: 1278px;
                             margin: 20px auto;
                         }
                         .choiceTerm{
-                            width: 1086px;
-                            margin: 0 auto;
+                            /*width: 1086px;*/
+                            padding:0 43px;
+                            /*margin: 0 auto;*/
                         }
                         .areaChoice li{
 
@@ -283,7 +284,7 @@
             <!--排序选择-->
                  <div class="sortInfo">
                     <div class="sortChoiceWrap">
-                        <div class="sortChoiceLeft clearfix" style="width:935px;overflow:hidden;float:left;">
+                        <div class="sortChoiceLeft clearfix" style="width:997px;overflow:hidden;float:left;">
                             <div class="sortChoice">
                                 <div class="sortChoiceinfo">
                                     <ul class="sortNav">
@@ -316,23 +317,24 @@
                                             </li>
                                         </ul>
                                         <ul class="typeHouse">
-                                            <li v-for="item in singleItem.goods" :data-id="item.id">
-                                                <span v-text="item.goodsname" style="display: inline-block;width: 100px;line-height: 19px;vertical-align: middle;height: 19px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; ">标准间</span>
-                                                <span v-text="item.use_time_info || '暂无'">节假日通用</span>
-                                                <span v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
+                                            <li v-for="(item,index) in singleItem.goods" v-if="index<2" :data-id="item.id">
+                                                <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
+                                                <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
+                                                <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
                                                 <span class="color-red">￥{{item.price_pay}}</span>
-                                                <span class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
                                                 <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
-                                            <!--<li>
-                                                <span>大床房</span>
-                                                <span>节假日通用</span>
-                                                <span>提前24小时预约</span>
-                                                <span class="color-red">￥360</span>
-                                                <span class="shopPrice">门店价：￥480</span>
-                                                <span><a>查看详情</a></span>
+                                            
+                                            <li v-show="singleItem.residueCount!=0" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
+                                            <li v-for="(item,index) in singleItem.goods" v-if="index>1"  v-show="singleItem.showAll" :data-id="item.id">
+                                                <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
+                                                <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
+                                                <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
+                                                <span class="color-red">￥{{item.price_pay}}</span>
+                                                <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
-                                            <li style="cursor: pointer;">展开剩余一个<i class="iconfont icon-zhankai color-red"></i></li>-->
                                         </ul>
                                     </div>
                                     
@@ -386,6 +388,8 @@
     <script src="../js/lib/vue2.js"></script>
     <script src="../js/lib/vue-resource.min.js"></script>
     <script src="../js/lib/vuerify.min.js"></script>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+  <script src="../layer/layer.js"></script>
      <script src="../js/header.js"></script>
     <script src="../js/Vuedata.js"></script>
     

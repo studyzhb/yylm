@@ -11,6 +11,8 @@ var ajaxAddress={
         getPicCode:'/login/getcode',
         getLoginMessCode:'/login/code',
         login:'/login/login',
+        //退出
+        exit:'/login/out',
         resetLoginInfo:'/login/foundBack',
         resetLoginCode:'/login/code',
         //

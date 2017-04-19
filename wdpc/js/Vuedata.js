@@ -4,6 +4,8 @@ new Vue({
         cityId:1,
         navId:1,
 		navName:'',
+		//展开剩余个数
+		residueCount:0,
 		areaData:[],
         ClassifyData:[],
         sortIndex:'',
@@ -43,9 +45,22 @@ new Vue({
 		})
 	},
 	methods:{
+		//剩余的个数
+		residueNum:function(count){
+			count=count||0;
+			return '展开剩余'+count+'个';
+		},
+		showResidueList:function(item){
+			if(!item.showAll){
+				this.$set(item,'showAll',true);
+			}else{
+				item.showAll=!item.showAll;
+			}
+
+		},
 		renderView:function(){
 			var self=this;
-			console.log(paraObj);
+			
 			this.parames.navid=paraObj.navid;
 			this.parames.cityid=paraObj.cityid;
 			this.navName=unescape(paraObj.name);
@@ -166,6 +181,7 @@ new Vue({
 									self.$set(obj,'goods',[]);
 								}
 								obj.goods=res.body.data||[];
+								obj.residueCount=res.body.data.length-2;
 								
 							}
 						})
@@ -197,7 +213,7 @@ new Vue({
 			 */ 
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.benefit+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid)
 						.then(function(res){
-							console.log(res);
+							
 							self.benefitlistArr=res.body.data;
 						})
 		},
@@ -207,7 +223,7 @@ new Vue({
 			this.getShopInfo();
 		},
 		extendParams:function(obj,tag){
-			console.log(obj);
+			
 			if(tag){
 				// if(!this.parames.field){
 				// 	this.parames.field={};

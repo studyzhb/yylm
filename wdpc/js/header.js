@@ -94,7 +94,9 @@ new Vue({
 			this.renderView();
 			if(this.bannerData.length>0){
 				this.active();
-			}	
+				
+			}
+			
 		})
 	},
 	methods:{
@@ -113,6 +115,7 @@ new Vue({
 						
 						self.loginUserName=res.body.data||'***';
 						cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
+						layer.msg(res.body.msg);
 					}
 		
 				})
@@ -122,7 +125,9 @@ new Vue({
 			var body=this.resetUser;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
 				.then(function(res){
-					console.log(res);
+					if(res.body.code==200){
+						layer.msg(res.body.message);
+					}
 				})
 		},
 		//用户注册
@@ -140,7 +145,7 @@ new Vue({
 			var code=this.registerUser.code;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{},{params:{phone:phone,code:code}})
 					.then(function(res){
-						console.log(res);
+						layer.msg(res.body.msg);
 					})
 		},
 		//忘记密码,重置
@@ -152,7 +157,18 @@ new Vue({
 				})
 		},
 		exit:function(){
+			var self=this;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.exit,{})
+				.then(function(res){
+					if(res.body.code==200){
 
+						layer.msg(res.body.message);
+						self.isLogin=false;
+						cookieUtil.removeCookie('wdusername');
+					}else{
+						layer.msg(res.body.message);
+					}
+				})
 		},
 		//搜索
 		searchInfoFromData:function(){
@@ -233,8 +249,12 @@ new Vue({
 					self.navData.forEach(function(data){
 						self.navIdArr.push({id:data.id,typeShop:[],typeGoods:[],benefit:[],nav_name:data.name});
 						
-					})			
-
+					})	
+					setTimeout(function(){
+						$('.dialog-info').height($('body').height());
+						
+					},5000);		
+						
 					
 				});
 			
