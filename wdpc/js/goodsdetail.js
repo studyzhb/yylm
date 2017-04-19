@@ -89,6 +89,10 @@ new Vue({
 		},
 		goToGoodsDetail:function(id){
 			open(goodsDetailUrl+id+'&name='+escape(this.navName),'_self');
+		},
+		//去生成订单页面
+		goToOrder:function(){
+			open('order.html?id='+this.goodsId,'_self');
 		}
 
 	}

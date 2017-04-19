@@ -124,9 +124,7 @@ new Vue({
 					if(res.body.data){
 						navObj.typeShop=res.body.data||[];
 					}
-					
-					
-					
+	
 				})
 		//获得推荐/热门商品方法
 		 this.$http.get(ajaxAddress.preFix+ajaxAddress.updataContent.goods+'?navid='+navObj.id)

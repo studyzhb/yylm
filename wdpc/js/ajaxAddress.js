@@ -52,7 +52,7 @@ var ajaxAddress={
 
     updataContent:{
         hotContent:'/index/getRecommendShop',
-        goods:'/index/getRecommendGoods '
+        goods:'/index/getRecommendGoods'
     },
     search:{
         searchShop:'/search/shopList',

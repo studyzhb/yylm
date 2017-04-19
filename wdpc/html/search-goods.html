@@ -199,7 +199,7 @@
                      <div class="sortChoiceLeft">
                         <div class="sortChoice">
                             <div class="sortChoiceinfo">
-                                <ul class="sortNav">
+                                <ul class="sortNav" style="display:none;">
                                     <li :class="{'color-red':selectedSortIndex==0}" @click="selectedSortIndex=0">默认</li>
                                     <li :class="{'color-red':selectedSortIndex==1}" @click="selectedSortIndex=1">销量 <i class="iconfont icon-zhankai "></i></li>
                                     <li :class="{'color-red':selectedSortIndex==2}" @click="selectedSortIndex=2">价格 <i class="iconfont icon-zhankai "></i></li>
@@ -208,9 +208,9 @@
                                 <div class="hotPro" style="margin: 20px 0px 0px 20px;background: #fff; ">
                                     <div class="left-list-wrapper clearfix" style="width:838px;overflow:hidden;float:left;">
                                         <ul style="width: 840px;overflow:hidden;margin-top:10px;">
-                                            <li v-for="goodsItem in goodslistArr" :data-id="goodsItem.id">
+                                            <li v-for="goodsItem in goodslistArr" :data-id="goodsItem.id" style="width: 255px;height: 242px;">
                                                 <p><img style="width:255px;height:174px;" :src="goodsItem.goods_logo | json2single"></p>
-                                                <p><span class="color-9" v-text="goodsItem.goodsname"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
+                                                <p style="width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><span class="color-9" v-text="goodsItem.goodsname"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
                                                 <p><span class="color-red">￥{{goodsItem.price_pay}}</span><span class="delprice">￥{{goodsItem.price_sell}}</span><span class="right color-9">5.0</span></p>
                                             </li>
                                         </ul>
