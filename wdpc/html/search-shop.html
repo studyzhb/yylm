@@ -6,6 +6,7 @@
         <link href="../css/reset.css" rel="stylesheet">
         <link href="../css/accommdation.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
+        <link href="../iconfontBase/iconfont.css" rel="stylesheet">
         <link href="../css/pageCode.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
         <link href="../css/sign.css" rel="stylesheet">
@@ -194,32 +195,29 @@
             <!--排序选择-->
                  <div class="sortInfo">
                     <div class="sortChoiceWrap">
-                        <div class="sortChoiceLeft clearfix" style="width:935px;overflow:hidden;float:left;">
+                        <div class="sortChoiceLeft clearfix" style="width:997px;overflow:hidden;float:left;">
                             <div class="sortChoice">
                                 <div class="sortChoiceinfo">
                                     <ul class="sortNav">
-                                        <li class="color-red">默认</li>
+                                        <li class="color-red-bg">默认</li>
                                         <li>销量 <i class="iconfont icon-zhankai "></i></li>
                                         <li>价格 <i class="iconfont icon-zhankai "></i></li>
                                         <li>好评</li>
                                     </ul>
                                     <div class="sortLBot" v-for="singleItem in shoplistArr">
                                         <ul class="sortContent">
-                                            <li><img :src="singleItem.logo | json2single" style="width:250px;height:172px;"></li>
+                                            <li @click="gotoShopDetail(singleItem.id)" style="cursor: pointer"><img :src="singleItem.logo | json2single" style="width:250px;height:172px;"></li>
                                             <li>
-                                                <p class="sortname" style="font-size: 16px;" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
+                                                <p class="sortname" style="font-size: 16px;cursor: pointer" @click="gotoShopDetail(singleItem.id)" v-text="singleItem.name">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
                                                 <p><em v-for="labelItem in getLabelInfo(singleItem.shop_label,'labelB')" v-text="labelItem.name">地铁口</em></p>
-                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
+                                                <p><i class="iconfont" v-for="labelicon in getLabelInfo(singleItem.shop_label,'labelC')" v-text="labelicon.name"></i></p>
                                                 <p class="sortname" v-text="singleItem.address">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
                                             </li>
                                             <li class="sortEval">
-                                                <div><span>4.0</span>/5分</div>
+                                                <div><span v-text="singleItem.score">4.0</span>/5分</div>
                                                 <div>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i v-for="i in singleItem.score" class="iconfont icon-xingxing"></i>
+                                                    
                                                 </div>
                                             </li>
                                             <li class="sortEvalPrice">
@@ -227,7 +225,7 @@
                                             </li>
                                         </ul>
                                         <ul class="typeHouse">
-                                            <li v-for="item in singleItem.goods" :data-id="item.id">
+                                            <li v-for="(item,index) in singleItem.goods" v-if="index<2" :data-id="item.id">
                                                 <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
                                                 <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
                                                 <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
@@ -235,46 +233,22 @@
                                                 <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
                                                 <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
-                                            <!--<li>
-                                                <span>大床房</span>
-                                                <span>节假日通用</span>
-                                                <span>提前24小时预约</span>
-                                                <span class="color-red">￥360</span>
-                                                <span class="shopPrice">门店价：￥480</span>
-                                                <span><a>查看详情</a></span>
+                                            
+                                            <li v-show="singleItem.residueCount" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
+                                            <li v-for="(item,index) in singleItem.goods" v-if="index>1"  v-show="singleItem.showAll" :data-id="item.id">
+                                                <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
+                                                <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
+                                                <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
+                                                <span class="color-red">￥{{item.price_pay}}</span>
+                                                <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
-                                            <li style="cursor: pointer;">展开剩余一个<i class="iconfont icon-zhankai color-red"></i></li>-->
                                         </ul>
                                     </div>
                                     
                                 </div>
                                 <!--第二-->
-                                <div class="sortLBot">
-                                    <div class="sortChoiceinfo">
-                                        <ul class="sortContent">
-                                            <li><img src="../img/sortimg.png"></li>
-                                            <li>
-                                                <p class="sortname" style="font-size: 16px;">回忆往事连锁酒店回忆往事连锁酒店（曼哈顿店）</p>
-                                                <p ><em>地铁口</em></p>
-                                                <p><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></p>
-                                                <p class="sortname">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
-                                            </li>
-                                            <li class="sortEval">
-                                                <div><span>4.0</span>/5分</div>
-                                                <div>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                </div>
-                                            </li>
-                                            <li class="sortEvalPrice">
-                                            人均<span class="color-red">￥36</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                         
@@ -284,7 +258,7 @@
                                 <h3>优惠信息</h3>
                                 <div class="discount-con">
                                 <dl class="clearfix" v-for="beItem in benefitlistArr" :data-id="beItem.id">
-                                    <dt> <img :src="beItem.pic_url"></dt>
+                                    <dt @click="gotoDiscount(beItem.id)" style="cursor:pointer"> <img :src="beItem.pic_url"></dt>
                                     <dd>
                                     <h4 >
                                         <a v-text="beItem.name" style="color:#3c3c3c;" href="javascript:;" @click="gotoDiscount(beItem.id)">
@@ -302,7 +276,16 @@
                     </div>
                  </div>
                  <div class="page">
-                    <div class="tcdPageCode" id="pagecode"></div>
+                    <div class="tcdPageCode" id="pagecode">
+                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
+                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+
+
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}">1</a>
+
+                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
+                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
+                    </div>
                 </div>
           </div>
           

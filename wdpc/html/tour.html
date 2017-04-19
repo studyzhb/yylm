@@ -6,6 +6,7 @@
         <link href="../css/reset.css" rel="stylesheet">
         <link href="../css/accommdation.css" rel="stylesheet">
         <link href="../iconfont/iconfont.css" rel="stylesheet">
+        <link href="../iconfontBase/iconfont.css" rel="stylesheet">
         <link href="../css/pageCode.css" rel="stylesheet">
         <link href="../css/sign.css" rel="stylesheet">
     </head>
@@ -22,7 +23,7 @@
                             /*width: 1086px;*/
                             padding:0 43px;
                             /*margin: 0 auto;*/
-                        }
+                        } 
                         .areaChoice li{
 
                         }
@@ -288,7 +289,7 @@
                             <div class="sortChoice">
                                 <div class="sortChoiceinfo">
                                     <ul class="sortNav">
-                                        <li class="color-red">默认</li>
+                                        <li class="color-red-bg">默认</li>
                                         <li>销量 <i class="iconfont icon-zhankai "></i></li>
                                         <li>价格 <i class="iconfont icon-zhankai "></i></li>
                                         <li>好评</li>
@@ -303,13 +304,10 @@
                                                 <p class="sortname" v-text="singleItem.address">未来路金水路向东300米未来路金水路向东300米未来路金水路向东300米</p>
                                             </li>
                                             <li class="sortEval">
-                                                <div><span>4.0</span>/5分</div>
+                                                <div><span v-text="singleItem.score">4.0</span>/5分</div>
                                                 <div>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
-                                                    <i class="iconfont icon-xingxing"></i>
+                                                    <i v-for="i in singleItem.score" class="iconfont icon-xingxing"></i>
+                                                    
                                                 </div>
                                             </li>
                                             <li class="sortEvalPrice">
@@ -326,7 +324,7 @@
                                                 <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
                                             
-                                            <li v-show="singleItem.residueCount!=0" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
+                                            <li v-show="singleItem.residueCount" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
                                             <li v-for="(item,index) in singleItem.goods" v-if="index>1"  v-show="singleItem.showAll" :data-id="item.id">
                                                 <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
                                                 <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>

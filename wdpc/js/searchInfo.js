@@ -44,6 +44,19 @@ new Vue({
 		})
 	},
 	methods:{
+		showResidueList:function(item){
+			if(!item.showAll){
+				this.$set(item,'showAll',true);
+			}else{
+				item.showAll=!item.showAll;
+			}
+
+		},
+		//剩余的个数
+		residueNum:function(count){
+			count=count||0;
+			return '展开剩余'+count+'个';
+		},
 		renderView:function(){
 			var self=this;
 			console.log(paraObj);
@@ -52,7 +65,7 @@ new Vue({
 
 			this.navName=unescape(paraObj.name);
 			//获取城市站点和导航
-			this.getCityAndNav();
+			// this.getCityAndNav();
 			
 			this.getAreaList();
 
@@ -128,18 +141,51 @@ new Vue({
 		getShopInfo:function(){
 			var self=this;
             var body=this.parames;
-            console.log(body);
+            
 			/**
 			 * 获取店铺数据
 			 */ 
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.search.searchShop,{params:body})
 						.then(function(res){
 							console.log(res);
-							self.shoplistArr=res.body.data;
+							if(res.body.code==200){
+								self.shoplistArr=res.body.data||[];
+								// self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
+								// self.pageSize=res.body.limit;
+								console.log(self.shoplistArr);
+								//循环添加商品数据
+								self.shoplistArr.forEach(function(item){
+									self.getGoodsListByShopId(item.id,item)
+								})
+							}else{
+								layer.msg(res.body.msg);
+							}
+							
+						})
+		},
+		//通过店铺ID过去商品信息
+		getGoodsListByShopId:function(id,obj){
+			var self=this;
+			/**
+			 * 获取店铺数据
+			 */ 
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getGoodsListByShopId+'?shopid='+id)
+						.then(function(res){
+							if(res.body.code==200){
+								if(!obj.goods){
+									self.$set(obj,'goods',[]);
+								}
+								obj.goods=res.body.data||[];
+								
+								obj.residueCount=obj.goods.length-2;
+								
+							}else{
+								// layer.msg(res.body.msg);
+							}
 						})
 		},
 		getLabelInfo:function(str,lField){
-			var arr=str.split(',');
+			var arr=str?str.split(','):[];
 			var nArr=[];
 			var self=this;
 			//{id, type,field}
