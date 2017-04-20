@@ -82,7 +82,7 @@ function showErr(name, checkResult){
         unique: `${name}重复`
     }
     //使用layer来报错，如果需要自定义报错方式，要把全文的layer集中起来包一层。
-    layer.msgWarn(ERR_MSG[type])
+    layer.msg(ERR_MSG[type])
 }
 
 /**
@@ -186,7 +186,7 @@ va.install = function(Vue, options){
                     var _result = vm.vaResult[name]
                     if(_result){
                         //如果返回的是字符串，则为自定义报错； 如果是数组，则使用showErr 报错
-                        typeof _result === 'string' ? layer.msgWarn(_result) : showErr(conditions[0].tag, _result)
+                        typeof _result === 'string' ? layer.msg(_result) : showErr(conditions[0].tag, _result)
                         el.value = vm.vaVal[name] = ''
                         return
                     }
@@ -253,14 +253,14 @@ va.install = function(Vue, options){
                     //如果返回不为0,则有报错
                     if(_result){
                         //如果返回的是字符串，则为自定义报错； 如果是数组，则使用showErr 报错
-                        typeof _result === 'string' ? layer.msgWarn(_result) : showErr(conditions[0].tag, _result)
+                        typeof _result === 'string' ? layer.msg(_result) : showErr(conditions[0].tag, _result)
                         return
                     }
                     vm.vaVal[name] = value
                 }
                 //校验通过的回调
-                vm.$vaSubmit()
-                // layer.msgWarn('全部校验成功')
+                // vm.$vaSubmit()
+                // layer.msg('全部校验成功')
                 console.log(vm.vaVal)
             })
 
@@ -284,7 +284,7 @@ va.install = function(Vue, options){
         console.log(_result)
                 if(_result){
                     //如果返回的是字符串，则为自定义报错； 如果是数组，则使用showErr 报错
-                    typeof _result === 'string' ? layer.msgWarn(_result) : showErr(conditions[0].tag, _result)
+                    typeof _result === 'string' ? layer.msg(_result) : showErr(conditions[0].tag, _result)
                     return
                 }
 
@@ -302,4 +302,3 @@ va.install = function(Vue, options){
     Vue.prototype.VaConfig = VaConfig
 }
 
-module.exports = va

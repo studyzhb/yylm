@@ -4,8 +4,17 @@ Vue.http.interceptors.push((request, next) => {
 	request.credentials = true
 	next()
 })
+var config = {
+    errorBagName: 'errors', // change if property conflicts.
+    delay: 0,
+    locale: 'zh_CN',
+    messages: null,
+    strict: true
+};
+// Vue.use(va /*, add rules */);
+Vue.use(VeeValidate,config);
+var validator=new VeeValidate.Validator();
 
-// Vue.use(Vuerify /*, add rules */);
 
 new Vue({
 	el:'#headerApp',
@@ -38,17 +47,20 @@ new Vue({
 		loginUser:{
 			phone:'',
 			password:'',
+			
 			code:''
 		},
 		registerUser:{
 			phone:'',
 			password:'',
+			conPassword:'',
 			phonecode:'',
 			code:''
 		},
 		resetUser:{
 			phone:'',
 			password:'',
+			conPassword:'',
 			code:''
 		},
 		//搜索 //true加载商品,false加载店铺
@@ -100,43 +112,91 @@ new Vue({
 		})
 	},
 	methods:{
+		$vaSubmit:function(){
+			
+		},
 		/**
 		 * 用户登录
 		 */
 		userLogin:function(){
-			console.log(this.$vuerify.check())
-			var body=this.loginUser;
-			var self=this;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
-				.then(function(res){
-					if(res.body.code==200){
-						self.isLogin=true;
-						self.loginIndex='-1';
-						
-						self.loginUserName=res.body.data||'***';
-						cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
-						layer.msg(res.body.msg);
-					}
-		
-				})
+			// validator.attach('email', 'required|email'); 
+			// validator.validateAll()
+			console.log(this.$validator.validateAll());
+			var tag=true;
+			for(var key in this.loginUser){
+				if(!this.loginUser[key]){
+					tag=false;
+					layer.msg('请填写完整内容');
+				}
+			}
+			if(tag){
+				var body=this.loginUser;
+				var self=this;
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
+					.then(function(res){
+						if(res.body.code==200){
+							self.isLogin=true;
+							self.loginIndex='-1';
+							
+							self.loginUserName=res.body.data||'***';
+							cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
+							layer.msg(res.body.msg);
+						}else{
+							layer.msg(res.body.msg);
+						}
+			
+					})
+			}
+			
 		},
 		//用户密码重置
 		resetPassword:function(){
 			var body=this.resetUser;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
+			var tag=true;
+			for(var key in this.resetUser){
+				if(!this.loginUser[key]){
+					tag=false;
+					layer.msg('请填写完整内容');
+				}
+			}
+			if(this.resetUser.password!=this.resetUser.conPassword){
+				tag=false;
+				layer.msg('两次输入密码不一致');
+			}
+			if(tag){
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
 				.then(function(res){
 					if(res.body.code==200){
+						self.loginIndex='-1';
+						layer.msg(res.body.message);
+					}else{
 						layer.msg(res.body.message);
 					}
 				})
+			}
+			
 		},
 		//用户注册
 		registerUserInfo:function(){
+			var tag=true;
 			var body=this.registerUser;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
+			for(var key in this.registerUser){
+				if(!this.loginUser[key]){
+					tag=false;
+					layer.msg('请填写完整内容');
+				}
+			}
+			if(this.registerUser.password!=this.registerUser.conPassword){
+				tag=false;
+				layer.msg('两次输入密码不一致');
+			}
+			if(tag){
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
 					.then(function(res){
-						console.log(res);
+						layer.msg(res.body.message);
 					})
+			}
+			
 		},
 		//获取短信验证码
 		getMesscode:function(){
@@ -153,7 +213,7 @@ new Vue({
 			var body=this.resetUser;
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{},{params:body})
 				.then(function(res){
-					console.log(res);
+					
 				})
 		},
 		exit:function(){

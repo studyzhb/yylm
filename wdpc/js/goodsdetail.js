@@ -31,8 +31,10 @@ new Vue({
 	methods:{
 		renderView:function(){
 			var self=this;
+			
 			this.goodsId=paraObj.id;
 			this.navName=unescape(paraObj.name);
+			console.log(this.navName);
             this.getGoodsInfo();
 			this.getCommentInfo();
 			
@@ -69,7 +71,7 @@ new Vue({
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.shopDetail+'?id='+this.shopId)
                     .then(function(res){
                         if(res.body.code==200){
-                        	self.shopDetailArr=res.body.data;
+							self.shopDetailArr=res.body.data||{};
 						}
 
                     })
@@ -79,6 +81,7 @@ new Vue({
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.hotSale+'?id='+this.shopId)
                     .then(function(res){
                         if(res.body.code==200){
+							console.log(res);
                         	self.hotGoodsArr=res.body.data;
  
 						}
