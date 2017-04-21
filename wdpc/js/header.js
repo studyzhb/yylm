@@ -24,7 +24,9 @@ new Vue({
 			id:'',
 			name:''
 		},
+		phone:'',
 		loginUserName:'',
+		email:"",
 		isLogin:false,
 		cityArr:[],
 		banImgData:[],
@@ -44,10 +46,24 @@ new Vue({
         isShowAllSortIndex:1,
 		loginIndex:'-1',
 		picCode:'',
+		validatorLoginUser:{
+			phone:false,
+			password:false,
+			code:false
+		},
+		validatorRegisterUser:{
+			phone:'',
+			password:'',
+			code:''
+		},
+		validatorResetUser:{
+			phone:'',
+			password:'',
+			code:''
+		},
 		loginUser:{
 			phone:'',
 			password:'',
-			
 			code:''
 		},
 		registerUser:{
@@ -122,9 +138,10 @@ new Vue({
 			// validator.attach('email', 'required|email'); 
 			// validator.validateAll()
 			console.log(this.$validator.validateAll());
+			console.log(this.errors);
 			var tag=true;
-			for(var key in this.loginUser){
-				if(!this.loginUser[key]){
+			for(var key in this.validatorLoginUser){
+				if(!this.validatorLoginUser[key]){
 					tag=false;
 					layer.msg('请填写完整内容');
 				}

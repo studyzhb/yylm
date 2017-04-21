@@ -49,6 +49,7 @@
       height: 40px;
       background: #C70E1C;
       color: #fff;
+      border: none;
       line-height: 40px;
       cursor: pointer; }
     .dia-content ul li .dialogin {
@@ -128,3 +129,7 @@
     color: blue; }
 
 /*# sourceMappingURL=sign.css.map */
+
+.dia-content ul li input.validate-color{
+  border:1px solid #f00;
+}
