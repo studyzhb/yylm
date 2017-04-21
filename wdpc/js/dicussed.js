@@ -41,14 +41,14 @@ new Vue({
         getUserComment:function(){
             
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.common.getComment)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.common.getCommented)
                     .then(function(res){
+                        console.log(res);
                         if(res.body.code==200){
                             self.dicussInfoArr=res.body.data;
                         }
                     })
         },
-
         showOrderList:function(index){
             this.tabIndex=index;
             this.getUserOrder({status:index});

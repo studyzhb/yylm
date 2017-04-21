@@ -111,9 +111,6 @@ new Vue({
 			var str=typeof eval(value)=='object'?JSON.parse(value)[0]:'';
 			return str;
 		},
-        
-		
-		
 	},
 
 	mounted:function() {
@@ -137,8 +134,9 @@ new Vue({
 		userLogin:function(){
 			// validator.attach('email', 'required|email'); 
 			// validator.validateAll()
-			console.log(this.$validator.validateAll());
-			console.log(this.errors);
+			// console.log(this.$validator.validateAll());
+			// console.log(this.errors);
+			
 			var tag=true;
 			for(var key in this.validatorLoginUser){
 				if(!this.validatorLoginUser[key]){

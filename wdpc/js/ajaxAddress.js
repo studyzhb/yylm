@@ -69,10 +69,14 @@ var ajaxAddress={
     },
     common:{
         getCity:'/common/getCity',
+        getComment:'/User/noEvaluate',
+        getCommented:'/User/evaluateLst'
     },
     goods:{
         goodsCode:'/user/searchCode',
         getComment:'/goods/evaluate',
         comment:'/user/goodsEvaluate',
+        //提交评论
+        commitComment:'/user/goodsEvaluate'
     }
 }

@@ -30,7 +30,7 @@
         cursor: pointer; }
       .perWrap .perLeft .listNav dd dl {
         margin-top: 40px; }
-        .perWrap .perLeft .listNav dd dl dd {
+         .listNav dd dl dd {
           font-size: 12px;
           color: #666;
           margin-top: 16px;
@@ -41,7 +41,7 @@
     background: #999;
     float: right; }
 
-.color {
+.listNav .color {
   color: #C70D1B; }
 
 /*# sourceMappingURL=personCenter.css.map */

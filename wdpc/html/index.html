@@ -28,7 +28,7 @@
           <div class=" diaTop" @click="loginIndex='-1'"><img src="../img/delete.png"></div>
           <div class="diaLogo"><img src="../img/logo.png"></div>
           <div class="dia-main">
-                <form action="" @submit.prevent="userLogin">
+                <form action="" @submit.prevent="userLogin" >
                 <ul class="sign">
                   <li style="padding-left: 124px;text-align: left" >
                     <input type="text"  placeholder="手机号" :class="{'validate-color':!validatorLoginUser.phone}"  v-model="loginUser.phone" @blur="validatorLoginUser.phone=/^\S+/.test(loginUser.phone)">

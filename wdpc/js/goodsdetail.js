@@ -73,7 +73,6 @@ new Vue({
                         if(res.body.code==200){
 							self.shopDetailArr=res.body.data||{};
 						}
-
                     })
 		},
 		getHotInfo:function(){
