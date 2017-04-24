@@ -165,6 +165,10 @@ new Vue({
 								self.shoplistArr.forEach(function(item){
 									self.getGoodsListByShopId(item.id,item)
 								})
+							}else{
+								
+								self.shoplistArr=[];
+								self.pageCount=0;
 							}
 						})
 		},
@@ -181,7 +185,7 @@ new Vue({
 									self.$set(obj,'goods',[]);
 								}
 								obj.goods=res.body.data||[];
-								obj.residueCount=res.body.data.length-2;
+								obj.residueCount=res.body.data.length-2>0?res.body.data.length-2:0;
 								
 							}
 						})

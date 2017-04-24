@@ -65,9 +65,15 @@
                 <input v-model="resetUser.code" type="text" id="checkText" class="checkText" :class="{'validate-color':!validatorResetUser.code}" @blur="validatorResetUser.code=/^\S+/.test(resetUser.code)" placeholder="验证码">
                 <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
                 <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code" style="color: #f00;">验证码不能为空</span></li>
-              <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="resetUser.phonecode" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
-              <li style="padding-left: 124px;text-align: left"><input type="password" v-model="resetUser.password" placeholder="新密码"></li>
-              <li style="padding-left: 124px;text-align: left"><input type="password" v-model="resetUser.conPassword" placeholder="确认密码"></li>
+              <li class="phone-check" style="padding-left: 124px;text-align: left">
+                <input type="text" v-model="resetUser.phonecode" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.password}" @blur="validatorResetUser.password=/^\S+/.test(resetUser.password)" v-model="resetUser.password" placeholder="新密码">
+                <span v-show="!validatorResetUser.password" style="color: #f00;">不能为空</span>
+              </li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.conPassword}" @blur="validatorResetUser.conPassword=/^\S+/.test(resetUser.conPassword)" v-model="resetUser.conPassword" placeholder="确认密码">
+                <span v-show="!resetUser.conPassword" style="color: #f00;">不能为空</span>
+                <span v-show="resetUser.conPassword!=resetUser.password" style="color: #f00;">两次密码不一致</span>
+              </li>
               <p class="checkagree"><span class="agree">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>
               <li><span class="reset" @click="resetPassword">立即重置</span></li>
             </ul>
@@ -118,7 +124,7 @@
               <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit">退出</a></li>
             </ul>
             <ul class="right-menu-area">
-              <li class="wd-mye"><a href="personCenter.html" data-url="personCenter.html" @click="isShowAllSortIndex=-1">我的e+便利</a></li> 
+              <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="gotoPersonCenter">我的e+便利</a></li> 
               <!--<li class="wd-my-order"><a>我的订单</a></li>
               <li class="wd-business"><a>招商</a></li>
           -->

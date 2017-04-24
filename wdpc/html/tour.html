@@ -37,7 +37,7 @@
     <div class="container-head" id="headerApp">
       <div>
         <!--登录弹框-->
-      <div class="dialog" id="dialogLogin" v-show="loginIndex=='0'">
+      <div class="dialog" id="dialogLogin" v-if="loginIndex=='0'">
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="loginIndex='-1'"><img src="../img/delete.png"></div>
@@ -59,7 +59,7 @@
         </div>
       </div>
       <!--重置密码-->
-      <div class="dialog" id="dialogReset" v-show="loginIndex=='1'">
+      <div class="dialog" id="dialogReset" v-if="loginIndex=='1'">
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="loginIndex='-1'"><img src="../img/delete.png"></div>
@@ -78,7 +78,7 @@
         </div>
       </div>
       <!--注册-->
-     <div class="dialog" id="dialogSign" v-show="loginIndex=='2'">
+     <div class="dialog" id="dialogSign" v-if="loginIndex=='2'">
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="loginIndex='-1'"><img src="../img/delete.png"></div>
@@ -367,14 +367,14 @@
                  </div>
                  <div class="page">
                     <div class="tcdPageCode" id="pagecode">
-                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
-                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+                    <span v-if="currentPage==1&&pageCount>1">上一页</span>
+                    <a href="javascript:;" v-else-if="pageCount>1">上一页</a>
 
 
-                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}">1</a>
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}" v-text="n">1</a>
 
-                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
-                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
+                    <span v-if="currentPage==pageCount&&pageCount>1">下一页</span>
+                    <a href="javascript:;" class="nextPage" v-else-if="pageCount>1">下一页</a>
                     </div>
                 </div>
           </div>

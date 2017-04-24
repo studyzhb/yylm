@@ -1,7 +1,9 @@
 Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateHTTP = true;
 // Vue.http.options.xhr = { withCredentials: true }
 Vue.http.interceptors.push((request, next) => {
-	request.credentials = true
+	request.credentials = true;
+	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
 	next()
 })
 var config = {
@@ -61,6 +63,8 @@ new Vue({
 		validatorResetUser:{
 			phone:'',
 			password:'',
+			conPassword:'',
+			phonecode:'',
 			code:''
 		},
 		loginUser:{
@@ -127,6 +131,14 @@ new Vue({
 		})
 	},
 	methods:{
+		gotoPersonCenter:function(){
+			if(this.isLogin){
+				open('personCenter.html','_self');
+			}else{
+				layer.msg('请先登录');
+				this.loginIndex='0'
+			}
+		},
 		$vaSubmit:function(){
 			
 		},
@@ -149,7 +161,7 @@ new Vue({
 			if(tag){
 				var body=this.loginUser;
 				var self=this;
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,{},{params:body})
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,body)
 					.then(function(res){
 						if(res.body.code==200){
 							self.isLogin=true;
@@ -181,7 +193,7 @@ new Vue({
 				layer.msg('两次输入密码不一致');
 			}
 			if(tag){
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,{},{params:body})
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,body)
 				.then(function(res){
 					if(res.body.code==200){
 						self.loginIndex='-1';
@@ -209,7 +221,7 @@ new Vue({
 				layer.msg('两次输入密码不一致');
 			}
 			if(tag){
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,body)
 					.then(function(res){
 						layer.msg(res.body.message);
 						if(res.body.code==200){
@@ -221,7 +233,7 @@ new Vue({
 		},
 		//获取短信验证码
 		getMesscode:function(){
-			console.log('111');
+			
 			var phone=this.registerUser.phone;
 			var code=this.registerUser.code;
 			if(!phone){
@@ -233,7 +245,7 @@ new Vue({
 				return;
 			}
 
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{},{params:{phone:phone,code:code}})
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code})
 					.then(function(res){
 						layer.msg(res.body.msg);
 					})
@@ -241,7 +253,7 @@ new Vue({
 		//忘记密码,重置
 		getResetMesscode:function(){
 			var body=this.resetUser;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{},{params:body})
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,body)
 				.then(function(res){
 					
 				})

@@ -158,6 +158,7 @@ new Vue({
 									self.getGoodsListByShopId(item.id,item)
 								})
 							}else{
+								self.shoplistArr=[];
 								layer.msg(res.body.msg);
 							}
 							
