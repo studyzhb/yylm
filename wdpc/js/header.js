@@ -54,6 +54,8 @@ new Vue({
 		validatorRegisterUser:{
 			phone:'',
 			password:'',
+			phonecode:'',
+			conPassword:'',
 			code:''
 		},
 		validatorResetUser:{
@@ -193,10 +195,11 @@ new Vue({
 		},
 		//用户注册
 		registerUserInfo:function(){
+			var self=-this;
 			var tag=true;
 			var body=this.registerUser;
-			for(var key in this.registerUser){
-				if(!this.loginUser[key]){
+			for(var key in this.validatorRegisterUser){
+				if(!this.validatorRegisterUser[key]){
 					tag=false;
 					layer.msg('请填写完整内容');
 				}
@@ -209,6 +212,9 @@ new Vue({
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,{},{params:body})
 					.then(function(res){
 						layer.msg(res.body.message);
+						if(res.body.code==200){
+							self.loginIndex='-1';
+						}
 					})
 			}
 			
@@ -218,6 +224,15 @@ new Vue({
 			console.log('111');
 			var phone=this.registerUser.phone;
 			var code=this.registerUser.code;
+			if(!phone){
+				layer.msg('手机号不能为空');
+				return;
+			}
+			if(!code){
+				layer.msg('验证码不能为空');
+				return;
+			}
+
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{},{params:{phone:phone,code:code}})
 					.then(function(res){
 						layer.msg(res.body.msg);

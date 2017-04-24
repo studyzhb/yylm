@@ -58,11 +58,16 @@
           <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../img/logo.png"></div>
           <div class="dia-main">
             <ul class="sign">
-              <li><input type="text" v-model="resetUser.phone" placeholder="注册手机号"></li>
-              <li class="sign-check"><input v-model="resetUser.code" type="text" id="checkText" class="checkText" placeholder="验证码"><span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span><span class="notsee" @click="updatePicCode">看不清楚，换一张</span></li>
-              <li class="phone-check"><input type="text" v-model="resetUser.phonecode" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
-              <li><input type="password" v-model="resetUser.password" placeholder="新密码"></li>
-              <li><input type="password" v-model="resetUser.conPassword" placeholder="确认密码"></li>
+              <li style="padding-left: 124px;text-align: left"><input type="text" :class="{'validate-color':!validatorResetUser.phone}" @blur="validatorResetUser.phone=/^\S+/.test(resetUser.phone)" v-model="resetUser.phone" placeholder="注册手机号">
+                <span v-show="!validatorResetUser.phone" style="color: #f00;">手机号不能为空</span>
+              </li>
+              <li class="sign-check" style="padding-left: 124px;text-align: left">
+                <input v-model="resetUser.code" type="text" id="checkText" class="checkText" :class="{'validate-color':!validatorResetUser.code}" @blur="validatorResetUser.code=/^\S+/.test(resetUser.code)" placeholder="验证码">
+                <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
+                <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code" style="color: #f00;">验证码不能为空</span></li>
+              <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="resetUser.phonecode" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" v-model="resetUser.password" placeholder="新密码"></li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" v-model="resetUser.conPassword" placeholder="确认密码"></li>
               <p class="checkagree"><span class="agree">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>
               <li><span class="reset" @click="resetPassword">立即重置</span></li>
             </ul>
@@ -77,11 +82,24 @@
           <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../img/logo.png"></div>
           <div class="dia-main">
             <ul class="sign">
-              <li ><input type="text" placeholder="注册手机号" v-model="registerUser.phone"></li>
-              <li class="sign-check"><input v-model="registerUser.code" type="text" id="checkText" class="checkText" placeholder="验证码"><span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span><span class="notsee" @click="updatePicCode">看不清楚，换一张</span></li>
-              <li class="phone-check"><input type="text" v-model="registerUser.phonecode" placeholder="短信验证码"><button class='checkbtn' @click="getMesscode">获取短信验证码</button></li>
-              <li><input type="password" v-model="registerUser.password" placeholder="新密码"></li>
-              <li><input type="password" placeholder="确认密码"></li>
+              <li style="padding-left: 124px;text-align: left">
+                <input type="text" :class="{'validate-color':!validatorRegisterUser.phone}" @blur="validatorRegisterUser.phone=/^\S+/.test(registerUser.phone)" placeholder="注册手机号" v-model="registerUser.phone">
+                <span v-show="!validatorRegisterUser.phone" style="color: #f00;">手机号不能为空</span>
+              </li>
+              <li class="sign-check" style="padding-left: 124px;text-align: left">
+                <input v-model="registerUser.code" :class="{'validate-color':!validatorRegisterUser.code}" @blur="validatorRegisterUser.code=/^\S+/.test(registerUser.code)"  type="text" id="checkText" class="checkText" placeholder="验证码">
+                <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
+                <span class="notsee" @click="updatePicCode">看不清楚，换一张</span>
+                <span v-show="!validatorRegisterUser.code" style="color: #f00;">验证码不能为空</span>
+              </li>
+              <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="registerUser.phonecode" :class="{'validate-color':!validatorRegisterUser.phonecode}" @blur="validatorRegisterUser.phonecode=/^\S+/.test(registerUser.phonecode)" placeholder="短信验证码"><button class='checkbtn' @click="getMesscode">获取短信验证码</button></li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" v-model="registerUser.password" :class="{'validate-color':!validatorRegisterUser.password}" @blur="validatorRegisterUser.password=/^\S+/.test(registerUser.password)" placeholder="新密码">
+                <span v-show="!validatorRegisterUser.password" style="color: #f00;">密码不能为空</span>
+              </li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!registerUser.conPassword}" @blur="validatorRegisterUser.conPassword=/^\S+/.test(registerUser.conPassword)&&registerUser.conPassword==registerUser.password" v-model="registerUser.conPassword" placeholder="确认密码">
+                <span v-show="!registerUser.conPassword" style="color: #f00;">不能为空</span>
+                <span v-show="registerUser.conPassword!=registerUser.password" style="color: #f00;">两次密码不一致</span>
+              </li>
               <p class="checkagree"><span class="agree">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>
               <li><span class="reset" @click="registerUserInfo">注册</span></li>
             </ul>
