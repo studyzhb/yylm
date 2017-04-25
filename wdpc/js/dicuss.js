@@ -1,13 +1,20 @@
+Vue.http.options.emulateJSON = true;
+// Vue.http.options.xhr = { withCredentials: true }
+Vue.http.interceptors.push((request, next) => {
+	request.credentials = true
+	next()
+})
 new Vue({
     el:'#app',
     data:{
         dicussInfoArr:'',
         commentObj:{
-            levelid:'',
-            good_id:'',
-            contents:'',
+            levelid:'1',
+            good_id:'1',
+            orderid:'',
+            contents:'请输入你的评论内容',
             //品质评分
-            quality:'',
+            quality:'1',
 
         },
         user:'',
@@ -46,6 +53,8 @@ new Vue({
                     .then(function(res){
                         if(res.body.code==200){
                             self.dicussInfoArr=res.body.data;
+                        }else{
+                            self.dicussInfoArr=[];
                         }
                     })
         },
@@ -54,14 +63,17 @@ new Vue({
             this.tabIndex=index;
             this.getUserOrder({status:index});
         },
-        confirmCommonInfo:function(){
+        confirmCommonInfo:function(item){
             var self=this;
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.goods.commitComment,{},{params:this.commentObj})
+            layer.load();
+            this.commentObj.orderid=item.orderinfoid;
+            this.commentObj.good_id=item.goodsid;
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.goods.commitComment,this.commentObj)
                     .then(function(res){
                         if(res.body.code==200){
-
+                            self.getUserComment();
                         }else{
-                            
+                            layer.msg(res.body.message);
                         }
                     })
         }

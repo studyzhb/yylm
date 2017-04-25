@@ -172,6 +172,7 @@
     float: left;
     font-size: 12px; }
   .judgeContent .judgelevel {
+    width: 165px;
     padding: 52px 140px; }
     .judgeContent .judgelevel li {
       margin-top: 10px; }

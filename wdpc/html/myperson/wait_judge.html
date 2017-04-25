@@ -10,16 +10,16 @@
     <body>
         <div class="rightWrap" id="app">
             <div class="R_bottom">
-                <div class="Nolog" >
+                <div class="Nolog"  v-for="commentItem in dicussInfoArr">
                     <div class="haveLog" style="border-bottom: 2px solid #eee">
                         <ul class="listLog" style="border-bottom: none">
                             <li><img src="../../img/logImg.png"></li>
-                            <li class="activemess">
-                                <p class="logshopname">杨靖宇黄焖鸡米饭</p>
+                            <li class="activemess" style="width: 220px;">
+                                <p class="logshopname" style="width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" v-text="commentItem.goodsname">杨靖宇黄焖鸡米饭</p>
                                 <p class="logshoptime">
                                     <span>有效期至：2017-08-23</span>
                                 </p>
-                                <p class="logshopmess"><a class="color">商家信息</a></p>
+                                <p class="logshopmess"><a class="color" v-tex="commentItem.shopname">商家信息</a></p>
                             </li>
                             <li class="judge">
                                 <span class="bg_color">差</span>
@@ -37,7 +37,7 @@
                                     <i class="iconfont icon-xingxing"></i>
                                     <i class="iconfont icon-xingxing"></i>
                                     <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
+                                    <i class="iconfont icon-xingxing" style="color:#fff;"></i>
                                 </li>
                                 <li>服务：
                                     <i class="iconfont icon-xingxing"></i>
@@ -57,20 +57,22 @@
                             <ul class='judgewrite'>
                                 <li>评论内容：</li>
                                 <li><textarea rows="6" cols="56"></textarea></li>
-                                <li><span class="confirm" @click="confirmCommonInfo">确认</span></li>
+                                <li><span class="confirm" @click="confirmCommonInfo(commentItem)">确认</span></li>
                             </ul>
                         </div>
                     </div>
                     
-                    <p class="kongkong" style="display: none"><img src="../../img/kongkong.png"></p>
+                    
                 </div>
+                <p class="kongkong" style="display: none" v-show="dicussInfoArr.length==0"><img src="../../img/kongkong.png"></p>
             </div>
         </div>
     </body>
     <script src="../../js/common.js"></script>
     <script src="../../js/config.js"></script>
     <script src="../../js/ajaxAddress.js"></script>
-
+    <script src="../../js/jquery-2.1.4.min.js"></script>
+    <script src="../../layer/layer.js"></script>
     <script src="../../js/lib/vue2.js"></script>
     <script src="../../js/lib/vue-resource.min.js"></script>
     <script src="../../js/dicuss.js" type="text/javascript"></script>

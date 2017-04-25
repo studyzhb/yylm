@@ -14,49 +14,40 @@
                     <div class="haveLog" style="border-bottom: 2px solid #eee">
                         <ul class="listLog" style="border-bottom: none">
                             <li><img src="../../img/logImg.png"></li>
-                            <li class="activemess">
-                                <p class="logshopname">杨靖宇黄焖鸡米饭</p>
+                            <li class="activemess" style="width: 220px;">
+                                <p class="logshopname" style="width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" v-text="commentItem.goodsname">杨靖宇黄焖鸡米饭</p>
                                 <p class="logshoptime">
-                                    <span>有效期至：2017-08-23</span>
+                                    <span >有效期至：2017-08-23</span>
                                 </p>
-                                <p class="logshopmess"><a class="color">商家信息</a></p>
+                                <p class="logshopmess"><a class="color" v-text="commentItem.shopname">商家信息</a></p>
                             </li>
                             <li class="judge">
-                                <span class="bg_color">差</span>
-                                <span>一般</span>
-                                <span>满意</span>
-                                <span>非常满意</span>
+                                <span :class="{bg_color:commentItem.levelid==1}">差</span>
+                                <span :class="{bg_color:commentItem.levelid==2}">一般</span>
+                                <span :class="{bg_color:commentItem.levelid==3}">满意</span>
+                                <span :class="{bg_color:commentItem.levelid==4}">非常满意</span>
                             </li>
                         </ul>
                         <!--评价内容-->
                         <div class="judgeContent">
                             <ul class="judgelevel">
                                 <li>品质：
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
+
+                                    <i v-for="i in commentItem.quality" class="iconfont icon-xingxing"></i>
+                                    
                                 </li>
                                 <li>服务：
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i></li>
+                                    <i v-for="i in commentItem.service" class="iconfont icon-xingxing"></i>
+                                </li>
                                 <li>价格：
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i>
-                                    <i class="iconfont icon-xingxing"></i></li>
+                                    <i v-for="i in commentItem.price" class="iconfont icon-xingxing"></i>
+                                </li>
                             </ul>
                             <ul class='judgewrite'>
                                 <li>评论内容：</li>
-                                <li v-text=""></li>
+                                <li v-text="commentItem.contents" style="width: 360px;height:102px; ">
+
+                                </li>
                                 
                             </ul>
                         </div>

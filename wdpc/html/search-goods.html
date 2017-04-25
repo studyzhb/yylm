@@ -179,7 +179,7 @@
 
         <div class="delicacy-wrap" id="app">
             <!--位置进度-->
-             <div class="contentInfo">
+             <div class="contentInfo" style="display: none;">
             <div class="de-info" >
                 <div class="shop">
                     <ul class="nav-bar">
@@ -240,8 +240,8 @@
                                     <div class="left-list-wrapper clearfix" style="width:838px;overflow:hidden;float:left;">
                                         <ul style="width: 840px;overflow:hidden;margin-top:10px;">
                                             <li v-for="goodsItem in goodslistArr" :data-id="goodsItem.id" style="width: 255px;height: 242px;">
-                                                <p><img style="width:255px;height:174px;" :src="goodsItem.goods_logo | json2single"></p>
-                                                <p style="width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><span class="color-9" v-text="goodsItem.goodsname" style="display:inline-block;width:50%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
+                                                <p @click="goToGoodsDetail(goodsItem.id)"><img style="width:255px;height:174px;" :src="goodsItem.goods_logo | json2single"></p>
+                                                <p style="width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><span @click="goToGoodsDetail(goodsItem.id)" class="color-9" v-text="goodsItem.goodsname" style="display:inline-block;width:50%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
                                                 <p><span class="color-red">￥{{goodsItem.price_pay}}</span><span class="delprice">￥{{goodsItem.price_sell}}</span><span class="right color-9">5.0</span></p>
                                             </li>
                                         </ul>
@@ -253,9 +253,9 @@
                                                 <h3>优惠信息</h3>
                                                 <div class="discount-con">
                                                 <dl class="clearfix" v-for="beItem in benefitlistArr" :data-id="beItem.id">
-                                                    <dt> <img :src="beItem.pic_url"></dt>
+                                                    <dt @click="gotoDiscount(beItem.id)"> <img :src="beItem.pic_url"></dt>
                                                     <dd>
-                                                    <h4 v-text="beItem.name"></h4>
+                                                    <h4 v-text="beItem.name" @click="gotoDiscount(beItem.id)"></h4>
                                                     <p v-text="beItem.benefit_info">到店立享85折优惠</p>
                                                     </dd>
                                                 </dl>

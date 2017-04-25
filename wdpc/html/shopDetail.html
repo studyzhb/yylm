@@ -167,8 +167,8 @@
                                 <ul class="nav-bar">
                                     <li><a>全部</a></li>
                                     <li><i class="iconfont icon-jiantou icon-arrow"></i></li>
-                                    <li><a v-text="navName">美食</a></li>
-                                    <li><i class="iconfont icon-jiantou icon-arrow"></i></li>
+                                    <!--<li><a v-text="navName">美食</a></li>-->
+                                    <!--<li><i class="iconfont icon-jiantou icon-arrow"></i></li>-->
                                     <li><a v-text="shopDetailArr.name">石大力休闲餐厅</a></li>
                                 </ul>
                                 <!--士大力餐厅-->
@@ -202,10 +202,10 @@
                                             <dt class="shopname color-red" v-text="shopDetailArr.name">土大力休闲餐厅</dt>
                                             <dd>
                                                 <dl class="sub-dl">
-                                                    <dt>4.5<dt>
-                                                    <dd>品质：4.3<dd>
-                                                    <dd>服务：4.4<dd>
-                                                    <dd>价格：4.6<dd>
+                                                    <dt>{{shopDetailArr.level}}<dt>
+                                                    <dd>品质：{{shopDetailArr.quality}}<dd>
+                                                    <dd>服务：{{shopDetailArr.service}}<dd>
+                                                    <dd>价格：{{shopDetailArr.price}}<dd>
                                                 </dl>
                                             </dd>
                                             <dd><span>收藏店铺</span></dd>

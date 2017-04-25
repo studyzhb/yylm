@@ -35,7 +35,7 @@ new Vue({
         },
         createOrder:function(){
             var body={}
-
+            layer.load();
             body.goodsid=this.goodsId;
             body.number= this.goodsInfo.total;
             this.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
