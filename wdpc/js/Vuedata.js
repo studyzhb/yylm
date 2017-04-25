@@ -119,7 +119,6 @@ new Vue({
                         item.sortIndex='-1';
                     })
                     self.ClassifyData=res.body.data;
-
 				});
 		},
 		getGoodsInfo:function(){

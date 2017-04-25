@@ -26,6 +26,10 @@ new Vue({
 			id:'',
 			name:''
 		},
+		//点击切换选中与否
+		isSelecterAgree:true,
+		//是否隐藏第三方
+		isShowOther:false,
 		phone:'',
 		loginUserName:'',
 		email:"",
@@ -82,11 +86,13 @@ new Vue({
 		resetUser:{
 			phone:'',
 			password:'',
+			phonecode:'',
 			conPassword:'',
 			code:''
 		},
 		//搜索 //true加载商品,false加载店铺
 		searchTag:true,
+		searchKeys:'',
 		mainCon:'',
 		username:''
 	},
@@ -182,8 +188,11 @@ new Vue({
 		resetPassword:function(){
 			var body=this.resetUser;
 			var tag=true;
-			for(var key in this.resetUser){
-				if(!this.loginUser[key]){
+			console.log(this.validatorResetUser)
+			for(var key in this.validatorResetUser){
+				console.log(this.validatorResetUser[key])
+				if(!this.validatorResetUser[key]){
+					
 					tag=false;
 					layer.msg('请填写完整内容');
 				}
@@ -197,9 +206,9 @@ new Vue({
 				.then(function(res){
 					if(res.body.code==200){
 						self.loginIndex='-1';
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 					}else{
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 					}
 				})
 			}
@@ -252,10 +261,19 @@ new Vue({
 		},
 		//忘记密码,重置
 		getResetMesscode:function(){
-			var body=this.resetUser;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,body)
+			var phone=this.resetUser.phone;
+			var code=this.resetUser.code;
+			if(!phone){
+				layer.msg('手机号不能为空');
+				return;
+			}
+			if(!code){
+				layer.msg('验证码不能为空');
+				return;
+			}
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code})
 				.then(function(res){
-					
+					layer.msg(res.body.msg);
 				})
 		},
 		exit:function(){
@@ -283,9 +301,6 @@ new Vue({
 			console.log(this.mainCon)
 			open(url+'&con='+escape(this.mainCon),'_self');
 			this.isShowAllSortIndex=-1;
-		},
-		getResetMesscode:function(){
-
 		},
 		updatePicCode:function(){
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode+'?v='+new Date().getTime();
@@ -339,7 +354,12 @@ new Vue({
 			var self=this;
 			this.isShowAllSortIndex=location.href.indexOf('index.html')>-1||location.href.indexOf('.html')==-1?0:1;
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
+			this.searchTag=paraObj.tag=='false'?false:true;
 
+
+
+			//获取关键字
+			this.mainCon=paraObj.con?unescape(paraObj.con):'';
 			this.getCityName();
 			this.getUserInfo();
             //获取导航

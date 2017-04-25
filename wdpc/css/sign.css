@@ -87,7 +87,8 @@
   cursor: pointer; }
 
 .sign-check .notsee {
-  color: #EEEEEE;
+  /*color: #EEEEEE;*/
+  cursor: pointer;
   font-size: 12px; }
 
 .phone-check {
