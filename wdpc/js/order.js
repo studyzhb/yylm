@@ -28,8 +28,21 @@ new Vue({
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.goodsDetail+'?id='+this.goodsId)
                     .then(function(res){
                         if(res.body.code==200){
-                            console.log(res.body);
+                            
                             self.goodsDetai=res.body.data;
+                        }
+                    })
+        },
+        createOrder:function(){
+            var body={}
+
+            body.goodsid=this.goodsId;
+            body.number= this.goodsInfo.total;
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
+                    .then(function(res){
+                        if(res.body.code==200){
+                            console.log(res.body);
+                            layer.msg('chenggong')
                         }
                     })
         },

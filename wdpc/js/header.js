@@ -225,6 +225,10 @@ new Vue({
 					layer.msg('请填写完整内容');
 				}
 			}
+			if(!this.isSelecterAgree){
+				tag=false;
+				layer.msg('只有同意注册协议才能进行注册，感谢您的支持！');
+			}
 			if(this.registerUser.password!=this.registerUser.conPassword){
 				tag=false;
 				layer.msg('两次输入密码不一致');

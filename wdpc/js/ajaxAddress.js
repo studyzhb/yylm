@@ -78,5 +78,8 @@ var ajaxAddress={
         comment:'/user/goodsEvaluate',
         //提交评论
         commitComment:'/user/goodsEvaluate'
+    },
+    order:{
+        commitOrder:'/Goods/createOrder'
     }
 }

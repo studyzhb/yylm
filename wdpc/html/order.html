@@ -70,7 +70,7 @@
                 <div  class="component-dealbuy-quantity mt-component--booted" id="yui_3_16_0_1_1491961516124_66">
                     <div class="dealbuy-quantity">
                         <button class="minus" type="button" @click="changeMoney(goodsInfo,-1)">-</button>
-                            <input type="text" autocomplete="off" readonly class="f-text J-quantity J-cart-quantity" maxlength="4" v-model="goodsInfo.total"  value="1">
+                            <input type="text" autocomplete="off" readonly class="f-text J-quantity J-cart-quantity" maxlength="4" v-model="goodsInfo.total"  :value="1">
                         <button class="item plus" type="button" @click="changeMoney(goodsInfo,1)">+</button>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
     </div>
 </div>
 <div class="form-submit">
-    <input type="button" class="btn btn-large btn-buy" @click="" name="buy" value="提交订单">
+    <input type="button" class="btn btn-large btn-buy" @click="createOrder" name="buy" value="提交订单">
 </div>
 </form>
         </div>
@@ -113,6 +113,8 @@
 <script src="../js/config.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/ajaxAddress.js"></script>
+<script src="../js/jquery-2.1.4.min.js"></script>
+  <script src="../layer/layer.js"></script>
 <script src="../js/lib/vue2.js"></script>
 <script src="../js/lib/vue-resource.min.js"></script>
 
