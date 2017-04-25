@@ -232,9 +232,9 @@ new Vue({
 			if(tag){
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,body)
 					.then(function(res){
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 						if(res.body.code==200){
-							self.loginIndex='-1';
+							self.loginIndex='0';
 						}
 					})
 			}
@@ -305,10 +305,13 @@ new Vue({
 		updatePicCode:function(){
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode+'?v='+new Date().getTime();
 		},
-		parseUrl:function(value){
+		parseUrl:function(value,subItem){
             this.isShowAllSortIndex=1;
-			
-			top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);
+			var subid;
+			if(subItem!==undefined){
+				subid=subItem.id;
+			}
+			top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name)+'&subid='+subid;
 			
 			
 			return goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);

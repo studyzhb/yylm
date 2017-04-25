@@ -41,6 +41,7 @@ new Vue({
         getUserComment:function(){
             
             var self=this;
+            
             this.$http.get(ajaxAddress.preFix+ajaxAddress.common.getComment)
                     .then(function(res){
                         if(res.body.code==200){

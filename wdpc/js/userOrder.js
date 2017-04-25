@@ -42,6 +42,8 @@ new Vue({
 
                             self.userOrderArr=res.body.data;
                             // self.handleData(res.body.data);   
+                        }else{
+                            self.userOrderArr=[];
                         }
                     })
         },
@@ -51,8 +53,10 @@ new Vue({
                     .then(function(res){
                         if(res.body.code==200){
                             self.user=res.body.data||{};
+                        }else{
+                            self.user={};
                         }
-                        console.log(self.user);
+                        
                     })
         },
         showOrderList:function(index,staIndex){
@@ -69,6 +73,8 @@ new Vue({
 
                             self.userOrderArr=res.body.data;
                             // self.handleData(res.body.data);   
+                        }else{
+                            self.userOrderArr=[];
                         }
                     })
         },

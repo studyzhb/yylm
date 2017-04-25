@@ -43,9 +43,11 @@ new Vue({
             var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.common.getCommented)
                     .then(function(res){
-                        console.log(res);
+                        
                         if(res.body.code==200){
                             self.dicussInfoArr=res.body.data;
+                        }else{
+                            self.dicussInfoArr=[];
                         }
                     })
         },
@@ -55,7 +57,7 @@ new Vue({
         },
         confirmCommonInfo:function(){
             var self=this;
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.goods.commitComment,{},{params:this.commentObj})
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.goods.commitComment,this.commentObj)
                     .then(function(res){
                         if(res.body.code==200){
 

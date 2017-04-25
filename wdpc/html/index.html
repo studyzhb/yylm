@@ -150,8 +150,8 @@
         <ul class="wd-nav-area">
           <li class="all-category Notclear"> <a class="allcat">全部分类</a>
             <dl class="menuList" v-show="isShowAllSortIndex==0">
-              <dd v-for="item in navData"><a class="mainTitle" v-text="item.name"></a>
-                <p> <a v-for="part in item.recommend" v-text="part.name"></a></p>
+              <dd v-for="item in navData"><a class="mainTitle" v-on:click="parseUrl(item)" v-text="item.name"></a>
+                <p> <a v-for="part in item.recommend" v-on:click="parseUrl(item,part)" v-text="part.name"></a></p>
               </dd>
                
             </dl>

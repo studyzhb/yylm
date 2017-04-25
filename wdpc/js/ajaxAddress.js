@@ -1,5 +1,5 @@
 var ajaxAddress={
-    preFix:'/yylmserver/yylm/public/index.php/unionIndex',
+    preFix:'/yylm/public/index.php/unionIndex',
     formFix:'',
     area:{
         areaData:'/condition/getArea'

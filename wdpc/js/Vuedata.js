@@ -8,7 +8,9 @@ new Vue({
 		residueCount:0,
 		areaData:[],
         ClassifyData:[],
-        sortIndex:'',
+		//排序标记
+		sortIndex:'0',
+
         tag:false,
         showIndex:"0",
         imgLeft:'',
@@ -45,6 +47,14 @@ new Vue({
 		})
 	},
 	methods:{
+		//排序
+		sortShopList:function(index,tag){
+			this.sortIndex=index;
+			if(tag!==undefined){
+				this.getShopInfo(tag);
+			}
+		},
+
 		//剩余的个数
 		residueNum:function(count){
 			count=count||0;
@@ -63,6 +73,7 @@ new Vue({
 			
 			this.parames.navid=paraObj.navid;
 			this.parames.cityid=paraObj.cityid;
+			this.parames.cate_class=paraObj.subid||'';
 			this.navName=unescape(paraObj.name);
 			//获取城市站点和导航
 			this.getCityAndNav();
@@ -116,7 +127,19 @@ new Vue({
 				.then(function(res){
 					
                     res.body.data.forEach(function(item,index){
-                        item.sortIndex='-1';
+						
+						if(item.id==1){
+							item.children.forEach(function(its,ind){
+								if(its.id==self.parames.cate_class){
+									item.sortIndex=ind;
+								}
+							})
+							
+						}else{
+							item.sortIndex='-1';
+						}
+                        
+
                     })
                     self.ClassifyData=res.body.data;
 				});
@@ -135,7 +158,7 @@ new Vue({
 							} 
 						})
 		},
-		getShopInfo:function(){
+		getShopInfo:function(sortO){
 			var self=this;
 
 			var body={};
@@ -148,6 +171,9 @@ new Vue({
 				}
 			}
 
+			if(sortO!==undefined){
+				body[sortO]=true;
+			}
 			
 			/**
 			 * 获取店铺数据
@@ -206,7 +232,7 @@ new Vue({
 					}
 				})
 			})
-			
+		
 			return nArr;
 		},
 		getBefenit:function(){
@@ -278,8 +304,9 @@ new Vue({
 			pItem.areaIndex=index;
 			if(pItem.id=='1'){
 				obj.areaid=item.id;
-				
+				delete this.parames.business
 			}else{
+				delete this.parames.areaid;
 				obj.business=item.id;
 			}
 			this.searchResultInfo(obj);
