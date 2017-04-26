@@ -1,7 +1,7 @@
 var ajaxAddress={
     preFix:'/yylm/public/index.php/unionIndex',
     formFix:'',
-    payHtml:'/yylm/public/pay/Alipay/payInterface',
+    payHtml:'/yylm/public/pay/Alipay',
     area:{
         areaData:'/condition/getArea'
     },

@@ -27,13 +27,13 @@
                 <ul class="sign">
                   <li style="padding-left: 124px;text-align: left" >
                     <input type="text"  placeholder="手机号" :class="{'validate-color':!validatorLoginUser.phone}"  v-model="loginUser.phone" @blur="validatorLoginUser.phone=/^\S+/.test(loginUser.phone)">
-                    <span v-show="!validatorLoginUser.phone" style="color: #f00;">手机号不能为空</span>
+                    <span v-show="!validatorLoginUser.phone&&isShowError" style="color: #f00;">手机号不能为空</span>
                   </li> 
                   <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorLoginUser.password}" placeholder="密码"  v-model="loginUser.password" @blur="validatorLoginUser.password=/^\S+/.test(loginUser.password)">
-                    <span v-show="!validatorLoginUser.password" style="color: #f00;">密码不能为空</span>
+                    <span v-show="!validatorLoginUser.password&&isShowError" style="color: #f00;">密码不能为空</span>
                   </li>
                   <li style="padding-left: 124px;text-align: left" class="sign-check"><input type="text" id="checkText" v-model="loginUser.code" :class="{'validate-color':!validatorLoginUser.code}" @blur="validatorLoginUser.code=/^\S+/.test(loginUser.code)" class="checkText" placeholder="验证码"><span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span><span class="notsee" @click="updatePicCode">看不清楚，换一张</span>
-                    <span v-show="!validatorLoginUser.code" style="color: #f00;">验证码不能为空</span>
+                    <span v-show="!validatorLoginUser.code&&isShowError" style="color: #f00;">验证码不能为空</span>
                   </li>
                   <li><button class="submit" >登录</button></li>
                   <li><span class="forgetPwd color" @click="loginIndex='1'">忘记密码</span><span class="color dialogin" @click="loginIndex='2'">点击注册</span></li>
@@ -54,20 +54,20 @@
           <div class="dia-main">
             <ul class="sign">
               <li style="padding-left: 124px;text-align: left"><input type="text" :class="{'validate-color':!validatorResetUser.phone}" @blur="validatorResetUser.phone=/^\S+/.test(resetUser.phone)" v-model="resetUser.phone" placeholder="注册手机号">
-                <span v-show="!validatorResetUser.phone" style="color: #f00;">手机号不能为空</span>
+                <span v-show="!validatorResetUser.phone&&isShowError" style="color: #f00;">手机号不能为空</span>
               </li>
               <li class="sign-check" style="padding-left: 124px;text-align: left">
                 <input v-model="resetUser.code" type="text" id="checkText" class="checkText" :class="{'validate-color':!validatorResetUser.code}" @blur="validatorResetUser.code=/^\S+/.test(resetUser.code)" placeholder="验证码">
                 <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
-                <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code" style="color: #f00;">验证码不能为空</span></li>
+                <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code&&isShowError" style="color: #f00;">验证码不能为空</span></li>
               <li class="phone-check" style="padding-left: 124px;text-align: left">
                 <input type="text" v-model="resetUser.phonecode" :class="{'validate-color':!validatorResetUser.phonecode}" @blur="validatorResetUser.phonecode=/^\S+/.test(resetUser.phonecode)" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
               <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.password}" @blur="validatorResetUser.password=/^\S+/.test(resetUser.password)" v-model="resetUser.password" placeholder="新密码">
-                <span v-show="!validatorResetUser.password" style="color: #f00;">不能为空</span>
+                <span v-show="!validatorResetUser.password&&isShowError" style="color: #f00;">不能为空</span>
               </li>
               <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.conPassword}" @blur="validatorResetUser.conPassword=/^\S+/.test(resetUser.conPassword)" v-model="resetUser.conPassword" placeholder="确认密码">
                 <span v-show="!resetUser.conPassword" style="color: #f00;">不能为空</span>
-                <span v-show="resetUser.conPassword!=resetUser.password" style="color: #f00;">两次密码不一致</span>
+                <span v-show="resetUser.conPassword!=resetUser.password&&isShowError" style="color: #f00;">两次密码不一致</span>
               </li>
               <!--<p class="checkagree"><span class="agree">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>-->
               <li><span class="reset" @click="resetPassword">立即重置</span></li>
@@ -85,21 +85,21 @@
             <ul class="sign">
               <li style="padding-left: 124px;text-align: left">
                 <input type="text" :class="{'validate-color':!validatorRegisterUser.phone}" @blur="validatorRegisterUser.phone=/^\S+/.test(registerUser.phone)" placeholder="注册手机号" v-model="registerUser.phone">
-                <span v-show="!validatorRegisterUser.phone" style="color: #f00;">手机号不能为空</span>
+                <span v-show="!validatorRegisterUser.phone&&isShowError" style="color: #f00;">手机号不能为空</span>
               </li>
               <li class="sign-check" style="padding-left: 124px;text-align: left">
                 <input v-model="registerUser.code" :class="{'validate-color':!validatorRegisterUser.code}" @blur="validatorRegisterUser.code=/^\S+/.test(registerUser.code)"  type="text" id="checkText" class="checkText" placeholder="验证码">
                 <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
                 <span class="notsee" @click="updatePicCode">看不清楚，换一张</span>
-                <span v-show="!validatorRegisterUser.code" style="color: #f00;">验证码不能为空</span>
+                <span v-show="!validatorRegisterUser.code&&isShowError" style="color: #f00;">验证码不能为空</span>
               </li>
               <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="registerUser.phonecode" :class="{'validate-color':!validatorRegisterUser.phonecode}" @blur="validatorRegisterUser.phonecode=/^\S+/.test(registerUser.phonecode)" placeholder="短信验证码"><button class='checkbtn' @click="getMesscode">获取短信验证码</button></li>
               <li style="padding-left: 124px;text-align: left"><input type="password" v-model="registerUser.password" :class="{'validate-color':!validatorRegisterUser.password}" @blur="validatorRegisterUser.password=/^\S+/.test(registerUser.password)" placeholder="新密码">
-                <span v-show="!validatorRegisterUser.password" style="color: #f00;">密码不能为空</span>
+                <span v-show="!validatorRegisterUser.password&&isShowError" style="color: #f00;">密码不能为空</span>
               </li>
               <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!registerUser.conPassword}" @blur="validatorRegisterUser.conPassword=/^\S+/.test(registerUser.conPassword)&&registerUser.conPassword==registerUser.password" v-model="registerUser.conPassword" placeholder="确认密码">
-                <span v-show="!registerUser.conPassword" style="color: #f00;">不能为空</span>
-                <span v-show="registerUser.conPassword!=registerUser.password" style="color: #f00;">两次密码不一致</span>
+                <span v-show="!registerUser.conPassword&&isShowError" style="color: #f00;">不能为空</span>
+                <span v-show="registerUser.conPassword!=registerUser.password&&isShowError" style="color: #f00;">两次密码不一致</span>
               </li>
               <p class="checkagree"><span class="agree" style="cursor: pointer;" @click="isSelecterAgree=!isSelecterAgree" v-text="isSelecterAgree?'√':''">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>
               <li><span class="reset" @click="registerUserInfo">注册</span></li>
@@ -114,9 +114,9 @@
           <div class="wd-title-container">
             <ul class="left-logo-name">
               <li class="wd-common-name"><a href="index.html"><i style="color:#f00;" class="iconfont icon-dingwei"></i><span v-text="cityObj.name">郑州</span></a></li>
-              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'">请登录</a></li>
+              <li class="wd-common-login" v-show="!isLogin"><a @click="loginIndex='0'" style="cursor: pointer;">请登录</a></li>
               <li class="wd-common-login" v-show="isLogin"><a href="javascript:;" v-text="loginUserName">111</a></li>
-              <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit">退出</a></li>
+              <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit" style="cursor: pointer;">退出</a></li>
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="gotoPersonCenter">我的e+便利</a></li> 
@@ -127,16 +127,16 @@
           </div>
         </div>
         <div class="wd-logo-container">
-          <div class="logoImage"><a><img src="../img/header/logo.png"></a></div>
+          <div class="logoImage"><a href="index.html" style="display: inline-block;"><img src="../img/header/logo.png"></a></div>
           <div class="wd-search-area">
             <div class="tab-shop-goods">
-              <div class="tab-item" :class="{active:searchTag==true}" @click='searchTag=true'>商品</div>
-              <div class="tab-item" :class="{active:searchTag==false}" @click='searchTag=false'>商家</div>
+              <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==true}" @click='searchTag=true'>商品</div>
+              <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==false}" @click='searchTag=false'>商家</div>
             </div>
-            <form class="logo-search-form">
+            <div class="logo-search-form">
               <input type="text" placeholder="万店联盟搜索" class="search-text" v-model="mainCon">
               <input type="button" value="搜索" class="search-btn" @click="searchInfoFromData">
-            </form>
+            </div>
             <!--<div class="hotwords"><a>奶糖</a><a>红枣</a></div>-->
           </div>
         </div>
@@ -145,8 +145,8 @@
         <ul class="wd-nav-area">
           <li class="all-category Notclear"> <a class="allcat">全部分类</a>
             <dl class="menuList" v-show="isShowAllSortIndex==0">
-              <dd v-for="item in navData"><a class="mainTitle" v-text="item.name"></a>
-                <p> <a v-for="part in item.recommend" v-text="part.name"></a></p>
+              <dd v-for="item in navData"><a class="mainTitle" v-on:click="parseUrl(item)" v-text="item.name"></a>
+                <p> <a v-for="part in item.recommend" v-on:click="parseUrl(item,part)" v-text="part.name"></a></p>
               </dd>
                
             </dl>

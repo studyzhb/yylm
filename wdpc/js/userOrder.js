@@ -44,6 +44,7 @@ new Vue({
                             // self.handleData(res.body.data);   
                         }else{
                             self.userOrderArr=[];
+                            
                         }
                     })
         },

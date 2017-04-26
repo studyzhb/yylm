@@ -30,6 +30,8 @@ new Vue({
 		isSelecterAgree:true,
 		//是否隐藏第三方
 		isShowOther:false,
+		//是否显示错误
+		isShowError:false,
 		phone:'',
 		loginUserName:'',
 		email:"",
@@ -156,7 +158,7 @@ new Vue({
 			// validator.validateAll()
 			// console.log(this.$validator.validateAll());
 			// console.log(this.errors);
-			
+			this.isShowError=true;
 			var tag=true;
 			for(var key in this.validatorLoginUser){
 				if(!this.validatorLoginUser[key]){
@@ -169,10 +171,11 @@ new Vue({
 				var self=this;
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,body)
 					.then(function(res){
+						
 						if(res.body.code==200){
 							self.isLogin=true;
 							self.loginIndex='-1';
-							
+							self.isShowError=false;
 							self.loginUserName=res.body.data||'***';
 							cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
 							layer.msg(res.body.msg);
@@ -188,9 +191,10 @@ new Vue({
 		resetPassword:function(){
 			var body=this.resetUser;
 			var tag=true;
-			console.log(this.validatorResetUser)
+			var self=this;
+			this.isShowError=true;
 			for(var key in this.validatorResetUser){
-				console.log(this.validatorResetUser[key])
+				
 				if(!this.validatorResetUser[key]){
 					
 					tag=false;
@@ -205,6 +209,7 @@ new Vue({
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginInfo,body)
 				.then(function(res){
 					if(res.body.code==200){
+						self.isShowError=false;
 						self.loginIndex='-1';
 						layer.msg(res.body.msg);
 					}else{
@@ -218,6 +223,7 @@ new Vue({
 		registerUserInfo:function(){
 			var self=-this;
 			var tag=true;
+			this.isShowError=true;
 			var body=this.registerUser;
 			for(var key in this.validatorRegisterUser){
 				if(!this.validatorRegisterUser[key]){
@@ -238,6 +244,7 @@ new Vue({
 					.then(function(res){
 						layer.msg(res.body.msg);
 						if(res.body.code==200){
+							self.isShowError=false;
 							self.loginIndex='0';
 						}
 					})

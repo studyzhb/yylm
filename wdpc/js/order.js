@@ -43,23 +43,22 @@ new Vue({
                     .then(function(res){
                         if(res.body.code==200){
                             
-                           var orderId=res.body.data.orderNum;
+                           var orderId=res.body.data;
+                           
                            self.getPayHtml(orderId);
 
+                        }else if(res.body.code==302){
+                            cookieUtil.removeCookie('wdusername');
+                            layer.msg(res.body.message);
+                        }else{
+                            layer.msg(res.body.message);
                         }
                     })
         },
         getPayHtml:function(num){
             var self=this;
-            this.$http.post(ajaxAddress.payHtml,{orderNum:num})
-                    .then(function(res){
-                        if(res.body.code==200){
-                            
-                           console.log(res.body);
+            open(ajaxAddress.payHtml+'?id='+num,'_self');
 
-
-                        }
-                    })
         },  
         changeMoney:function(item,way){
             if(way>0){

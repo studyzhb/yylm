@@ -5,6 +5,6 @@ new Vue({
         selectedSubIndex:0
     },
     methods:{
-
+        
     }
 })
