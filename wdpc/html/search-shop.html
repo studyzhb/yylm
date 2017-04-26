@@ -229,10 +229,10 @@
                             <div class="sortChoice">
                                 <div class="sortChoiceinfo">
                                     <ul class="sortNav">
-                                        <li class="color-red-bg">默认</li>
-                                        <li>销量 <i class="iconfont icon-zhankai "></i></li>
-                                        <li>价格 <i class="iconfont icon-zhankai "></i></li>
-                                        <li>好评</li>
+                                        <li :class="{'color-red-bg':sortIndex=='0'}" @click="sortShopList(0,void(0))">默认</li>
+                                        <li :class="{'color-red-bg':sortIndex=='1'}" @click="sortShopList(1,'sale')">销量 <i class="iconfont icon-zhankai "></i></li>
+                                        <li :class="{'color-red-bg':sortIndex=='2'}" @click="sortShopList(2,'price')">价格 <i class="iconfont icon-zhankai "></i></li>
+                                        <li :class="{'color-red-bg':sortIndex=='3'}" @click="sortShopList(3,'score')">好评</li>
                                     </ul>
                                     <div class="sortLBot" v-for="singleItem in shoplistArr">
                                         <ul class="sortContent">
@@ -282,7 +282,7 @@
                             </div>
                         </div>
                         
-                        <div class="sortChoiceRight">
+                        <div class="sortChoiceRight" style="display: none;">
                             <!--<img src="../img/sortimg.png">-->
                             <div class="allicences-con-click-more">
                                 <h3>优惠信息</h3>
@@ -307,14 +307,14 @@
                  </div>
                  <div class="page">
                     <div class="tcdPageCode" id="pagecode">
-                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
-                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+                    <span v-if="currentPage==1&&pageCount>1">上一页</span>
+                    <a href="javascript:;" @click="prePage" v-else-if="pageCount>1">上一页</a>
 
 
-                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}">1</a>
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}" v-text="n">1</a>
 
-                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
-                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
+                    <span v-if="currentPage==pageCount&&pageCount>1">下一页</span>
+                    <a href="javascript:;" class="nextPage" @click="nextPage" v-else-if="pageCount>1">下一页</a>
                     </div>
                 </div>
           </div>

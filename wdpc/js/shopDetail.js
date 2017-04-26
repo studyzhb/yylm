@@ -9,7 +9,8 @@ new Vue({
 		shopId:'1',
 		selectedIndex:'0',
 		hotGoodsArr:[],
-		shopDetailArr:''
+		shopDetailArr:'',
+		goodsPic:''
 	},
 	filters:{
 		json2single:function(value){
@@ -45,20 +46,32 @@ new Vue({
 			var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.shopDetail+'?id='+this.shopId)
                     .then(function(res){
-                        console.log(res);
-                        self.shopDetailArr=res.body.data;
+                        if(res.body.code==200){
+							 self.shopDetailArr=res.body.data;
+							 self.goodsPic=self.json2arr(res.body.data.intr_pic)[0];
+						}else{
+							self.shopDetailArr={};
+						}
+                       
                     })
 		},
 		getHotInfo:function(){
 			var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.hotSale+'?id='+this.shopId)
                     .then(function(res){
-                        console.log(res);
-                        self.hotGoodsArr=res.body.data;
+                        if(res.body.code==200){
+							self.hotGoodsArr=res.body.data;
+						}else{
+							self.hotGoodsArr=[];
+						}
+                        
                     })
 		},
 		goToGoodsDetail:function(id){
 			open(goodsDetailUrl+id+'&name='+escape(this.navName),'_self');
+		},
+		showNowImage:function(src){
+			this.goodsPic=src;
 		}
 
 	}

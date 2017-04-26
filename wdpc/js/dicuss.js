@@ -70,6 +70,7 @@ new Vue({
             this.commentObj.good_id=item.goodsid;
             this.$http.post(ajaxAddress.preFix+ajaxAddress.goods.commitComment,this.commentObj)
                     .then(function(res){
+                        layer.closeAll('loading');
                         if(res.body.code==200){
                             self.getUserComment();
                         }else{

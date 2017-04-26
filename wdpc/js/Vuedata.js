@@ -47,6 +47,16 @@ new Vue({
 		})
 	},
 	methods:{
+
+		prePage:function(){
+			this.currentPage--;
+			this.pageClick(this.currentPage);
+		},
+		nextPage:function(){
+			this.currentPage++;
+			this.pageClick(this.currentPage);
+		},
+
 		//排序
 		sortShopList:function(index,tag){
 			this.sortIndex=index;
@@ -73,7 +83,10 @@ new Vue({
 			
 			this.parames.navid=paraObj.navid;
 			this.parames.cityid=paraObj.cityid;
-			this.parames.cate_class=paraObj.subid||'';
+			if(paraObj.subid&&paraObj.subid!='undefined'){
+				this.parames.cate_class=paraObj.subid||'';
+			}
+			
 			this.navName=unescape(paraObj.name);
 			//获取城市站点和导航
 			this.getCityAndNav();
@@ -293,10 +306,21 @@ new Vue({
         },
 		//分类选中
 		sortClick:function(sortItem,index,id){
-			sortItem.sortIndex=index;
+			
 			var obj={};
 			obj[sortItem.field]=id;
-			this.searchResultInfo(obj,true);
+
+
+			if(this.parames[sortItem.field]&&this.parames[sortItem.field]==id){
+				
+				sortItem.sortIndex=-11;
+				delete this.parames[sortItem.field];
+				this.searchResultInfo({},true);
+			}else{
+				sortItem.sortIndex=index;
+				this.searchResultInfo(obj,true);
+			}
+			
 		},
 		//区域
 		areaClick:function(item,pItem,index){

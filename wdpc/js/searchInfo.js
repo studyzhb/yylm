@@ -6,7 +6,7 @@ new Vue({
 		navName:'',
 		areaData:[],
         ClassifyData:[],
-        sortIndex:'',
+        sortIndex:'0',
         tag:false,
         showIndex:"0",
         imgLeft:'',
@@ -44,6 +44,21 @@ new Vue({
 		})
 	},
 	methods:{
+		prePage:function(){
+			this.currentPage--;
+			this.pageClick(this.currentPage);
+		},
+		nextPage:function(){
+			this.currentPage++;
+			this.pageClick(this.currentPage);
+		},
+		//排序
+		sortShopList:function(index,tag){
+			this.sortIndex=index;
+			if(tag!==undefined){
+				this.getShopInfo(tag);
+			}
+		},
 		showResidueList:function(item){
 			if(!item.showAll){
 				this.$set(item,'showAll',true);
@@ -133,26 +148,30 @@ new Vue({
 						.then(function(res){
 							if(res.body.code==200){
 								self.goodslistArr=res.body.data;
+								self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
+								self.pageSize=res.body.limit;
 							}else{
 								self.goodslistArr=[];
 							} 
 						})
 		},
-		getShopInfo:function(){
+		getShopInfo:function(sortO){
 			var self=this;
             var body=this.parames;
-            
+            if(sortO!==undefined){
+				body[sortO]=true;
+			}
 			/**
 			 * 获取店铺数据
 			 */ 
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.search.searchShop,{params:body})
 						.then(function(res){
-							console.log(res);
+							
 							if(res.body.code==200){
 								self.shoplistArr=res.body.data||[];
-								// self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
-								// self.pageSize=res.body.limit;
-								console.log(self.shoplistArr);
+								self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
+								self.pageSize=res.body.limit;
+								
 								//循环添加商品数据
 								self.shoplistArr.forEach(function(item){
 									self.getGoodsListByShopId(item.id,item)
@@ -178,7 +197,7 @@ new Vue({
 								}
 								obj.goods=res.body.data||[];
 								
-								obj.residueCount=obj.goods.length-2;
+								obj.residueCount=obj.goods.length-2>0?res.body.data.length-2:0;
 								
 							}else{
 								// layer.msg(res.body.msg);

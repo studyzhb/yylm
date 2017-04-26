@@ -7,10 +7,12 @@ new Vue({
         goodsDetailArr:'',
         goodsId:'1',
 		shopId:'',
+		goodsPic:'',
 		selectedIndex:'0',
 		hotGoodsArr:[],
 		shopDetailArr:'',
-		commentArr:[]
+		commentArr:[],
+		goodsScoreObj:{}
 	},
 	filters:{
 		json2single:function(value){
@@ -34,20 +36,25 @@ new Vue({
 			
 			this.goodsId=paraObj.id;
 			this.navName=unescape(paraObj.name);
-			console.log(this.navName);
+			
             this.getGoodsInfo();
 			this.getCommentInfo();
-			
+			this.getCommentTotalScore();
 		},
 		getGoodsInfo:function(){
             var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.goodsDetail+'?id='+this.goodsId)
                     .then(function(res){
+                        if(res.body.code==200){
+							self.goodsDetailArr=res.body.data;
+							self.goodsPic=self.json2arr(res.body.data.goods_pic)[0];
+							self.shopId=self.goodsDetailArr.shopid;
+							self.getShopInfo();
+							self.getHotInfo();
+						}else{
+
+						}
                         
-                        self.goodsDetailArr=res.body.data;
-						self.shopId=self.goodsDetailArr.shopid;
-						self.getShopInfo();
-						self.getHotInfo();
                     })
         },
 		getCommentInfo:function(){
@@ -61,6 +68,19 @@ new Vue({
 						}
 					})
 		},
+		getCommentTotalScore:function(){
+			var self=this;
+			
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.goods.getComment+'?id='+this.goodsId)
+					.then(function(res){
+						// console.log(res);
+						if(res.body.code==200){
+							self.goodsScoreObj=res.body.data;
+						}else{
+							
+						}
+					})
+		},	
 		json2arr:function(value){
 			
 			var arr=typeof eval(value)=='object'?JSON.parse(value):[];
@@ -95,6 +115,9 @@ new Vue({
 		//去生成订单页面
 		goToOrder:function(){
 			open('order.html?id='+this.goodsId,'_self');
+		},
+		showNowImage:function(src){
+			this.goodsPic=src;
 		}
 
 	}

@@ -93,16 +93,29 @@ new Vue({
         //修改密码
         updatePassInfo:function(){
 			var body=this.changePass;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updatePassInfo,{},{params:body})
+            var self=this;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updatePassInfo,body)
 					.then(function(res){
-						console.log(res);
+						if(res.body.code==200){
+                            layer.msg(res.body.msg);
+                            this.changeIndex=-1;
+                        }else{
+                             layer.msg(res.body.msg);
+                        }
 					})
 		},
         updateNikeName:function(){
-            
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updateNikeName,{},{params:{nikename:nikeName}})
+            var self=this;
+			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updateNikeName,{nikename:this.nikeName})
 					.then(function(res){
-						console.log(res);
+						
+                        if(res.body.code==200){
+                            layer.msg(res.body.msg);
+                            this.changeIndex=-1;
+                             
+                        }else{
+                            layer.msg(res.body.msg);
+                        }
 					})
         }
     }

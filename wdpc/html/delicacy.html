@@ -173,9 +173,9 @@
                                 <!--士大力餐厅-->
                                 <div class="de-center">
                                     <ul class="de-picture" style="width: 462px;overflow: hidden;">
-                                        <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="goodsDetailArr.goods_logo | json2single"></li>
+                                        <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="goodsPic"></li>
                                         <li style="height: 70px;overflow:hidden;">
-                                            <img style="width:110px;height: 69px;" v-for="item in json2arr(goodsDetailArr.goods_pic)" src="../img/j-img2.png" :src="item">
+                                            <img style="width:110px;height: 69px;" v-for="item in json2arr(goodsDetailArr.goods_pic)" src="../img/j-img2.png" :src="item" @click="showNowImage(item)">
                                             
                                         </li>
                                     </ul>
@@ -186,13 +186,13 @@
                                         <li><i class="iconfont icon-xingxing"></i><i class="iconfont icon-xingxing"></i></li>
                                         <li>专享价格：<span class="count color-red">￥{{goodsDetailArr.price_pay}}</span></li>
                                         <li ><span class="color-red">有效期</span></li>
-                                        <li>截止到{{new Date(goodsDetailArr.validity_time*1000).toLocaleString()}}<span class="Nodate">不可用日期</span>{{goodsDetailArr.use_time_info}}</li>
+                                        <li>截止到{{new Date(goodsDetailArr.validity_time*1000).toLocaleString()}}<span class="Nodate" v-show="goodsDetailArr.use_time_info">不可用日期</span>{{goodsDetailArr.use_time_info}}</li>
                                         <li><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></li>
                                         <li class="con">
                                             <span>服务承诺：<i class="iconfont icon-xingxing"></i>随时退</span>
                                             <span><i class="iconfont icon-xingxing"></i>过期退</span><span><i class="iconfont icon-xingxing"></i>真实评价</span>
                                         </li>
-                                        <li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>
+                                        <!--<li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>-->
                                         <li class="con">
                                             <div class="goodsPay" @click="goToOrder" style="width:200px;height: 40px;text-align:center;line-height: 40px;font-size: 14px;border: 1px solid #f00;color:#888;cursor: pointer;">
                                                 立即购买
@@ -213,7 +213,7 @@
                                                     <dd>价格：{{shopDetailArr.price}}<dd>
                                                 </dl>
                                             </dd>
-                                            <dd><span @click="gotoShopDetail(goodsDetailArr.shopid)">进入店铺</span><span>收藏店铺</span></dd>
+                                            <dd><span @click="gotoShopDetail(goodsDetailArr.shopid)">进入店铺</span><a href="#wheredetail" name="wheredetail" @click="selectedIndex=1"><span>商品详情</span></a></dd>
                                             <dd>
                                                 <div id="mapContainerSub" style="width:228px;height:159px;display: inline-block;">
                                                     
@@ -222,7 +222,7 @@
                                         </dl>
                                          <ul class="shopAddress">
                                             <li style="padding-right: 10px">地址：{{shopDetailArr.address}}</li>
-                                            <li class="color-red">查看地图公交/驾车去这里</li>
+                                            <!--<li class="color-red">查看地图公交/驾车去这里</li>-->
                                             <!--<li>地铁：距二七广场站越888米</li>-->
                                             <li>电话:{{ shopDetailArr.telephone}}</li>
                                         </ul>
@@ -253,7 +253,7 @@
 
                 <!--商家信息-->
                 <div class="contentInfo">
-                    <ul class="b-nav hotPre-top">
+                    <ul class="b-nav hotPre-top" name="wheredetail">
                         <li :class="{'color-red':selectedIndex=='0'}" @click='selectedIndex=0'>商家位置</li>
                         <li :class="{'color-red':selectedIndex=='1'}" @click='selectedIndex=1'>商品详情</li>
                         <li :class="{'color-red':selectedIndex=='2'}" @click='selectedIndex=2'>用户评价</li>
@@ -331,7 +331,7 @@
                                             </ul>
                                         </div>
                                         <div class="ELeftbott">
-                                            <ul class="progNav">
+                                            <ul class="progNav" style="display: none;">
                                                 <li class="all bgcolor">全部</li>
                                                 <li>晒图评价</li>
                                                 <li>只看低分</li>

@@ -34,18 +34,33 @@ new Vue({
                     })
         },
         createOrder:function(){
-            var body={}
+            var body={};
+            var self=this;
             layer.load();
             body.goodsid=this.goodsId;
             body.number= this.goodsInfo.total;
             this.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
                     .then(function(res){
                         if(res.body.code==200){
-                            console.log(res.body);
-                            layer.msg('chenggong')
+                            
+                           var orderId=res.body.data.orderNum;
+                           self.getPayHtml(orderId);
+
                         }
                     })
         },
+        getPayHtml:function(num){
+            var self=this;
+            this.$http.post(ajaxAddress.payHtml,{orderNum:num})
+                    .then(function(res){
+                        if(res.body.code==200){
+                            
+                           console.log(res.body);
+
+
+                        }
+                    })
+        },  
         changeMoney:function(item,way){
             if(way>0){
 				item.total++;

@@ -18,7 +18,9 @@
                     </p>
                     <div class="personMess" v-show="selectedIndex==0"> 
                          <ul>
-                            <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span><span class="color" @click="changeIndex=1">更换</span></li>
+                            <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span>
+                            <!--<span class="color" @click="changeIndex=1">更换</span>-->
+                            </li>
                             <li>密 &nbsp;&nbsp;码：<span class="accountpwd"  style="width: 110px;">***********</span><span class="color" @click="changeIndex=2">修改</span></li>
                             <li>昵 &nbsp;&nbsp;称：<span class="phoneNum"  style="width: 110px;">{{userDetailArr.nickname}}</span><span class="color" @click="changeIndex=3">设置</span></li>
                         </ul>
@@ -90,7 +92,7 @@
           <div class="dia-main">
             <ul class="sign">
               
-              <li><input type="password" v-model="nikeName" placeholder="请输入新昵称"></li>
+              <li><input type="text" v-model="nikeName" placeholder="请输入新昵称"></li>
               
               
               <li><span class="reset" @click="updateNikeName">立即修改</span></li>

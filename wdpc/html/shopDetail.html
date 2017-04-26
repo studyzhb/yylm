@@ -174,10 +174,10 @@
                                 <!--士大力餐厅-->
                                 <div class="de-center">
                                     <ul class="de-picture" style="width: 462px;overflow: hidden;">
-                                        <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="shopDetailArr.logo | json2single"></li>
+                                        <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="goodsPic"></li>
                                         <li style="height: 70px;overflow:hidden;">
-                                            <img style="width:110px;height: 69px;" v-for="item in json2arr(shopDetailArr.environment_pic)" src="../img/j-img2.png" :src="item">
-                                            
+                                            <img style="width:110px;height: 69px;" v-for="item in json2arr(shopDetailArr.intr_pic)" src="../img/j-img2.png" :src="item" @click="showNowImage(item)">
+            
                                         </li>
                                     </ul>
                                 </div>
@@ -193,7 +193,7 @@
                                             <span>服务承诺：<i class="iconfont icon-xingxing"></i>随时退</span>
                                             <span><i class="iconfont icon-xingxing"></i>过期退</span><span><i class="iconfont icon-xingxing"></i>真实评价</span>
                                         </li>
-                                        <li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>
+                                        <!--<li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>-->
                                     </ul>
                                 </div>
                                 <div class="de-center" style="margin-top: -20px; float: right;">
@@ -208,7 +208,7 @@
                                                     <dd>价格：{{shopDetailArr.price}}<dd>
                                                 </dl>
                                             </dd>
-                                            <dd><span>收藏店铺</span></dd>
+                                            <dd><a href="#wheredetail" name="wheredetail" @click="selectedIndex=1"><span>店铺详情</span></a></dd>
                                             <dd>
                                                 <div id="mapContainerSub" style="width:228px;height:159px;display: inline-block;">
                                                     
@@ -248,10 +248,10 @@
 
                 <!--商家信息-->
                 <div class="contentInfo">
-                    <ul class="b-nav hotPre-top">
+                    <ul class="b-nav hotPre-top" name="wheredetail">
                         <li :class="{'color-red':selectedIndex=='0'}" @click='selectedIndex=0'>商家位置</li>
-                        <li :class="{'color-red':selectedIndex=='1'}" @click='selectedIndex=1'>店铺详情</li>
-                        <li :class="{'color-red':selectedIndex=='2'}" @click='selectedIndex=2'>用户评价</li>
+                        <li :class="{'color-red':selectedIndex=='1'}"  @click='selectedIndex=1'>店铺详情</li>
+                        <!--<li :class="{'color-red':selectedIndex=='2'}" @click='selectedIndex=2'>用户评价</li>-->
                     </ul> 
                     <p class="lineIn"></p>
                     <div class="de-info">
@@ -286,7 +286,7 @@
                                         <!--商品图片-->
                                         <p class="color-red">店铺图片</p>
                                             <ul>
-                                                <li v-for="item in json2arr(shopDetailArr.intr_pic)"><img width="764px;" src="../img/goodsPic.png" :src="item"></li>
+                                                <li v-for="item in json2arr(shopDetailArr.environment_pic)"><img width="764px;" src="../img/goodsPic.png" :src="item"></li>
                                             </ul>
                                     </div>
                                     <div class="goodsdetailRight"></div>

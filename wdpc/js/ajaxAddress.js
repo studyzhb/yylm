@@ -1,6 +1,7 @@
 var ajaxAddress={
     preFix:'/yylm/public/index.php/unionIndex',
     formFix:'',
+    payHtml:'/yylm/public/pay/Alipay/payInterface',
     area:{
         areaData:'/condition/getArea'
     },
@@ -80,6 +81,7 @@ var ajaxAddress={
         commitComment:'/user/goodsEvaluate'
     },
     order:{
-        commitOrder:'/Goods/createOrder'
+        commitOrder:'/Goods/createOrder',
+        createHtml:''
     }
 }

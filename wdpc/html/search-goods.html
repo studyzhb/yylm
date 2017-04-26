@@ -247,7 +247,7 @@
                                         </ul>
                                     </div>
                                     <div class="right-list-wrapper clearfix" style="float:right">
-                                        <div class="sortChoiceRight">
+                                        <div class="sortChoiceRight" style="display: none;">
                                             <!--<img src="../img/sortimg.png">-->
                                             <div class="allicences-con-click-more">
                                                 <h3>优惠信息</h3>
@@ -275,26 +275,17 @@
                  </div>
             </div>
             <div class="page">
-                <div class="tcdPageCode" id="pagecode">
-                    <span v-if="currentPage==1&&pageCount!=1">上一页</span>
-                    <a href="javascript:;" v-else-if="pageCount!=1">上一页</a>
+                    <div class="tcdPageCode" id="pagecode">
+                    <span v-if="currentPage==1&&pageCount>1">上一页</span>
+                    <a href="javascript:;" @click="prePage" v-else-if="pageCount>1">上一页</a>
 
 
-                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" class="current">1</a>
-                    <!--<a href="javascript:;" class="tcdNumber">2</a>
-                    <a href="javascript:;" class="tcdNumber">3</a>
-                    <a href="javascript:;" class="tcdNumber">4</a>
-                    <a href="javascript:;" class="tcdNumber">5</a>
-                    <span>...</span>
-                    <a href="javascript:;" class="tcdNumber">6</a>
-                    <a href="javascript:;" class="tcdNumber">7</a>
-                    <a href="javascript:;" class="tcdNumber">8</a>-->
+                    <a href="javascript:;" v-for="n in pageCount" @click="pageClick(n)" :class="{current:currentPage==n}" v-text="n">1</a>
 
-                    <span v-if="currentPage==pageCount&&pageCount!=1">下一页</span>
-                    <a href="javascript:;" class="nextPage" v-else-if="pageCount!=1">下一页</a>
-                    
+                    <span v-if="currentPage==pageCount&&pageCount>1">下一页</span>
+                    <a href="javascript:;" class="nextPage" @click="nextPage" v-else-if="pageCount>1">下一页</a>
+                    </div>
                 </div>
-            </div>
         </div>
        
     </body>

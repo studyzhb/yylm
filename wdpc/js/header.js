@@ -302,7 +302,7 @@ new Vue({
 			}else{
 				url=searchShop+this.searchTag;
 			}
-			console.log(this.mainCon)
+
 			open(url+'&con='+escape(this.mainCon),'_self');
 			this.isShowAllSortIndex=-1;
 		},
@@ -314,8 +314,11 @@ new Vue({
 			var subid;
 			if(subItem!==undefined){
 				subid=subItem.id;
+				top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name)+'&subid='+subid;
+			}else{
+				top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);
 			}
-			top.location.href=goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name)+'&subid='+subid;
+			
 			
 			
 			return goToWhere+value.id+'&cityid='+this.cityObj.id+'&name='+escape(value.name);
