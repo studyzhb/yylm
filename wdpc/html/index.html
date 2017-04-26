@@ -66,7 +66,7 @@
                 <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
                 <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code&&isShowError" style="color: #f00;">验证码不能为空</span></li>
               <li class="phone-check" style="padding-left: 124px;text-align: left">
-                <input type="text" v-model="resetUser.phonecode" :class="{'validate-color':!validatorResetUser.phonecode}" @blur="validatorResetUser.phonecode=/^\S+/.test(resetUser.phonecode)" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
+                <input type="text" v-model="resetUser.phonecode" :class="{'validate-color':!validatorResetUser.phonecode}" @blur="validatorResetUser.phonecode=/^\S+/.test(resetUser.phonecode)" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode" v-text="resetMessageCode">获取短信验证码</button></li>
               <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.password}" @blur="validatorResetUser.password=/^\S+/.test(resetUser.password)" v-model="resetUser.password" placeholder="新密码">
                 <span v-show="!validatorResetUser.password&&isShowError" style="color: #f00;">不能为空</span>
               </li>
@@ -98,7 +98,7 @@
                 <span class="notsee" @click="updatePicCode">看不清楚，换一张</span>
                 <span v-show="!validatorRegisterUser.code&&isShowError" style="color: #f00;">验证码不能为空</span>
               </li>
-              <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="registerUser.phonecode" :class="{'validate-color':!validatorRegisterUser.phonecode}" @blur="validatorRegisterUser.phonecode=/^\S+/.test(registerUser.phonecode)" placeholder="短信验证码"><button class='checkbtn' @click="getMesscode">获取短信验证码</button></li>
+              <li class="phone-check" style="padding-left: 124px;text-align: left"><input type="text" v-model="registerUser.phonecode" :class="{'validate-color':!validatorRegisterUser.phonecode}" @blur="validatorRegisterUser.phonecode=/^\S+/.test(registerUser.phonecode)" placeholder="短信验证码"><button class='checkbtn' @click="getMesscode" v-text="registerMessageCode">获取短信验证码</button></li>
               <li style="padding-left: 124px;text-align: left"><input type="password" v-model="registerUser.password" :class="{'validate-color':!validatorRegisterUser.password}" @blur="validatorRegisterUser.password=/^\S+/.test(registerUser.password)" placeholder="新密码">
                 <span v-show="!validatorRegisterUser.password&&isShowError" style="color: #f00;">密码不能为空</span>
               </li>
@@ -217,12 +217,12 @@
           </div>
         </div>
       </div>
-      <div class="activity-bg">
+      <div class="activity-bg" style="display: none;">
         <div class="activity">
           <h2 class="activity-wrapper"><span class="activity-title">今日限时购</span><span style="margin-right:22px;">还剩</span><span class="time-bg">0</span><span class="time-bg">0</span><em class="time-inter">:</em><span class="time-bg">0</span><span class="time-bg">0</span><em class="time-inter">:</em><span class="time-bg">0</span><span class="time-bg">0</span></h2>
         </div>
       </div>
-      <div class="activity-con-bg">
+      <div class="activity-con-bg" style="display: none;">
         <div class="activity-con">
           <div class="activity-con-wrapper">
             <div class="activity-con-box">
@@ -367,6 +367,51 @@
 
  
     </div>
+
+    <footer>
+      <div class="foot-serve">
+        <div  class="foot-serve-top clearfix">
+          <div class="barcode">
+            <span class="client"></span>
+            <span class="official"></span>
+            <img src="../img/header/foot.png">
+          </div>
+          <ul class="serve">
+            <li class="white">购物指南</li>
+            <li><a href="javascript:;">购物流程</a></li>
+            <li><a href="javascript:;">订购方式</a></li>
+            <li><a href="javascript:;">常见问题</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">配送方式</li>
+            <li><a href="javascript:;">快速配送</a></li>
+            <li><a href="javascript:;">配送时间</a></li>
+            <li><a href="javascript:;">验货查收</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">支付方式</li>
+            <li><a href="javascript:;">支付方式</a></li>
+            <li><a href="javascript:;">代金券</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">售后服务</li>
+            <li><a href="javascript:;">退换货政策</a></li>
+            <li><a href="javascript:;">退款说明</a></li>
+            <li><a href="javascript:;">联系客服</a></li>
+          </ul>
+        </div>
+        <div class="foot-serve-bottom">
+          <img src="../img/header/360.png">
+          <img src="../img/header/website.png">
+        </div>
+      </div>
+
+      <div class="foot-about-bg">
+        <div class="foot-about">  <a>©2017 e+.RIGHT         </a><a>ICP备案号：豫ICP备15016705号-4         </a><a>         </a>
+        </div>
+      </div>
+    </footer>
+
   </body>
   <script src="../js/common.js"></script>
   <script src="../js/config.js"></script>

@@ -230,7 +230,7 @@ new Vue({
 		},
 		//筛选标签
 		getLabelInfo:function(str,lField){
-			var arr=str.split(',');
+			var arr=str?str.split(','):[];
 			var nArr=[];
 			var self=this;
 			//{id, type,field}

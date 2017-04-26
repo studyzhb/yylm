@@ -182,13 +182,14 @@
                                     </ul>
                                 </div>
                                 <div class="de-center shopcenter">
-                                    <ul class="shopdetail">
+                                    <ul class="shopdetail"> 
                                         <li><span style="font-size: 18px;" v-text="shopDetailArr.name">杨靖宇黄焖鸡米饭套餐</span><span class="phoneSee" style="display: none;"><i class="iconfont icon-icon"></i>手机浏览</span></li>
                                         <li><i class="iconfont icon-xingxing"></i><i class="iconfont icon-xingxing"></i></li>
+                                        <li>人均价格：<span class="count color-red">￥{{shopDetailArr.average_price}}</span></li>
                                         <li>店铺介绍：<span class="count color-red">{{shopDetailArr.shop_info}}</span></li>
                                         <!--<li ><span class="color-red">有效期</span></li>
                                         <li>截止到{{new Date(shopDetailArr.validity_time*1000).toLocaleString()}}<span class="Nodate">不可用日期</span>{{shopDetailArr.use_time_info}}</li>-->
-                                        <li><i class="iconfont icon-wifi"></i><i class="iconfont icon-fangbiantingche"></i></li>
+                                        <li><i class="iconfont" v-for="labelicon in getLabelInfo(shopDetailArr.shop_label,'labelC')" v-text="labelicon.name"></i></li>
                                         <li class="con">
                                             <span>服务承诺：<i class="iconfont icon-xingxing"></i>随时退</span>
                                             <span><i class="iconfont icon-xingxing"></i>过期退</span><span><i class="iconfont icon-xingxing"></i>真实评价</span>
@@ -208,7 +209,7 @@
                                                     <dd>价格：{{shopDetailArr.price}}<dd>
                                                 </dl>
                                             </dd>
-                                            <dd><a href="#wheredetail" name="wheredetail" @click="selectedIndex=1"><span>店铺详情</span></a></dd>
+                                            <dd><a href="#wheredetail" name="wheredetail" style="color:#666;" @click="selectedIndex=1"><span>店铺详情</span></a></dd>
                                             <dd>
                                                 <div id="mapContainerSub" style="width:228px;height:159px;display: inline-block;">
                                                     
@@ -397,7 +398,49 @@
                 </div>
             </div>
 
+            <footer>
+      <div class="foot-serve">
+        <div  class="foot-serve-top clearfix">
+          <div class="barcode">
+            <span class="client"></span>
+            <span class="official"></span>
+            <img src="../img/header/foot.png">
+          </div>
+          <ul class="serve">
+            <li class="white">购物指南</li>
+            <li><a href="javascript:;">购物流程</a></li>
+            <li><a href="javascript:;">订购方式</a></li>
+            <li><a href="javascript:;">常见问题</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">配送方式</li>
+            <li><a href="javascript:;">快速配送</a></li>
+            <li><a href="javascript:;">配送时间</a></li>
+            <li><a href="javascript:;">验货查收</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">支付方式</li>
+            <li><a href="javascript:;">支付方式</a></li>
+            <li><a href="javascript:;">代金券</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">售后服务</li>
+            <li><a href="javascript:;">退换货政策</a></li>
+            <li><a href="javascript:;">退款说明</a></li>
+            <li><a href="javascript:;">联系客服</a></li>
+          </ul>
+        </div>
+        <div class="foot-serve-bottom">
+          <img src="../img/header/360.png">
+          <img src="../img/header/website.png">
+        </div>
+      </div>
 
+      <div class="foot-about-bg">
+        <div class="foot-about">  <a>©2017 e+.RIGHT         </a><a>ICP备案号：豫ICP备15016705号-4         </a><a>         </a>
+        </div>
+      </div>
+    </footer>
                 
                 
 

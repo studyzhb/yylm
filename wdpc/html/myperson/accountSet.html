@@ -16,7 +16,7 @@
                     <p class="personNav"><span :class="{bg_color:selectedIndex==0}" @click="selectedIndex=0">基本信息</span>
                     <!--<span :class="{bg_color:selectedIndex==1}" @click="selectedIndex=1">个人资料</span>-->
                     </p>
-                    <div class="personMess" v-show="selectedIndex==0"> 
+                    <div class="personMess"  v-show="selectedIndex==0"> 
                          <ul>
                             <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span>
                             <!--<span class="color" @click="changeIndex=1">更换</span>-->
@@ -45,7 +45,7 @@
             </div>
 
             <!--修改绑定手机号-->
-        <div class="dialog" v-show="changeIndex==1" >
+        <div class="dialog" style="display: none;" v-show="changeIndex==1" >
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
@@ -65,7 +65,7 @@
       </div>
 
        <!--修改密码-->
-        <div class="dialog" v-show="changeIndex==2" >
+        <div class="dialog" style="display: none;" v-show="changeIndex==2" >
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
@@ -84,7 +84,7 @@
       </div>
 
       <!--设置昵称-->
-        <div class="dialog" v-show="changeIndex==3" >
+        <div class="dialog" style="display: none;" v-show="changeIndex==3" >
         <div class="dialog-info"></div>
         <div class="dia-content">
           <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>

@@ -1,3 +1,12 @@
+Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateHTTP = true;
+// Vue.http.options.xhr = { withCredentials: true }
+Vue.http.interceptors.push((request, next) => {
+	request.credentials = true;
+	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
+	next()
+})
+
 new Vue({
     el:'#app',
     data:{
@@ -97,10 +106,10 @@ new Vue({
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updatePassInfo,body)
 					.then(function(res){
 						if(res.body.code==200){
-                            layer.msg(res.body.msg);
+                            layer.msg(res.body.message);
                             this.changeIndex=-1;
                         }else{
-                             layer.msg(res.body.msg);
+                             layer.msg(res.body.message);
                         }
 					})
 		},
@@ -110,11 +119,11 @@ new Vue({
 					.then(function(res){
 						
                         if(res.body.code==200){
-                            layer.msg(res.body.msg);
+                            layer.msg(res.body.message);
                             this.changeIndex=-1;
                              
                         }else{
-                            layer.msg(res.body.msg);
+                            layer.msg(res.body.message);
                         }
 					})
         }

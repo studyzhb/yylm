@@ -26,6 +26,8 @@ new Vue({
 			id:'',
 			name:''
 		},
+		//倒计时初始值
+		timeNum:60,
 		//点击切换选中与否
 		isSelecterAgree:true,
 		//是否隐藏第三方
@@ -96,7 +98,10 @@ new Vue({
 		searchTag:true,
 		searchKeys:'',
 		mainCon:'',
-		username:''
+		username:'',
+		registerMessageCode:'获取短信验证码',
+		resetMessageCode:'获取短信验证码',
+		isClick:true
 	},
 	vuerify: {
 		username: {
@@ -256,6 +261,7 @@ new Vue({
 			
 			var phone=this.registerUser.phone;
 			var code=this.registerUser.code;
+			var self=this;
 			if(!phone){
 				layer.msg('手机号不能为空');
 				return;
@@ -264,16 +270,25 @@ new Vue({
 				layer.msg('验证码不能为空');
 				return;
 			}
-
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code})
+			// layer.load();
+			if(this.isClick){
+				this.isClick=false;
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code})
 					.then(function(res){
 						layer.msg(res.body.msg);
+						
+						self.timeOutNum('registerMessageCode');
 					})
+			}else{
+				layer.msg('请稍后再试');
+			}
+			
 		},
 		//忘记密码,重置
 		getResetMesscode:function(){
 			var phone=this.resetUser.phone;
 			var code=this.resetUser.code;
+			var self=this;
 			if(!phone){
 				layer.msg('手机号不能为空');
 				return;
@@ -282,10 +297,31 @@ new Vue({
 				layer.msg('验证码不能为空');
 				return;
 			}
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code})
+			// layer.load();
+			if(this.isClick){
+				this.isClick=false;
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code})
 				.then(function(res){
 					layer.msg(res.body.msg);
+					self.timeOutNum('resetMessageCode');
 				})
+			}else{
+				layer.msg('请稍后再试');
+			}
+			
+		},
+		timeOutNum:function(code){
+			this[code]=--this.timeNum+'秒后重新发送';
+			var self=this;
+			
+			if(this.timeNum<1){
+				this.isClick=true;
+				this[code]='获取短信验证码';
+				return;
+			}
+			setTimeout(function(){
+				self.timeOutNum(code);
+			},1000);
 		},
 		exit:function(){
 			var self=this;
@@ -296,6 +332,7 @@ new Vue({
 						layer.msg(res.body.message);
 						self.isLogin=false;
 						cookieUtil.removeCookie('wdusername');
+						open('index.html','_self');
 					}else{
 						layer.msg(res.body.message);
 					}
@@ -372,9 +409,8 @@ new Vue({
 			this.isShowAllSortIndex=location.href.indexOf('index.html')>-1||location.href.indexOf('.html')==-1?0:1;
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
 			this.searchTag=paraObj.tag=='false'?false:true;
-
-
-
+			this.navid=paraObj.navid||'';
+			console.log(this.navid);
 			//获取关键字
 			this.mainCon=paraObj.con?unescape(paraObj.con):'';
 			this.getCityName();

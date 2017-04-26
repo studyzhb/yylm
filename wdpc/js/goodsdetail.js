@@ -12,7 +12,8 @@ new Vue({
 		hotGoodsArr:[],
 		shopDetailArr:'',
 		commentArr:[],
-		goodsScoreObj:{}
+		goodsScoreObj:{},
+		labelArr:[]
 	},
 	filters:{
 		json2single:function(value){
@@ -36,10 +37,11 @@ new Vue({
 			
 			this.goodsId=paraObj.id;
 			this.navName=unescape(paraObj.name);
-			
+			this.showLabelAllInfo();
             this.getGoodsInfo();
-			this.getCommentInfo();
-			this.getCommentTotalScore();
+			// this.getCommentInfo();
+			// this.getCommentTotalScore();
+			
 		},
 		getGoodsInfo:function(){
             var self=this;
@@ -76,6 +78,7 @@ new Vue({
 						// console.log(res);
 						if(res.body.code==200){
 							self.goodsScoreObj=res.body.data;
+							self.getGoodsInfo();
 						}else{
 							
 						}
@@ -100,7 +103,7 @@ new Vue({
             this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.hotSale+'?id='+this.shopId)
                     .then(function(res){
                         if(res.body.code==200){
-							console.log(res);
+							
                         	self.hotGoodsArr=res.body.data;
  
 						}
@@ -118,7 +121,46 @@ new Vue({
 		},
 		showNowImage:function(src){
 			this.goodsPic=src;
-		}
+		},
+		showLabelAllInfo:function(){
+			var self=this;
+				//获得标签方法
+		   this.$http.get(ajaxAddress.preFix+ajaxAddress.label.labelAll)
+			   .then(function(res){
+				   if(res.body.code==200){
+					self.labelArr = res.body.data;
+					
+				   }
+				   
+				   
+			});		
+		},
+		//筛选标签
+		getLabelInfo:function(str,lField){
+			var arr=str?str.split(','):[];
+			var nArr=[];
+			var self=this;
+			
+			//{id, type,field}
+			if(this.labelArr instanceof Array){
+
+				this.labelArr.forEach(function(item){
+					
+					arr.forEach(function(its){
+						if(its==item.id){
+							
+							if(LabelField[lField]==item.field){
+								nArr.push(item);
+							}
+						}
+					})
+				})
+			}
+			
+		
+			return nArr;
+		},
+
 
 	}
 })

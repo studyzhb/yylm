@@ -236,9 +236,9 @@
                                     <li :class="{'color-red':selectedSortIndex==2}" @click="selectedSortIndex=2">价格 <i class="iconfont icon-zhankai "></i></li>
                                     <li :class="{'color-red':selectedSortIndex==3}" @click="selectedSortIndex=3">好评</li>
                                 </ul>
-                                <div class="hotPro" style="margin: 20px 0px 0px 20px;background: #fff; ">
-                                    <div class="left-list-wrapper clearfix" style="width:838px;overflow:hidden;float:left;">
-                                        <ul style="width: 840px;overflow:hidden;margin-top:10px;">
+                                <div class="hotPro" style="margin: 20px 0px 0px 0;background: #fff;padding-left:50px;">
+                                    <div class="left-list-wrapper clearfix" style="width:1230px;overflow:hidden;float:left;">
+                                        <ul style="width: 1235px;overflow:hidden;margin-top:10px;">
                                             <li v-for="goodsItem in goodslistArr" :data-id="goodsItem.id" style="width: 255px;height: 242px;">
                                                 <p @click="goToGoodsDetail(goodsItem.id)"><img style="width:255px;height:174px;" :src="goodsItem.goods_logo | json2single"></p>
                                                 <p style="width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><span @click="goToGoodsDetail(goodsItem.id)" class="color-9" v-text="goodsItem.goodsname" style="display:inline-block;width:50%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></span><span class="right"><i class="iconfont icon-xingxing color-red"></i></span></p>
@@ -274,7 +274,7 @@
                      
                  </div>
             </div>
-            <div class="page">
+            <!--<div class="page">
                     <div class="tcdPageCode" id="pagecode">
                     <span v-if="currentPage==1&&pageCount>1">上一页</span>
                     <a href="javascript:;" @click="prePage" v-else-if="pageCount>1">上一页</a>
@@ -285,9 +285,53 @@
                     <span v-if="currentPage==pageCount&&pageCount>1">下一页</span>
                     <a href="javascript:;" class="nextPage" @click="nextPage" v-else-if="pageCount>1">下一页</a>
                     </div>
-                </div>
+                </div>-->
         </div>
        
+        <footer>
+      <div class="foot-serve">
+        <div  class="foot-serve-top clearfix">
+          <div class="barcode">
+            <span class="client"></span>
+            <span class="official"></span>
+            <img src="../img/header/foot.png">
+          </div>
+          <ul class="serve">
+            <li class="white">购物指南</li>
+            <li><a href="javascript:;">购物流程</a></li>
+            <li><a href="javascript:;">订购方式</a></li>
+            <li><a href="javascript:;">常见问题</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">配送方式</li>
+            <li><a href="javascript:;">快速配送</a></li>
+            <li><a href="javascript:;">配送时间</a></li>
+            <li><a href="javascript:;">验货查收</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">支付方式</li>
+            <li><a href="javascript:;">支付方式</a></li>
+            <li><a href="javascript:;">代金券</a></li>
+          </ul>
+          <ul class="serve">
+            <li class="white">售后服务</li>
+            <li><a href="javascript:;">退换货政策</a></li>
+            <li><a href="javascript:;">退款说明</a></li>
+            <li><a href="javascript:;">联系客服</a></li>
+          </ul>
+        </div>
+        <div class="foot-serve-bottom">
+          <img src="../img/header/360.png">
+          <img src="../img/header/website.png">
+        </div>
+      </div>
+
+      <div class="foot-about-bg">
+        <div class="foot-about">  <a>©2017 e+.RIGHT         </a><a>ICP备案号：豫ICP备15016705号-4         </a><a>         </a>
+        </div>
+      </div>
+    </footer>
+
     </body>
     <script src="../js/common.js"></script>
     <script src="../js/config.js"></script>

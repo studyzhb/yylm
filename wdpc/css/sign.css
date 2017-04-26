@@ -42,7 +42,7 @@
       height: 40px;
       border: 1px solid #dad8d8;
       text-indent: 20px;
-      color: #dad8d8; }
+      color: #333; }
     .dia-content ul li .reset, .dia-content ul li .submit {
       display: inline-block;
       width: 270px;

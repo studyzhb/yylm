@@ -10,7 +10,8 @@ new Vue({
 		selectedIndex:'0',
 		hotGoodsArr:[],
 		shopDetailArr:'',
-		goodsPic:''
+		goodsPic:'',
+		labelArr:[]
 	},
 	filters:{
 		json2single:function(value){
@@ -33,9 +34,10 @@ new Vue({
 			var self=this;
 			this.shopId=paraObj.id;
 			this.navName=unescape(paraObj.name);
-			
+			this.showLabelAllInfo();
             this.getShopInfo();
 			this.getHotInfo();
+			
 		},
 		json2arr:function(value){
 			
@@ -72,7 +74,45 @@ new Vue({
 		},
 		showNowImage:function(src){
 			this.goodsPic=src;
-		}
+		},
+		showLabelAllInfo:function(){
+			var self=this;
+				//获得标签方法
+		   this.$http.get(ajaxAddress.preFix+ajaxAddress.label.labelAll)
+			   .then(function(res){
+				   if(res.body.cod==200){
+					self.labelArr = res.body.data;
+				   }else{
+					   self.labelArr = [];
+				   }
+				   
+				   
+			});		
+		},
+		//筛选标签
+		getLabelInfo:function(str,lField){
+			var arr=str?str.split(','):[];
+			var nArr=[];
+			var self=this;
+			
+			//{id, type,field}
+			if(this.labelArr instanceof Array){
+
+				this.labelArr.forEach(function(item){
+					
+					arr.forEach(function(its){
+						if(its==item.id){
+							
+							if(LabelField[lField]==item.field){
+								nArr.push(item);
+							}
+						}
+					})
+				})
+			}
+		
+			return nArr;
+		},
 
 	}
 })

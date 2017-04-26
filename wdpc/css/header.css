@@ -194,6 +194,9 @@ header {
 .wd-nav-area-bg {
   background-color: #f8f8f8;
   height: 42px; }
+  .wd-nav-area-bg ul.wd-nav-area .navcolor{
+    color:#c70d1b;
+  }
   .wd-nav-area-bg ul.wd-nav-area {
     width: 1280px;
     height: 42px;

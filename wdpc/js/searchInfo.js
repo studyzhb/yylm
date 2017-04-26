@@ -147,11 +147,13 @@ new Vue({
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.search.searchGoods,{params:body})
 						.then(function(res){
 							if(res.body.code==200){
+								
 								self.goodslistArr=res.body.data;
 								self.pageCount=Math.ceil(res.body.pageAllNum/res.body.limit);
 								self.pageSize=res.body.limit;
 							}else{
 								self.goodslistArr=[];
+								self.pageCount=1;
 							} 
 						})
 		},
@@ -228,13 +230,13 @@ new Vue({
 			 */ 
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.benefit+'?cityid='+this.parames.cityid+'&navid='+this.parames.navid)
 						.then(function(res){
-							console.log(res);
+							
 							self.benefitlistArr=res.body.data;
 						})
 		},
 		searchResultInfo:function(obj,tag){
 			this.extendParams(obj,tag);
-			this.getGoodsInfo();
+			this.getShopInfo();
 		},
 		extendParams:function(obj,tag){
 
