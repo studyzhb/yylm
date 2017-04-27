@@ -39,6 +39,16 @@ new Vue({
 			this.getHotInfo();
 			
 		},
+		showIntro:function(str,tagStr){
+			var $div=$('<div style="position:absolute;width:60px;color:#888;text-align:center;border-radius:3px;line-height:20px;border:1px solid #999;bottom:-20px;background:#fff;right:-60px;">').appendTo($(this.$refs[tagStr])).html(str);
+			setTimeout(function(){
+				
+				$div.remove();
+			},500);
+			// layer.tips(str,this.$refs[tagStr],{
+			// 	tips: [2, '#c00']
+			// });
+		},
 		json2arr:function(value){
 			
 			var arr=typeof eval(value)=='object'?JSON.parse(value):[];

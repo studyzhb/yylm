@@ -316,9 +316,15 @@
             overflow: hidden; }
         .allicences-con-click-more .discount-con dl dd {
           padding-left: 22px;
+          width: 144px;
+          overflow: hidden;
           float: left; }
           .allicences-con-click-more .discount-con dl dd h4 {
             height: 64px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
             font-size: 14px;
             line-height: 64px;
             color: #3c3c3c; }

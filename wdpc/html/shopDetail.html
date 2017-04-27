@@ -191,15 +191,15 @@
                                 <div class="de-center shopcenter">
                                     <ul class="shopdetail"> 
                                         <li><span style="font-size: 18px;" v-text="shopDetailArr.name">杨靖宇黄焖鸡米饭套餐</span><span class="phoneSee" style="display: none;"><i class="iconfont icon-icon"></i>手机浏览</span></li>
-                                        <li><i class="iconfont icon-xingxing"></i><i class="iconfont icon-xingxing"></i></li>
+                                        <li><a ref="hz" style="position:relative;color:#fff;margin-right: 20px;" @mouseover="showIntro('合作商家','hz')"><img style="color:#fff;"  src="../img/shopdetail/01.png"/></a><a ref="sd" style="position:relative;" @mouseover="showIntro('闪电付','sd')" ><img src="../img/shopdetail/02.png"/></a></li>
                                         <li>人均价格：<span class="count color-red">￥{{shopDetailArr.average_price}}</span></li>
-                                        <li>店铺介绍：<span class="count color-red" style="color:#999;font-weight: normal;">{{shopDetailArr.shop_info}}</span></li>
+                                        <li><span style="display: inline-block;width: 80px;line-height: 20px;vertical-align: top;"> 店铺介绍：</span><span class="count color-red" style="display:inline-block;width:240px;;color:#999;font-weight: normal;line-height: 20px;">{{shopDetailArr.shop_info}}</span></li>
                                         <!--<li ><span class="color-red">有效期</span></li>
                                         <li>截止到{{new Date(shopDetailArr.validity_time*1000).toLocaleString()}}<span class="Nodate">不可用日期</span>{{shopDetailArr.use_time_info}}</li>-->
                                         <li><i class="iconfont" v-for="labelicon in getLabelInfo(shopDetailArr.shop_label,'labelC')" v-text="labelicon.name"></i></li>
                                         <li class="con">
-                                            <span>服务承诺：<i class="iconfont icon-xingxing"></i>随时退</span>
-                                            <span><i class="iconfont icon-xingxing"></i>过期退</span><span><i class="iconfont icon-xingxing"></i>真实评价</span>
+                                            <span>服务承诺：<img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/001.png"/>随时退</span>
+                                            <span><img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/002.png"/>过期退</span><span><img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/003.png"/>真实评价</span>
                                         </li>
                                         <!--<li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>-->
                                     </ul>
@@ -216,7 +216,7 @@
                                                     <dd>价格：{{shopDetailArr.price}}<dd>
                                                 </dl>
                                             </dd>
-                                            <dd><a href="#wheredetail" name="wheredetail" style="color:#666;" @click="selectedIndex=1"><span>店铺详情</span></a></dd>
+                                            <dd style="width:226px;border-top:1px solid #ccc;margin:24px auto 0;"><a href="#wheredetail" name="wheredetail" style="color:#666;" @click="selectedIndex=1"><span>店铺详情</span></a></dd>
                                             <dd>
                                                 <div id="mapContainerSub" style="width:228px;height:159px;display: inline-block;">
                                                     
