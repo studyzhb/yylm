@@ -232,7 +232,8 @@ new Vue({
 		},
 		//用户注册
 		registerUserInfo:function(){
-			var self=-this;
+			var self=this;
+			
 			var tag=true;
 			this.isShowError=true;
 			var body=this.registerUser;
@@ -253,8 +254,9 @@ new Vue({
 			if(tag){
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,body)
 					.then(function(res){
-						layer.msg(res.body.msg);
+						
 						if(res.body.code==200){
+							layer.msg('恭喜你注册成功，请登录。');
 							self.isShowError=false;
 							self.loginIndex='0';
 							for(var key in this.registerUser){
@@ -266,6 +268,18 @@ new Vue({
 					})
 			}
 			
+		},
+		closeAllAlertCon:function(){
+			this.loginIndex='-1';
+			for(var key in this.registerUser){
+				this.registerUser[key]='';
+			}
+			for(var key in this.resetUser){
+				this.resetUser[key]='';
+			}
+			for(var key in this.loginUser){
+				this.loginUser[key]='';
+			}
 		},
 		//获取短信验证码
 		getMesscode:function(){
@@ -286,9 +300,14 @@ new Vue({
 				this.isClick=false;
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code})
 					.then(function(res){
-						layer.msg(res.body.msg);
 						
-						self.timeOutNum('registerMessageCode');
+						if(res.body.code==200){
+							layer.msg('短信验证码发送成功，请注意查收');
+							self.timeOutNum('registerMessageCode');
+						}else{
+							layer.msg(res.body.msg);
+						}
+						
 					})
 			}else{
 				layer.msg('请稍后再试');
@@ -313,8 +332,14 @@ new Vue({
 				this.isClick=false;
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code})
 				.then(function(res){
-					layer.msg(res.body.msg);
-					self.timeOutNum('resetMessageCode');
+					if(res.body.code==200){
+						layer.msg('短信验证码发送成功，请注意查收');
+						self.timeOutNum('resetMessageCode');
+					}else{
+						layer.msg(res.body.message);
+					}
+					
+					
 				})
 			}else{
 				layer.msg('请稍后再试');
@@ -450,7 +475,8 @@ new Vue({
 			layer.open({
 				title:'万店联盟注册协议',
 				type: 2,
-    			content:'http://enclosure.wandlm.net/Other/Serviceagreement.html'  //注意，如果str是object，那么需要字符拼接。
+    			content:'http://enclosure.wandlm.net/Other/Serviceagreement.html',  //注意，如果str是object，那么需要字符拼接。
+				area:['520px','400px']	
 			})
 		},
 		setNameShop:function(value){
@@ -519,8 +545,6 @@ new Vue({
 			this.labelArr.forEach(function(item){
 				arr.forEach(function(its){
 					if(its==item.id){
-						console.log(LabelField[lField]);
-						console.log(item.field);
 						if(LabelField[lField]==item.field){
 							nArr.push(item);
 						}

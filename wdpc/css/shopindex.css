@@ -101,6 +101,7 @@
   margin-bottom: 20px; }
   .shopAddress li {
     font-size: 12px;
+    line-height: 20px;
     margin-top: 10px; }
     .shopAddress li a {
       cursor: pointer; }
