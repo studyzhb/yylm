@@ -183,9 +183,12 @@ new Vue({
 							self.isShowError=false;
 							self.loginUserName=res.body.data||'***';
 							cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
-							layer.msg(res.body.msg);
+							for(var key in this.loginUser){
+								self.loginUser[key]='';
+							}
+							layer.msg(res.body.message);
 						}else{
-							layer.msg(res.body.msg);
+							layer.msg(res.body.message);
 						}
 			
 					})
@@ -216,9 +219,12 @@ new Vue({
 					if(res.body.code==200){
 						self.isShowError=false;
 						self.loginIndex='-1';
-						layer.msg(res.body.msg);
+						layer.msg(res.body.message);
+						for(var key in this.resetUser){
+								self.resetUser[key]='';
+							}
 					}else{
-						layer.msg(res.body.msg);
+						layer.msg(res.body.message);
 					}
 				})
 			}
@@ -251,6 +257,11 @@ new Vue({
 						if(res.body.code==200){
 							self.isShowError=false;
 							self.loginIndex='0';
+							for(var key in this.registerUser){
+								self.registerUser[key]='';
+							}
+						}else{
+							layer.msg(res.body.message);
 						}
 					})
 			}
@@ -410,7 +421,7 @@ new Vue({
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
 			this.searchTag=paraObj.tag=='false'?false:true;
 			this.navid=paraObj.navid||'';
-			console.log(this.navid);
+			
 			//获取关键字
 			this.mainCon=paraObj.con?unescape(paraObj.con):'';
 			this.getCityName();
@@ -434,6 +445,13 @@ new Vue({
 				});
 			
 			
+		},
+		agreeHtml:function(){
+			layer.open({
+				title:'万店联盟注册协议',
+				type: 2,
+    			content:'http://enclosure.wandlm.net/Other/Serviceagreement.html'  //注意，如果str是object，那么需要字符拼接。
+			})
 		},
 		setNameShop:function(value){
 

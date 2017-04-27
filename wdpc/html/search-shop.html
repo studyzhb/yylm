@@ -96,7 +96,7 @@
         <div class="dia-content">
           <div class=" diaTop" @click="loginIndex='-1'"><img src="../img/delete.png"></div>
           <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../img/logo.png"></div>
-          <div class="dia-main">
+          <div class="dia-main"> 
             <ul class="sign">
               <li style="padding-left: 124px;text-align: left">
                 <input type="text" :class="{'validate-color':!validatorRegisterUser.phone}" @blur="validatorRegisterUser.phone=/^\S+/.test(registerUser.phone)" placeholder="注册手机号" v-model="registerUser.phone">
@@ -116,7 +116,7 @@
                 <span v-show="!registerUser.conPassword&&isShowError" style="color: #f00;">不能为空</span>
                 <span v-show="registerUser.conPassword!=registerUser.password&&isShowError" style="color: #f00;">两次密码不一致</span>
               </li>
-              <p class="checkagree"><span class="agree" style="cursor: pointer;" @click="isSelecterAgree=!isSelecterAgree" v-text="isSelecterAgree?'√':''">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>
+              <p class="checkagree"><span class="agree" style="cursor: pointer;" @click="isSelecterAgree=!isSelecterAgree" v-text="isSelecterAgree?'√':''">√</span><span class="file">阅读并同意<span class="sign-file" style="cursor: pointer;" @click="agreeHtml">《e+便利用户注册协议》</span></span></p>
               <li><span class="reset" @click="registerUserInfo">注册</span></li>
             </ul>
           </div>
@@ -159,7 +159,7 @@
       <div class="wd-nav-area-bg">
         <ul class="wd-nav-area">
           <li class="all-category Notclear"> <a class="allcat">全部分类</a>
-            <dl class="menuList" v-show="isShowAllSortIndex==0">
+            <dl class="menuList" style="display: none;" v-show="isShowAllSortIndex==0">
               <dd v-for="item in navData"><a class="mainTitle" v-on:click="parseUrl(item)" v-text="item.name"></a>
                 <p> <a v-for="part in item.recommend" v-on:click="parseUrl(item,part)" v-text="part.name"></a></p>
               </dd>

@@ -36,7 +36,8 @@ new Vue({
         },
         changePass:{
             oldpassword:'',
-            newpassword:''
+            newpasswordOne:'',
+            newpasswordTwo:''
         }
     },
     filters:{
@@ -53,7 +54,7 @@ new Vue({
         this.$nextTick(function(){
             this.renderView();
                 //获取导航
-	this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
+	    this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
 
         })
 
@@ -73,7 +74,7 @@ new Vue({
                     .then(function(res){
                         
                         self.userDetailArr=res.body.data;
-                        console.log(self.userDetailArr);
+                        
                     })
         },
         //更新图片验证码
@@ -82,10 +83,10 @@ new Vue({
 		},
         //获取短信验证码
 		getMesscode:function(){
-			console.log('111');
+			
 			var phone=this.registerUser.phone;
 			var code=this.registerUser.code;
-            console.log(this.registerUser);
+            
 			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getUpdateMessCode,{},{params:{phone:phone,code:code}})
 					.then(function(res){
 						console.log(res);
@@ -107,7 +108,7 @@ new Vue({
 					.then(function(res){
 						if(res.body.code==200){
                             layer.msg(res.body.message);
-                            this.changeIndex=-1;
+                            self.changeIndex=-1;
                         }else{
                              layer.msg(res.body.message);
                         }
@@ -120,7 +121,7 @@ new Vue({
 						
                         if(res.body.code==200){
                             layer.msg(res.body.message);
-                            this.changeIndex=-1;
+                            self.changeIndex=-1;
                              
                         }else{
                             layer.msg(res.body.message);
