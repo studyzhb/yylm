@@ -175,13 +175,14 @@
                                 <div class="de-center">
                                     <ul class="de-picture" style="width: 462px;overflow: hidden;">
                                         <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="goodsPic"></li>
-                                        <li style="height: 70px;overflow:hidden;">
-                                            <a style="display:inline-block;padding-right:10px;">
-                                                <img style="width:110px;height: 69px;"  src="../img/j-img2.png" >
-                                            </a>
+                                        <li style="width:470px;height: 70px;overflow:hidden;">
+                                            <div style="width:488px;height: 70px;">
+                                                
                                             <a v-for="item in json2arr(shopDetailArr.intr_pic)" @click="showNowImage(item)" style="display:inline-block;padding-right:10px;">
                                                 <img style="width:110px;height: 69px;"  src="../img/j-img2.png" :src="item" >
                                             </a>
+                                            </div>
+                                            
                                             
             
                                         </li>

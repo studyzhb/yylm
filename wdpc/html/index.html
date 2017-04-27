@@ -312,7 +312,7 @@
                   </h3>
                   <p class="score-area"><em>{{shopItem.score?shopItem.score:5}}分</em><span class="m-l-25">{{shopItem.clicks}}条评论</span></p>
                   <p class="score-area" style="overflow:hidden;"><span class="scoreItem" v-for="labelItem in getLabelInfo(shopItem.shop_label,'labelB')" v-text="labelItem.name"></span></p>
-                  <p class="discount"> <span v-text="shopItem.discount"></span></p>
+                  <p class="discount"> <span v-text="discountNum(shopItem.discount)"></span></p>
                   <p class="icon-box"><i class="iconfont" v-for="labelicon in getLabelInfo(shopItem.shop_label,'labelC')" v-text="labelicon.name"></i></p>
                   <p class="description"><span>{{mainItem.nav_name}}商家</span><span v-text="shopItem.address" class="shopaddress"></span></p>
                 </dd>

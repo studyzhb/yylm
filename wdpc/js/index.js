@@ -37,6 +37,14 @@ new Vue({
 		})
 	},
 	methods:{
+		discountNum:function(value){
+			value=value+'';
+			var str=value;
+			if(value.length>1){
+				str=value.replace(value.charAt(0),value.charAt(0)+'.');
+			}
+			return '全场'+str+'折优惠';
+		},
 		renderView:function(){
 			
 			var self=this;
