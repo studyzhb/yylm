@@ -32,6 +32,9 @@ new Vue({
 
 	},
 	methods:{
+		parseScore:function(value){
+			return value+'.0分';
+		},
 		renderView:function(){
 			var self=this;
 			

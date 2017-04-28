@@ -349,18 +349,18 @@
                                                 <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
                                                 <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
                                                 <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
-                                                <span class="color-red">￥{{item.price_pay}}</span>
-                                                <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span class="color-red" style="width: 80px;">￥{{item.price_pay}}</span>
+                                                <span style="margin:0 26px;width: 100px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
                                                 <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
                                             
-                                            <li v-show="singleItem.residueCount" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
+                                            <li v-show="singleItem.residueCount" @click="showResidueList(singleItem)" style="cursor: pointer;text-align: center;" ><span v-text="singleItem.showAll?'点击收起':residueNum(singleItem.residueCount)"></span><i class="iconfont icon-zhankai color-red"></i></li>
                                             <li v-for="(item,index) in singleItem.goods" v-if="index>1"  v-show="singleItem.showAll" :data-id="item.id">
                                                 <span v-text="item.goodsname" style="width: 142px;padding:0 14px;line-height: 19px;height: 19px;margin-right:46px; ">标准间</span>
                                                 <span style="width:144px; " v-text="item.use_time_info || '暂无'">节假日通用</span>
                                                 <span style="width:104px;margin-right: 48px; " v-text="item.bespoke_info || '暂无'">提前24小时预约</span>
-                                                <span class="color-red">￥{{item.price_pay}}</span>
-                                                <span style="margin:0 26px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
+                                                <span class="color-red" style="width: 80px;">￥{{item.price_pay}}</span>
+                                                <span style="margin:0 26px;width: 100px;" class="shopPrice">门店价：￥{{item.price_sell}}</span>
                                                 <span><a href="javascript:;" style="color:#666;" @click="goToGoodsDetail(item.id)">查看详情</a></span>
                                             </li>
                                         </ul>

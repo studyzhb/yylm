@@ -174,7 +174,7 @@
                                 <!--士大力餐厅-->
                                 <div class="de-center">
                                     <ul class="de-picture" style="width: 462px;overflow: hidden;">
-                                        <li><img style="width: 463px;height: 266px;" src="../img/j-img1.png" :src="goodsPic"></li>
+                                        <li><img style="width: 463px;height: 266px;" :src="goodsPic"></li>
                                         <li style="width:470px;height: 70px;overflow:hidden;">
                                             <div style="width:488px;height: 70px;">
                                                 
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="de-center shopcenter">
                                     <ul class="shopdetail"> 
-                                        <li><span style="font-size: 18px;" v-text="shopDetailArr.name">杨靖宇黄焖鸡米饭套餐</span><span class="phoneSee" style="display: none;"><i class="iconfont icon-icon"></i>手机浏览</span></li>
+                                        <li><span style="font-size: 18px;" v-text="shopDetailArr.name"></span><span class="phoneSee" style="display: none;"><i class="iconfont icon-icon"></i>手机浏览</span></li>
                                         <li><a ref="hz" style="position:relative;color:#fff;margin-right: 20px;" @mouseover="showIntro('合作商家','hz')"><img style="color:#fff;"  src="../img/shopdetail/01.png"/></a><a ref="sd" style="position:relative;" @mouseover="showIntro('闪电付','sd')" ><img src="../img/shopdetail/02.png"/></a></li>
                                         <li>人均价格：<span class="count color-red">￥{{shopDetailArr.average_price}}</span></li>
                                         <li><span style="display: inline-block;width: 80px;line-height: 20px;vertical-align: top;"> 店铺介绍：</span><span class="count color-red" style="display:inline-block;width:240px;;color:#999;font-weight: normal;line-height: 20px;">{{shopDetailArr.shop_info}}</span></li>
@@ -210,10 +210,10 @@
                                             <dt class="shopname color-red" v-text="shopDetailArr.name">土大力休闲餐厅</dt>
                                             <dd>
                                                 <dl class="sub-dl">
-                                                    <dt>{{shopDetailArr.level}}<dt>
-                                                    <dd>品质：{{shopDetailArr.quality}}<dd>
-                                                    <dd>服务：{{shopDetailArr.service}}<dd>
-                                                    <dd>价格：{{shopDetailArr.price}}<dd>
+                                                    <dt v-text="parseScore(shopDetailArr.level)"></dt>
+                                                    <dd>品质：{{shopDetailArr.quality}}.0分<dd>
+                                                    <dd>服务：{{shopDetailArr.service}}.0分<dd>
+                                                    <dd>价格：{{shopDetailArr.price}}.0分<dd>
                                                 </dl>
                                             </dd>
                                             <dd style="width:226px;border-top:1px solid #ccc;margin:24px auto 0;"><a href="#wheredetail" name="wheredetail" style="color:#666;" @click="selectedIndex=1"><span>店铺详情</span></a></dd>

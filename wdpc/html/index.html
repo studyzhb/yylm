@@ -176,25 +176,29 @@
       <div class="alert-area">
         <div class="close"> </div>
         <div class="add-goods-box">
-          <div class="pro-success"><img src="../img/download.png"></div>
+          <div class="pro-success"><img src="../img/download.png" ></div>
           <p class="text-redirect">感谢您的信任,网站正在试运行中,如有需要,请扫描二维码下载手机APP,如有意见请发送邮件</p>
         </div>
       </div>
       <div id="LoutiNav">
         <ul>
           <li class="hover"> <img src="../img/alliance/food.png"><span>美食</span></li>
-          <li> <img src="../img/alliance/shopping.png"><span>购物</span></li>
           <li> <img src="../img/alliance/game.png"><span>休闲娱乐</span></li>
-          <li> <img src="../img/alliance/serve.png"><span>生活服务</span></li>
           <li> <img src="../img/alliance/travel.png"><span>旅游出行</span></li>
           <li> <img src="../img/alliance/atay.png"><span>住宿</span></li>
+           <li> <img src="../img/alliance/serve.png"><span>生活服务</span></li>
+          <!--<li> <img src="../img/alliance/shopping.png"><span>购物</span></li>-->
+          
+         
+          
+          
           <li class="last">Top</li>
         </ul>
       </div>
       <div class="banner-wrapper">
         <div class="banner-area">
           <ul class="notice-pic clearfix">
-            <li v-for="banItem in bannerData">
+            <li v-for="banItem in bannerData" style="cursor: pointer;" @click="advertisement(banItem)">
               <img  v-bind:src="banItem.slide_src" >
             </li>
             <!--<li><img src="../img/ban02.png"></li>
@@ -208,7 +212,7 @@
       <div class="advertisement-bg">
         <div class="advertisement">
           <div class="advertisement-wraper" >
-            <div class="advertisement-item" v-for="imgItem in banImgData"><img v-bind:src="imgItem.slide_src"></div>
+            <div class="advertisement-item" style="cursor: pointer;" v-for="imgItem in banImgData" @click='advertisement(imgItem)'><img v-bind:src="imgItem.slide_src"></div>
             <!--<div class="advertisement-item"><img src="../img/adver.png"></div>
             <div class="advertisement-item"><img src="../img/adver.png"></div>
             <div class="advertisement-item"><img src="../img/adver.png"></div>
@@ -294,7 +298,7 @@
 
 
 
-      <div v-for="mainItem in navIdArr">
+      <div class="Louti" v-for="mainItem in navIdArr">
         <div class="common-title-bg">
         <div class="common-title">
           <h3><i class="iconfont icon-cart"></i><span v-text="setNameShop(mainItem.nav_name)" v-bind:data-id="mainItem.id"></span></h3>
@@ -423,5 +427,45 @@
   <script src="../layer/layer.js"></script>
   <script src="../js/header.js"></script>
   <script src="../js/index.js" type="text/javascript"></script>
- 
+  <script>
+    $(function(){
+      $(document).scroll(function(){
+          for (var i=0;i<$(".Louti").length;i++) {
+              if($(this).scrollTop()<$(".Louti").eq(0).offset().top){
+                  $("#LoutiNav").hide();
+              }else if($(this).scrollTop()>=$(".Louti").eq(i).offset().top){
+                  $("#LoutiNav").show();
+                  var $o=$("#LoutiNav li").eq(i);
+                  var $img=$o.find('img');
+                  var $oImg=$o.siblings().find('img');
+                  $o.addClass("hover").siblings().removeClass('hover');
+                  // $img.attr('src',$img.attr('src').substr(0,$img.attr('src').length-4)+'_bai.png');
+                  // $oImg.attr('src',$oImg.attr('src').substr(0,$oImg.attr('src').length-8)+'.png');
+              }
+          }
+
+      });
+      
+      $("#LoutiNav li").click(function(){
+          $(this).addClass("hover").siblings().removeClass('hover');
+          if($(this).is("#LoutiNav  li:last")){
+              
+              $(document).scrollTop(0);
+              $("#LoutiNav").hide();
+          }else{
+              $(document).scrollTop($(".Louti").eq($(this).index()).offset().top);
+          }
+              
+      });
+
+      $(window).on('resize load',function(){
+        if($(document).width()<1580){
+          $("#LoutiNav").hide();
+        }else{
+          $("#LoutiNav").show().css('left',$('.Louti').eq(0).offset().left+60+'px');
+        }
+
+      })
+  })
+  </script>
 </html>

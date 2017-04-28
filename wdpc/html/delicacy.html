@@ -186,8 +186,8 @@
                                         <li>截止到{{new Date(goodsDetailArr.validity_time*1000).toLocaleString()}}<span class="Nodate" v-show="goodsDetailArr.use_time_info">不可用日期</span>{{goodsDetailArr.use_time_info}}</li>
                                         <li><i class="iconfont" v-for="labelicon in getLabelInfo(goodsDetailArr.goods_label,'labelC')" v-text="labelicon.name"></i></li>
                                         <li class="con">
-                                            <span>服务承诺：<i class="iconfont "></i>随时退</span>
-                                            <span><i class="iconfont icon-xingxing"></i>过期退</span><span><i class="iconfont icon-xingxing"></i>真实评价</span>
+                                            <span>服务承诺：<img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/001.png"/>随时退</span>
+                                            <span><img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/002.png"/>过期退</span><span><img style="vertical-align: middle;margin-right: 10px;" src="../img/shopdetail/003.png"/>真实评价</span>
                                         </li>
                                         <!--<li class="con"><span><i class="iconfont icon-icon1"></i>收藏</span><span><i class="icon-share6 iconfont"></i>分享</span></li>-->
                                         <li class="con">
@@ -204,10 +204,11 @@
                                             <dt class="shopname color-red" v-text="shopDetailArr.name">土大力休闲餐厅</dt>
                                             <dd>
                                                 <dl class="sub-dl">
-                                                    <dt>{{shopDetailArr.level}}<dt>
-                                                    <dd>品质：{{shopDetailArr.quality}}<dd>
-                                                    <dd>服务：{{shopDetailArr.service}}<dd>
-                                                    <dd>价格：{{shopDetailArr.price}}<dd>
+                                                    <dt v-text="parseScore(shopDetailArr.level)">
+                                                    </dt>
+                                                    <dd>品质：{{shopDetailArr.quality}}.0分<dd>
+                                                    <dd>服务：{{shopDetailArr.service}}.0分<dd>
+                                                    <dd>价格：{{shopDetailArr.price}}.0分<dd>
                                                 </dl>
                                             </dd>
                                             <dd style="width:226px;border-top:1px solid #888;margin:24px auto 0;"><span @click="gotoShopDetail(goodsDetailArr.shopid)">进入店铺</span><a href="#wheredetail" style="color:#666;" name="wheredetail" @click="selectedIndex=1"><span>商品详情</span></a></dd>

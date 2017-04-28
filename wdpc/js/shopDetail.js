@@ -19,7 +19,8 @@ new Vue({
 			var str=typeof eval(value)=='object'?JSON.parse(value)[0]:'';
 			
 			return str;
-		}
+		},
+		
 		
 	},
 	mounted:function() {
@@ -30,6 +31,9 @@ new Vue({
 
 	},
 	methods:{
+		parseScore:function(value){
+			return value+'.0分';
+		},
 		renderView:function(){
 			var self=this;
 			this.shopId=paraObj.id;

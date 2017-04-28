@@ -37,6 +37,10 @@ new Vue({
 		})
 	},
 	methods:{
+		//banner图跳转
+		advertisement:function(item){
+			open(item.slide_info,'_self');
+		},
 		discountNum:function(value){
 			value=value+'';
 			var str=value;

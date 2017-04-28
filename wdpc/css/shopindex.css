@@ -69,6 +69,12 @@
 .Go-sup-dl .shopname {
   font-weight: bold;
   margin-bottom: 18px;
+  width:312px;
+  height:40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background: #F8F8F8;
   padding: 10px 20px; }
 .Go-sup-dl dd {
@@ -91,7 +97,7 @@
   .Go-sup-dl dd span {
     border: 1px solid #bbb8b8;
     padding: 10px 20px;
-    margin: 10px 20px;
+    margin: 10px 6px;
     display: inline-block;
     cursor: pointer; }
 
