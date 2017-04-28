@@ -19,9 +19,16 @@ new Vue({
 		laeblTArr:[]
 	},
 	filters:{
-		json2single:function(value){
+		json2single:function(value,tag){
 			
 			var str=typeof eval(value)=='object'?JSON.parse(value)[0]:'';
+			if(tag==1){
+				str+='?x-oss-process=image/resize,m_fill,w_270,h_164,limit_0/auto-orient,0/sharpen,100/quality,q_90';
+			}else if(tag==2){
+				str+='?x-oss-process=image/resize,m_fill,w_240,h_170,limit_0/auto-orient,0/sharpen,100/quality,q_90';
+			}else if(tag==3){
+				str+='?x-oss-process=image/resize,m_fill,w_390,h_274,limit_0/auto-orient,0/sharpen,100/quality,q_90';
+			}
 			return str;
 		}
 		

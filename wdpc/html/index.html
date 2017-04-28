@@ -309,7 +309,7 @@
           <div class="allicences-con-wrapper">
             <div class="allicences-con-box">
               <dl v-for="shopItem in mainItem.typeShop">
-                <dt style="cursor: pointer" @click="gotoShopDetail(shopItem.id,mainItem.nav_name)"><img v-bind:src="shopItem.logo | json2single"><span></span></dt>
+                <dt style="cursor: pointer" @click="gotoShopDetail(shopItem.id,mainItem.nav_name)"><img v-bind:src="shopItem.logo | json2single(1)"><span></span></dt>
                 <dd>
                   <h3>
                     <a style="color:#666;" href="javascript:;" @click="gotoShopDetail(shopItem.id,mainItem.nav_name)" v-text="shopItem.name"></a>
@@ -329,7 +329,7 @@
             <h3>优惠信息</h3>
             <div class="discount-con">
               <dl class="clearfix" v-for="disItem in mainItem.benefit">
-                <dt v-bind:data-url="disItem.url" @click="gotoDiscount(disItem.id,mainItem.nav_name)"> <img v-bind:src="disItem.pic_url"></dt>
+                <dt v-bind:data-url="disItem.url" @click="gotoDiscount(disItem.id,mainItem.nav_name)"> <img v-bind:src="disItem.pic_url+'?x-oss-process=image/resize,m_fill,w_105,h_105,limit_0/auto-orient,0/sharpen,100/quality,q_90'"></dt>
                 <dd>
                   <h4 @click="gotoDiscount(disItem.id)" v-text="disItem.name"></h4>
                   <p v-text="disItem.benefit_info"></p>
@@ -349,14 +349,14 @@
         <div class="common-goods-con-wrapper clearfix">
           <div class="common-goods-con">
             <div class="common-goods-con-box clearfix">
-              <div class="single-item-goods-wrapper" v-for="proItem in mainItem.typeGoods"><a href="javascript:;" @click="goToGoodsDetail(proItem.id,mainItem.nav_name)"><img v-bind:src="proItem.goods_logo | json2single"></a>
+              <div class="single-item-goods-wrapper" v-for="proItem in mainItem.typeGoods"><a href="javascript:;" @click="goToGoodsDetail(proItem.id,mainItem.nav_name)"><img v-bind:src="proItem.goods_logo | json2single(3)"></a>
                 <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_sell"></em></p>
               </div>
               
             </div>
           </div>
           <div class="common-active-goods-wrapper">
-            <div class="single-item-active-goods" v-for="proItem in mainItem.typeGoodsAd"><a href="javascript:;" @click="goToGoodsDetail(proItem.id)"><img v-bind:src="proItem.goods_logo | json2single"></a>
+            <div class="single-item-active-goods" v-for="proItem in mainItem.typeGoodsAd"><a href="javascript:;" @click="goToGoodsDetail(proItem.id)"><img v-bind:src="proItem.goods_logo | json2single(2)"></a>
               <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_sell"></em></p>
             </div>
             <!--<div class="single-item-active-goods"><a><img src="../img/act-img.png"></a>

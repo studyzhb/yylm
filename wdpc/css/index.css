@@ -363,10 +363,12 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 40px;
+            height: 24px;
             width: 204px;
             background-color: #000;
-            line-height: 40px;
+            line-height: 24px;
+            font-size: 14px;
+            
             opacity: 0.56;
             padding: 0 18px 0 22px;
             color: #fff; }
@@ -393,10 +395,11 @@
           left: 0;
           bottom: 0;
           width: 340px;
-          height: 40px;
+          height: 24px;
           background-color: #000;
-          line-height: 40px;
+          line-height: 24px;
           opacity: 0.56;
+          font-size: 14px;
           padding: 0 18px 0 32px;
           color: #fff; }
           .common-goods-con-bg .common-goods-con-wrapper .common-active-goods-wrapper .single-item-active-goods p span {
