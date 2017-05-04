@@ -38,9 +38,6 @@ new Vue({
 		
 		this.$nextTick(function(){
 			this.renderView();
-			if(this.bannerData.length>0){
-				this.active();
-			}	
 		})
 	},
 	methods:{
@@ -59,59 +56,21 @@ new Vue({
 		renderView:function(){
 			
 			var self=this;
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.nav.showPrimaryNav+'?navtype=1')
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
 				.then(function(res){
-					// console.log(res);
-					self.navData=res.body.data;
-					self.navData.forEach(function(data){
-						self.navIdArr.push({id:data.id,typeShop:[],typeGoods:[],benefit:[],nav_name:data.name});
-						
-					})			
-					self.navIdArr.forEach(function(item) {
-						self.navfun(item);
-					});
-					
-					// console.log(self.navIdArr);
-					
-				});
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.Banner.banner+'?station=1')
-				.then(function(res){
-					// console.log(res);
-					
 					if(res.body.code==200){
-						self.bannerData=res.body.data.concat(res.body.data)||[];
-						if(self.bannerData.length>0){
-							setTimeout(function(){
-								self.active();
-							},1000);
-							
-						}	
+						self.navData=res.body.data;
+						self.navData.forEach(function(data){
+							self.navIdArr.push({id:data.id,typeGoods:[],nav_name:data.name,money:data.money,packid:data.pack_id});
+						})			
+						self.navIdArr.forEach(function(item) {
+							self.navfun(item);
+						});
 					}
-						
-					// console.log(self.bannerData);
+					
 					
 				});
 
-
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.Banner.banner+'?station=2')
-				.then(function(res){
-					// console.log(res);
-				
-					if(res.body.code==200){
-						self.banImgData=res.body.data||[];
-							
-					}
-							
-					// console.log(self.banImgData);
-					
-				});
-					//获得标签方法
-		   this.$http.get(ajaxAddress.preFix+ajaxAddress.label.labelAll)
-			   .then(function(res){
-				   
-				   self.labelArr = res.body.data;
-				   
-			});
 			
 		},
 		setNameShop:function(value){
@@ -132,45 +91,17 @@ new Vue({
 		},
 		//获得推荐/热门店铺方法
 		navfun:function(navObj){
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.updataContent.hotContent+'?navid='+navObj.id)
-				.then(function(res){
-					// console.log(res.body.data);
-					//navNameArr
 
-					// res.body.data.forEeach(function(item){
-					// 	item.
-					// });
-					if(res.body.data){
-						navObj.typeShop=res.body.data||[];
-					}
-	
-				})
 		//获得推荐/热门商品方法
-		 this.$http.get(ajaxAddress.preFix+ajaxAddress.updataContent.goods+'?navid='+navObj.id)
+		 this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getGoodsInfo+'?id='+navObj.packid)
 				.then(function(res){
-					// console.log(res.body.data);
-					var arr  = res.body.data instanceof Array? res.body.data.splice(9):[];
-					navObj.typeGoods   = res.body.data;
-					navObj.typeGoodsAd = arr;
-					
-					
+					if(res.body.code==200){
+						navObj.typeGoods= res.body.data;
+						
+					}else{
+						layer.msg(res.body.msg);
+					}		
 				})
-		
-			// 优惠信息
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.discountMessage.discountMesData+'?navid='+navObj.id)
-			.then(function(res){
-				navObj.benefit=res.body.data;
-				console.log(navObj.benefit);
-				
-			})
-
-			// this.$http.get(ajaxAddress.preFix+ajaxAddress.updataCon+'?navid='+navObj.id)
-			// .then(function(res){
-			// 	// console.log(res.body.data);
-			// 	navObj.benefit=res.body.data;
-			// 	console.log(navObj.typeGoods);
-				
-			// })
 		
 		
 
@@ -228,7 +159,7 @@ new Vue({
 			open(shopDetailUrl+id+'&name='+escape(name),'_self');
 		},
 		goToGoodsDetail:function(id,name){
-			open(goodsDetailUrl+id+'&name='+escape(name),'_self');
+			open(goodsDetailUrl+id,'_self');
 		},
 		gotoDiscount:function(id,name){
 

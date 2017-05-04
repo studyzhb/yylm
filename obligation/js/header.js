@@ -136,11 +136,6 @@ new Vue({
 		
 		this.$nextTick(function(){
 			this.renderView();
-			if(this.bannerData.length>0){
-				this.active();
-				
-			}
-			
 		})
 	},
 	methods:{
@@ -186,9 +181,9 @@ new Vue({
 							for(var key in this.loginUser){
 								self.loginUser[key]='';
 							}
-							layer.msg(res.body.message);
+							layer.msg(res.body.msg);
 						}else{
-							layer.msg(res.body.message);
+							layer.msg(res.body.msg);
 						}
 			
 					})
@@ -444,31 +439,7 @@ new Vue({
 			var self=this;
 			this.isShowAllSortIndex=location.href.indexOf('index.html')>-1||location.href.indexOf('.html')==-1?0:1;
 			this.picCode=ajaxAddress.preFix+ajaxAddress.user.getPicCode;
-			this.searchTag=paraObj.tag=='false'?false:true;
-			this.navid=paraObj.navid||'';
-			
-			//获取关键字
-			this.mainCon=paraObj.con?unescape(paraObj.con):'';
-			this.getCityName();
-			this.getUserInfo();
-            //获取导航
-			this.$http.get(ajaxAddress.preFix+ajaxAddress.nav.showPrimaryNav+'?navtype=1')
-				.then(function(res){
-					// console.log(res);
-					
-					self.navData=res.body.data;
-					self.navData.forEach(function(data){
-						self.navIdArr.push({id:data.id,typeShop:[],typeGoods:[],benefit:[],nav_name:data.name});
-						
-					})	
-					setTimeout(function(){
-						$('.dialog-info').height($('body').height());
-						
-					},5000);		
-						
-					
-				});
-			
+			this.getUserInfo();	
 			
 		},
 		agreeHtml:function(){

@@ -134,33 +134,19 @@
         <div class="wd-logo-container">
           <div class="logoImage"><a href="index.html" style="display: inline-block;"><img src="../img/header/logo.png"></a></div>
           <div class="wd-search-area">
-            <div class="tab-shop-goods">
+            <!--<div class="tab-shop-goods">
               <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==true}" @click='searchTag=true'>商品</div>
               <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==false}" @click='searchTag=false'>商家</div>
             </div>
             <div class="logo-search-form">
               <input type="text" placeholder="万店联盟搜索" class="search-text" v-model="mainCon">
               <input type="button" value="搜索" class="search-btn" @click="searchInfoFromData">
-            </div>
+            </div>-->
             <!--<div class="hotwords"><a>奶糖</a><a>红枣</a></div>-->
           </div>
         </div>
       </header>
-      <div class="wd-nav-area-bg">
-        <ul class="wd-nav-area">
-          <li class="all-category Notclear"> <a class="allcat">全部分类</a>
-            <dl class="menuList" style="display: none;" v-show="isShowAllSortIndex==0">
-              <dd v-for="item in navData"><a class="mainTitle" v-on:click="parseUrl(item)" v-text="item.name"></a>
-                <p> <a v-for="part in item.recommend" v-on:click="parseUrl(item,part)" v-text="part.name"></a></p>
-              </dd>
-               
-            </dl>
-          </li>
-          <li class="Notclear"><a href="index.html" data-url="index.html">首页</a></li>
-          <li v-for="navItem in navData" ><a href="javascript:;" v-on:click="parseUrl(navItem)" v-bind:data-id="navItem.id" v-text="navItem.name"></a></li>
-          <li ><a href="javascript:;" data-url="">同城便利</a></li>          
-        </ul>
-      </div>
+
     </div>
 
     <!---->
@@ -180,47 +166,9 @@
           <p class="text-redirect">感谢您的信任,网站正在试运行中,如有需要,请扫描二维码下载手机APP,如有意见请发送邮件</p>
         </div>
       </div>
-      <div id="LoutiNav">
-        <ul>
-          <li class="hover"> <img src="../img/alliance/food.png"><span>美食</span></li>
-          <li> <img src="../img/alliance/game.png"><span>休闲娱乐</span></li>
-          <li> <img src="../img/alliance/travel.png"><span>旅游出行</span></li>
-          <li> <img src="../img/alliance/atay.png"><span>住宿</span></li>
-           <li> <img src="../img/alliance/serve.png"><span>生活服务</span></li>
-          <!--<li> <img src="../img/alliance/shopping.png"><span>购物</span></li>-->
-          
-         
-          
-          
-          <li class="last">Top</li>
-        </ul>
-      </div>
-      <div class="banner-wrapper">
-        <div class="banner-area">
-          <ul class="notice-pic clearfix">
-            <li v-for="banItem in bannerData" style="cursor: pointer;" @click="advertisement(banItem)">
-              <img  v-bind:src="banItem.slide_src" >
-            </li>
-            <!--<li><img src="../img/ban02.png"></li>
-            <li><img src="../img/ban03.png"></li>
-            <li><img src="../img/ban01.png"></li>
-            <li><img src="../img/ban02.png"></li>
-            <li><img src="../img/ban03.png"></li>-->
-          </ul>
-        </div>
-      </div>
-      <div class="advertisement-bg">
-        <div class="advertisement">
-          <div class="advertisement-wraper" >
-            <div class="advertisement-item" style="cursor: pointer;" v-for="imgItem in banImgData" @click='advertisement(imgItem)'><img v-bind:src="imgItem.slide_src"></div>
-            <!--<div class="advertisement-item"><img src="../img/adver.png"></div>
-            <div class="advertisement-item"><img src="../img/adver.png"></div>
-            <div class="advertisement-item"><img src="../img/adver.png"></div>
-            -->
-            <div class="advertisement-item"><img src="../img/link-code.png"></div>
-          </div>
-        </div>
-      </div>
+
+
+
       <div class="activity-bg" style="display: none;">
         <div class="activity">
           <h2 class="activity-wrapper"><span class="activity-title">今日限时购</span><span style="margin-right:22px;">还剩</span><span class="time-bg">0</span><span class="time-bg">0</span><em class="time-inter">:</em><span class="time-bg">0</span><span class="time-bg">0</span><em class="time-inter">:</em><span class="time-bg">0</span><span class="time-bg">0</span></h2>
@@ -301,10 +249,10 @@
       <div class="Louti" v-for="mainItem in navIdArr">
         <div class="common-title-bg">
         <div class="common-title">
-          <h3><i class="iconfont icon-cart"></i><span v-text="setNameShop(mainItem.nav_name)" v-bind:data-id="mainItem.id"></span></h3>
+          <h3><i class="iconfont icon-cart"></i><span v-text="mainItem.nav_name" v-bind:data-id="mainItem.id"></span> <span @click="goToGoodsDetail(mainItem.id)">点击购买</span></h3>
         </div>
       </div>
-      <div class="allicences-shop-con-bg">
+      <!--<div class="allicences-shop-con-bg">
         <div class="allicences-con">
           <div class="allicences-con-wrapper">
             <div class="allicences-con-box">
@@ -344,25 +292,25 @@
         <div class="common-title">
           <h3><i class="iconfont icon-cart"></i><span v-text="setNameGoods(mainItem.nav_name)"></span></h3>
         </div>
-      </div>
+      </div>-->
       <div class="common-goods-con-bg">
         <div class="common-goods-con-wrapper clearfix">
           <div class="common-goods-con">
             <div class="common-goods-con-box clearfix">
-              <div class="single-item-goods-wrapper" v-for="proItem in mainItem.typeGoods"><a href="javascript:;" @click="goToGoodsDetail(proItem.id,mainItem.nav_name)"><img v-bind:src="proItem.goods_logo | json2single(3)"></a>
-                <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_sell"></em></p>
+              <div class="single-item-goods-wrapper" v-for="proItem in mainItem.typeGoods"><a href="javascript:;" @click="goToGoodsDetail(mainItem.id)"><img v-bind:src="proItem.goods_logo"></a>
+                <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_pay"></em></p>
               </div>
               
             </div>
           </div>
-          <div class="common-active-goods-wrapper">
+          <!--<div class="common-active-goods-wrapper">
             <div class="single-item-active-goods" v-for="proItem in mainItem.typeGoodsAd"><a href="javascript:;" @click="goToGoodsDetail(proItem.id)"><img v-bind:src="proItem.goods_logo | json2single(2)"></a>
               <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_sell"></em></p>
             </div>
-            <!--<div class="single-item-active-goods"><a><img src="../img/act-img.png"></a>
+            <div class="single-item-active-goods"><a><img src="../img/act-img.png"></a>
               <p><span>汉釜宫烤肉</span><em>$182</em></p>
-            </div>-->
-          </div>
+            </div>
+          </div>-->
         </div>
       </div>
       </div>
@@ -427,45 +375,5 @@
   <script src="../layer/layer.js"></script>
   <script src="../js/header.js"></script>
   <script src="../js/index.js" type="text/javascript"></script>
-  <script>
-    $(function(){
-      $(document).scroll(function(){
-          for (var i=0;i<$(".Louti").length;i++) {
-              if($(this).scrollTop()<$(".Louti").eq(0).offset().top){
-                  $("#LoutiNav").hide();
-              }else if($(this).scrollTop()>=$(".Louti").eq(i).offset().top){
-                  $("#LoutiNav").show();
-                  var $o=$("#LoutiNav li").eq(i);
-                  var $img=$o.find('img');
-                  var $oImg=$o.siblings().find('img');
-                  $o.addClass("hover").siblings().removeClass('hover');
-                  // $img.attr('src',$img.attr('src').substr(0,$img.attr('src').length-4)+'_bai.png');
-                  // $oImg.attr('src',$oImg.attr('src').substr(0,$oImg.attr('src').length-8)+'.png');
-              }
-          }
 
-      });
-      
-      $("#LoutiNav li").click(function(){
-          $(this).addClass("hover").siblings().removeClass('hover');
-          if($(this).is("#LoutiNav  li:last")){
-              
-              $(document).scrollTop(0);
-              $("#LoutiNav").hide();
-          }else{
-              $(document).scrollTop($(".Louti").eq($(this).index()).offset().top);
-          }
-              
-      });
-
-      $(window).on('resize load',function(){
-        if($(document).width()<1580){
-          $("#LoutiNav").hide();
-        }else{
-          $("#LoutiNav").show().css('left',$('.Louti').eq(0).offset().left+60+'px');
-        }
-
-      })
-  })
-  </script>
 </html>

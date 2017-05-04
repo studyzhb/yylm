@@ -10,70 +10,41 @@
     <body>
         <div class="rightWrap" id="app">
             <!--我的订单有信息-->
-            <div class="orderList">
+            <div class="orderList fundrecord">
                 <ul class="orderNav">
-                    <li :class="{bg_color:tabIndex==0}" @click="showOrderList(0)">全部</li>
-                    <li :class="{bg_color:tabIndex==1}" @click="showConsume(1,0)">未使用</li>
-                    <li :class="{bg_color:tabIndex==2}" @click="showOrderList(2,0)">未付款</li>
-                    <li :class="{bg_color:tabIndex==3}" @click="showConsume(3,1)">已使用</li>
-                    <li :class="{bg_color:tabIndex==4}" @click="showOrderList(4,4)">已退款</li>
+                    <li>队列模式>></li>
+                    <li v-for="item in queueList" :class="{bg_color:tabIndex==item.id}" @click="showOrderList(item.id)" v-text="item.name">全部</li>
                 </ul>
-                
-                    <!--未使用-->
-                    <div class="orderAllInfo">
-                       <ul class="ordertop">
-                            <li>订单信息</li>
-                            <li>数量</li>
-                            <li>价格</li>
-                            <li>状态</li>
-                            <li>操作</li>
-                        </ul>
-                        <div class="con" v-for="item in userOrderArr">
-                            <p class="orderNum"> <span>{{item.addtime}}</span><span>订单号：{{item.ordernum}}</span><span class="del"><img src="../../img/del.png"></span></p>
-                                <dl class="disOrderList">
-                                    <dd>
-                                        <img src="../../img/logImg.png" style="float: left;width: 120px;height: 72px;">
-                                        <div style="float: right;width:176px;" class="orderGoodsName">
-                                                <p class="goodsName" style="width: 100%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;" v-text="item.goodsname">杨靖宇黄焖鸡米饭</p>
-                                                <p style="margin: 15px 0px">有效期：{{item.addtime}}</p>
-                                                <p><a href="javasript:;" class="color" v-text="item.shopname">商家信息</a></p>
-                                        </div>
-                                            
-                                    </dd>
-                                    <dd class="edit"><span>X{{item.number}}</span></dd>
-                                    <dd style="margin-left: 67px;" class="edit"><span class="color">￥{{item.price}}</span></dd>
-                                    <dd style="margin-left: 68px;" class="edit" v-text="item.status==1?'已使用':'未使用'">未使用</dd>
-                                    <dd style="margin-left: 63px;" class="edit">
-                                        <p style="position:relative;" v-show="item.oderInfoStatus==0&&item.status!=0" @click="checkCode(item.orderinfoid)">查看券码
-                                            <span style="position:absolute;left:0;top:10px;height: 20px;line-height: 20px;font-size: 14px;color: #666;" v-text="goodsValidCode">123134</span>
-                                        </p>
-                                        <!--<p v-show="item.oderInfoStatus==1">去评论</p>-->
-                                        <p v-show="item.oderInfoStatus==0&&item.status!=0">申请退款</p>
-                                    </dd>
-                                </dl>  
-                        </div>
-                        <div class="con" v-for="item in userOrderFilterArr">
-                            <p class="orderNum"> <span>{{item.addtime}}</span><span>订单号：{{item.ordernum}}</span><span class="del"><img src="../../img/del.png"></span></p>
-                                <dl class="disOrderList">
-                                    <dd>
-                                        <img src="../../img/logImg.png" :src="item.goods_logo | json2single" style="float: left;width: 120px;height: 72px;">
-                                        <div style="float: right;width:176px;" class="orderGoodsName">
-                                                <p class="goodsName" style="width: 100%;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;" v-text="item.goodsname">杨靖宇黄焖鸡米饭</p>
-                                                <p style="margin: 15px 0px">有效期：{{item.addtime}}</p>
-                                                <p><a href="javasript:;" class="color" v-text="item.shopname">商家信息</a></p>
-                                        </div>
-                                            
-                                    </dd>
-                                    <dd class="edit"><span>X1</span></dd>
-                                    <dd style="margin-left: 67px;" class="edit"><span class="color">￥{{item.price}}</span></dd>
-                                    <dd style="margin-left: 68px;" class="edit" v-text="item.status==1?'已使用':'未使用'">未使用</dd>
-                                    <dd style="margin-left: 63px;" class="edit">
-                                        <p>查看券码</p>
-                                        <p>申请退款</p>
-                                    </dd>
-                                </dl>  
-                        </div>
-                    </div>
+                <table class="refundTbl">
+                    <tr align="center">
+                        <th>订单号</th>
+                        <th>订单创建时间</th>
+                        <th>队列位置</th>
+                        <th>zanwu</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr align="center" v-for="userItem in userQueueList">
+                        <td v-text="userItem.order_id">123456789</td>
+                        <td v-text="userItem.create_time">2017-02-11 16:20</td>
+                        <td v-text="userItem.displayorder">￥9.9</td>
+                        <td>退款到账户余额</td>
+                        <td>
+                            <span v-show="userItem.status==-1">违规踢出</span>
+                            <span v-show="userItem.status==1">队列中</span>
+                            <span v-show="userItem.status==2" @click="convertScore(userItem.id)">兑换</span>
+                            <span v-show="userItem.status==3">兑换中</span>
+                            <span v-show="userItem.status==4">兑换完成</span>
+                        </td>
+                        <td>
+                            <span v-show="userItem.take_delivery==0||userItem.take_delivery==1" @click="backGoods(userItem.id)">回购</span>
+                            <span v-show="userItem.take_delivery==2">提货完成</span>
+                        </td>
+                    </tr>
+                    
+                </table>
+
+                    
                    
                   
 

@@ -10,11 +10,12 @@ Vue.http.interceptors.push((request, next) => {
 new Vue({
 	el:'#app',
     data:{
+        selected:'',
         goodsDetai:{},
         goodsId:'',
+        addressArr:[],
         goodsInfo:{
             total:'1',
-
         }
         
     },
@@ -22,38 +23,96 @@ new Vue({
         renderView:function(){
             this.goodsId=paraObj.id;
             this.getGoodsInfo();
+            this.getAddressInfo();
         },
         getGoodsInfo:function(){
+
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.detail.goodsDetail+'?id='+this.goodsId)
-                    .then(function(res){
-                        if(res.body.code==200){
-                            
-                            self.goodsDetai=res.body.data;
-                        }
-                    })
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
+				.then(function(res){
+					if(res.body.code==200){
+                        
+						res.body.data.forEach(function(item){
+                            if(item.id==self.goodsId){
+                                self.goodsDetai=item;
+                            }
+                        })
+					}
+				});
+
+        },
+        getAddressInfo:function(){
+            var self=this;
+			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getAddress)
+				.then(function(res){
+					if(res.body.code==200){
+                        
+						self.addressArr=res.body.data;
+					}else{
+                        layer.msg('获取不到地址信息,请先登录');
+                        setTimeout(function(){
+                            open('index.html','_self');
+                        },1000);
+                    }
+					
+					
+				});
         },
         createOrder:function(){
             var body={};
             var self=this;
             layer.load();
-            body.goodsid=this.goodsId;
-            body.number= this.goodsInfo.total;
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
-                    .then(function(res){
-                        if(res.body.code==200){
-                            
-                           var orderId=res.body.data;
-                           
-                           self.getPayHtml(orderId);
+            this.isHasBand();  
+        },
+        isHasBand:function(){
+            var self=this;
+			this.$http.get(ajaxAddress.isHasBand)
+				.then(function(res){
+					if(res.body.code==200){
+                        if(res.body.data){
+                            if(this.selected){
+                                this.addressArr.forEach(function(item){
+                                    if(item.id==self.selected){
+                                        body.username=item.sname;
+                                        body.phone=item.tel;
+                                        body.queue=self.goodsId;
+                                        body.delivery_point=3;
+                                        body.desc='121313';
+                                        self.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
+                                                .then(function(res){
+                                                    if(res.body.code==200){
+                                                        
+                                                    var orderId=res.body.data.order_id;
+                                                    
+                                                    self.getPayHtml(orderId);
 
-                        }else if(res.body.code==302){
-                            cookieUtil.removeCookie('wdusername');
-                            layer.msg(res.body.message);
+                                                    }else if(res.body.code==302){
+                                                        cookieUtil.removeCookie('wdusername');
+                                                        layer.msg(res.body.message);
+                                                    }else{
+                                                        layer.msg(res.body.message);
+                                                    }
+                                                })
+                                        return false;
+                                    }
+                                })
+                            }else{
+                                layer.msg('请选择地址');
+                                layer.closeAll('loading');
+                                return;
+                            }
                         }else{
-                            layer.msg(res.body.message);
+                            open('approve.html','_self');
                         }
-                    })
+					}else{
+                        
+                        setTimeout(function(){
+                            // open('index.html','_self');
+                        },1000);
+                    }
+					
+					
+				});
         },
         getPayHtml:function(num){
             var self=this;

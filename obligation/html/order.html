@@ -57,26 +57,26 @@
         <tr id="yui_3_16_0_1_1491961516124_543">
             <td class="desc">
 
-                <a href="javascript:;" target="_blank" v-text="goodsDetai.goodsname">
+                <a href="javascript:;" target="_blank" v-text="goodsDetai.name">
                     
                 </a>
             </td>
 
             <td class="money J-deal-buy-price">
-                ¥<span id="deal-buy-price" v-text="goodsDetai.price_pay">3.3</span>
+                ¥<span id="deal-buy-price" v-text="goodsDetai.total_amount">3.3</span>
             </td>
 
             <td class="deal-component-quantity" id="yui_3_16_0_1_1491961516124_542">
                 <div  class="component-dealbuy-quantity mt-component--booted" id="yui_3_16_0_1_1491961516124_66">
                     <div class="dealbuy-quantity">
-                        <button class="minus" type="button" @click="changeMoney(goodsInfo,-1)">-</button>
-                            <input type="text" autocomplete="off" readonly class="f-text J-quantity J-cart-quantity" maxlength="4" v-model="goodsInfo.total"  :value="1">
-                        <button class="item plus" type="button" @click="changeMoney(goodsInfo,1)">+</button>
+                        <!--<button class="minus" type="button" @click="changeMoney(goodsInfo,-1)">-</button>-->
+                            <input type="text" autocomplete="off" readonly class="f-text J-quantity J-cart-quantity" maxlength="4"  :value="1">
+                        <!--<button class="item plus" type="button" @click="changeMoney(goodsInfo,1)">+</button>-->
                     </div>
                 </div>
             </td>
             <td class="money total rightpadding col-total">
-                ¥<span id="J-deal-buy-total" v-text="goodsInfo.total*goodsDetai.price_pay">3.30</span>
+                ¥<span id="J-deal-buy-total" v-text="goodsDetai.total_amount">3.30</span>
             </td>
         </tr>
         
@@ -86,7 +86,7 @@
             <td colspan="3" class="extra-fee total-fee rightpadding">
                 <strong>应付金额</strong>：
                 <span class="inline-block money">
-                    ¥<strong id="deal-buy-total-t" v-text="goodsInfo.total*goodsDetai.price_pay">3.30</strong>
+                    ¥<strong id="deal-buy-total-t" v-text="goodsDetai.total_amount">3.30</strong>
                 </span>
             </td>
         </tr>
@@ -95,10 +95,13 @@
 <input id="J-deal-buy-cardcode" type="hidden" name="cardcode" maxlength="8" value="0">
 
         <div data-component="dealbuy-mobile" class="component-dealbuy-mobile mt-component--booted" id="yui_3_16_0_1_1491961516124_69">    <div class="J-common-normal-mobile" style="margin:10px 0;font-size:12px;">
-        <p style="display: none;">
-            将发送券密码至手机号：
-                <span class="mobile">18236928186</span>
-            <!--<a href="javascript:;" id="deal-buy-rebind">  绑定新手机号</a>-->
+        <p style="">
+            选择收货地址：
+            
+            <select v-model="selected">
+                <option :value="addressItem.id" v-for="addressItem in addressArr" v-text="addressItem.address+addressItem.stand"></option>
+            </select>
+            
         </p>
     </div>
 </div>

@@ -1,7 +1,17 @@
+Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateHTTP = true;
+// Vue.http.options.xhr = { withCredentials: true }
+Vue.http.interceptors.push((request, next) => {
+	request.credentials = true;
+	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
+	next()
+})
 new Vue({
     el:'#app',
     data:{
-        userOrderArr:'',
+        queueList:[],
+        userQueueList:[],
+        userOrderArr:[],
         user:'',
         tabIndex:'0',
         userOrderFilterArr:[],
@@ -27,12 +37,23 @@ new Vue({
     methods:{
         renderView:function(){
             var self=this;
-            this.shopId=paraObj.id;
-            this.navName=unescape(paraObj.name);
-            this.getUserOrder();
-            this.getUser();
+            this.getQueueList();
         },
-    
+        getQueueList:function(){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
+                    .then(function(res){
+                        if(res.body.code==200){
+
+                            self.queueList=res.body.data;
+                            self.getOneUserQueueList(self.queueList[0].id);
+                            // self.handleData(res.body.data);   
+                        }else{
+                            self.queueList=[];
+                            
+                        }
+                    })
+        },
         getUserOrder:function(obj){
             obj=obj||{};
             var self=this;
@@ -41,9 +62,25 @@ new Vue({
                         if(res.body.code==200){
 
                             self.userOrderArr=res.body.data;
+                            
                             // self.handleData(res.body.data);   
                         }else{
                             self.userOrderArr=[];
+                        }
+                    })
+        },
+        getOneUserQueueList:function(id){
+            var obj={id:id}
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getOneUserQueue,{params:obj})
+                    .then(function(res){
+                        if(res.body.code==200){
+
+                            self.userQueueList=res.body.data.data;
+                            console.log(self.userQueueList);
+                            // self.handleData(res.body.data);   
+                        }else{
+                            self.userQueueList=[];
                             
                         }
                     })
@@ -60,9 +97,9 @@ new Vue({
                         
                     })
         },
-        showOrderList:function(index,staIndex){
+        showOrderList:function(index){
             this.tabIndex=index;
-            this.getUserOrder({status:staIndex});
+            this.getOneUserQueueList(index);
         },
         //展示付完款中的已消费与未消费
         showConsume:function(index,staIndex){
@@ -114,6 +151,26 @@ new Vue({
                             // self.handleData(res.body.data);   
                         }
                     })
+        },
+        convertScore:function(id){
+            var self=this;
+            var body={
+                id:id
+            }
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.convertScore,body)
+                .then(function(res){
+                    
+                    if(res.body.code==200){
+                        
+                        layer.msg(res.body.msg);
+                    }else{
+                        layer.msg(res.body.msg);
+                    }
+        
+                })
+        },
+        backGoods:function(id){
+            
         }
     }
 })

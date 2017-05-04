@@ -1,13 +1,8 @@
 var ajaxAddress={
-    preFix:'/yylm/public/index.php/unionIndex',
+    preFix:'/public/index.php/bondpc',
     formFix:'',
-    payHtml:'/yylm/public/pay/Alipay',
-    area:{
-        areaData:'/condition/getArea'
-    },
-    Classify:{
-        Classifydata:'/condition/getClassify'
-    },
+    payHtml:'/public/index.php/bondpc/pay',
+    isHasBand:'/public/index.php/bondpc/bondpc/isHasBand',
     user:{
         getPicCode:'/login/getcode',
         getLoginMessCode:'/login/code',
@@ -25,41 +20,17 @@ var ajaxAddress={
         updateNikeName:'/user/update',
     },
     list:{
-        shoplist:'/lists/shop',
-        goodslist:'/lists/goods',
-        benefit:'/lists/Benefit',
-        getGoodsListByShopId:'/lists/shopGoods'
+        queuelist:'/bondpc/queueList',
+        //获取单个队列的数据
+        getOneUserQueue:'/bondpc/userQueue',
+        getGoodsInfo:'/bondpc/getPack',
+        getAddress:'/bondpc/getAddress',
+        oblitaionList:'/bondpc/getBondList'
     },
     detail:{
         goodsDetail:'/goods/GoodsDetail',
         shopDetail:'/goods/shopDetail',
-
         hotSale:'/goods/hotSale'
-    },
-    discount:{
-        bendfit:'/benefit/BenefitDetail',
-    },
-    discountMessage:{
-        discountMesData:'/index/Benefit'
-    },
-    label:{
-        labelAll:'/common/LabelAll'
-    },
-    Banner:{
-        banner:'/index/getBanner'
-    },
-
-    nav:{
-        showPrimaryNav:'/index/getNav',
-    },
-
-    updataContent:{
-        hotContent:'/index/getRecommendShop',
-        goods:'/index/getRecommendGoods'
-    },
-    search:{
-        searchShop:'/search/shopList',
-        searchGoods:'/search/goodsList'
     },
     userData:{
         user:'/User/user',
@@ -68,20 +39,9 @@ var ajaxAddress={
         //展示已消费与未消费的订单
         userConsume:'/user/toConsume'
     },
-    common:{
-        getCity:'/common/getCity',
-        getComment:'/User/noEvaluate',
-        getCommented:'/User/evaluateLst'
-    },
-    goods:{
-        goodsCode:'/user/searchCode',
-        getComment:'/goods/evaluate',
-        comment:'/user/goodsEvaluate',
-        //提交评论
-        commitComment:'/user/goodsEvaluate'
-    },
     order:{
-        commitOrder:'/Goods/createOrder',
-        createHtml:''
+        commitOrder:'/bondpc/queueBuy',
+        createHtml:'',
+        convertScore:'/bondpc/oneExchange'
     }
 }
