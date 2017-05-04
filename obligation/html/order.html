@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html class="yui3-js-enabled">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta name="applicable-device" content="pc">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="Cache-Control" content="no-transform">
+		<meta name="application-name" content="万店联盟">
+		<meta name="baidu-site-verification" content="TiWCN4h5v3">
+
+		<title>Pay</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/saved_resource">
+    <link rel="stylesheet" type="text/css" href="../css/saved_resource(1)">
+
+
+<body id="deal-buy" class="pg-buy pg-buy-process">
+    <header id="site-mast" class="site-mast">
+    <div class="site-mast__branding cf" id="J-site-mast__branding">
+                <a class="site-logo" href="javascript:;" gaevent="header/logo">
+                    <img src="" alt="郑州团购" width="82px" height="54px">
+                </a>
+  
+        <div data-component="buyprocessbar" class="component-buyprocessbar mt-component--booted" id="yui_3_16_0_1_1491961516124_63">
+        <div class="buy-process-bar-container">
+    <ol class="buy-process-desc steps-desc">
+        <li class="step current" style="width:33.333333333333%">1. 提交订单</li>
+        <li class="step" style="width:33.333333333333%">2. 选择支付方式</li>
+        <li class="step" style="width:33.333333333333%">3. 购买成功</li>
+    </ol>
+    <div class="progress">
+        <div class="progress-bar" style="width:33.333333333333%"></div>
+    </div>
+</div>
+</header>
+
+
+    <div id="app" class="bdw">
+        <div id="bd" class="cf">
+<form  action="" method="post" id="deal-buy-form" class="common-form form J-wwwtracker-form mt-component--booted">
+    
+
+
+<div class="table-section summary-table" >
+
+    <table cellspacing="0" class="buy-table" id="yui_3_16_0_1_1491961516124_545">
+        <tbody id="yui_3_16_0_1_1491961516124_544"><tr class="order-table-head-row">
+            <th class="desc">商品</th>
+            <th class="unit-price">单价</th>
+            <th class="amount">数量</th>
+            <th class="col-total">总价</th>
+        </tr>
+
+        <tr id="yui_3_16_0_1_1491961516124_543">
+            <td class="desc">
+
+                <a href="javascript:;" target="_blank" v-text="goodsDetai.goodsname">
+                    
+                </a>
+            </td>
+
+            <td class="money J-deal-buy-price">
+                ¥<span id="deal-buy-price" v-text="goodsDetai.price_pay">3.3</span>
+            </td>
+
+            <td class="deal-component-quantity" id="yui_3_16_0_1_1491961516124_542">
+                <div  class="component-dealbuy-quantity mt-component--booted" id="yui_3_16_0_1_1491961516124_66">
+                    <div class="dealbuy-quantity">
+                        <button class="minus" type="button" @click="changeMoney(goodsInfo,-1)">-</button>
+                            <input type="text" autocomplete="off" readonly class="f-text J-quantity J-cart-quantity" maxlength="4" v-model="goodsInfo.total"  :value="1">
+                        <button class="item plus" type="button" @click="changeMoney(goodsInfo,1)">+</button>
+                    </div>
+                </div>
+            </td>
+            <td class="money total rightpadding col-total">
+                ¥<span id="J-deal-buy-total" v-text="goodsInfo.total*goodsDetai.price_pay">3.30</span>
+            </td>
+        </tr>
+        
+
+        <tr>
+            <td></td>
+            <td colspan="3" class="extra-fee total-fee rightpadding">
+                <strong>应付金额</strong>：
+                <span class="inline-block money">
+                    ¥<strong id="deal-buy-total-t" v-text="goodsInfo.total*goodsDetai.price_pay">3.30</strong>
+                </span>
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+<input id="J-deal-buy-cardcode" type="hidden" name="cardcode" maxlength="8" value="0">
+
+        <div data-component="dealbuy-mobile" class="component-dealbuy-mobile mt-component--booted" id="yui_3_16_0_1_1491961516124_69">    <div class="J-common-normal-mobile" style="margin:10px 0;font-size:12px;">
+        <p style="display: none;">
+            将发送券密码至手机号：
+                <span class="mobile">18236928186</span>
+            <!--<a href="javascript:;" id="deal-buy-rebind">  绑定新手机号</a>-->
+        </p>
+    </div>
+</div>
+<div class="form-submit">
+    <input type="button" class="btn btn-large btn-buy" @click="createOrder" name="buy" value="提交订单">
+</div>
+</form>
+        </div>
+    </div>
+
+</body>
+<script src="../js/config.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/ajaxAddress.js"></script>
+<script src="../js/jquery-2.1.4.min.js"></script>
+  <script src="../layer/layer.js"></script>
+<script src="../js/lib/vue2.js"></script>
+<script src="../js/lib/vue-resource.min.js"></script>
+
+<script src="../js/order.js"></script>
+</html>

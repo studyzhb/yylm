@@ -1,0 +1,289 @@
+.delicacy-wrap {
+  width: 100%;
+  margin: 30px auto;
+  background: #F8F8F8; }
+  .delicacy-wrap .contentInfo {
+    background: #fff;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    overflow: hidden; }
+  .delicacy-wrap .de-info {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #fff; }
+    .delicacy-wrap .de-info .shop {
+      overflow: hidden; }
+  .delicacy-wrap .nav-bar {
+    overflow: hidden; }
+    .delicacy-wrap .nav-bar li {
+      float: left;
+      margin-right: 10px; }
+      .delicacy-wrap .nav-bar li a {
+        border: 1px solid gray;
+        padding: 5px 10px;
+        color: #333;
+        display: inline-block;
+        font-size: 14px; }
+      .delicacy-wrap .nav-bar li i {
+        margin-top: 5px;
+        display: inline-block; }
+
+.de-center {
+  float: left; }
+
+.de-picture li {
+  margin-top: 30px; }
+
+.shopcenter {
+  margin: 10px 20px;
+  width: 343px; }
+  .shopcenter .phoneSee {
+    float: right;
+    font-size: 12px; }
+  .shopcenter li {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #333; }
+    .shopcenter li i {
+      margin-right: 10px; }
+  .shopcenter .con span {
+    margin-right: 10px;
+    cursor: pointer; }
+
+.color-red {
+  color: #C70D1B;
+  font-weight: bold; }
+
+.color-9 {
+  color: #999; }
+
+.Nodate {
+  color: #F78260; }
+
+.Goshop {
+  border: 1px solid #bbb8b8;
+  float: right; }
+
+.Go-sup-dl .shopname {
+  font-weight: bold;
+  margin-bottom: 18px;
+  width:312px;
+  height:40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: #F8F8F8;
+  padding: 10px 20px; }
+.Go-sup-dl dd {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center; }
+  .Go-sup-dl dd .sub-dl {
+    margin-left: 30px; }
+    .Go-sup-dl dd .sub-dl dt {
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      float: left;
+      height: 58px;
+      margin-left: 30px;
+      line-height: 58px; }
+    .Go-sup-dl dd .sub-dl dd {
+      font-size: 12px;
+      font-weight: bold; }
+  .Go-sup-dl dd span {
+    border: 1px solid #bbb8b8;
+    padding: 10px 20px;
+    margin: 10px 6px;
+    display: inline-block;
+    cursor: pointer; }
+
+.shopAddress {
+  width: 230px;
+  margin-left: 30px;
+  margin-bottom: 20px; }
+  .shopAddress li {
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 10px; }
+    .shopAddress li a {
+      cursor: pointer; }
+
+.hotPre-top {
+  margin: 0px auto;
+  font-weight: bold;
+  width: 1200px;
+  margin-top: 20px; }
+
+.lineIn {
+  width: 1200px;
+  height: 1px;
+  background: #E3E3E3;
+  position: relative;
+  top: 20px;
+  margin: auto; }
+
+.hotPro {
+  margin-top: 40px;
+  overflow: hidden; }
+  .hotPro li {
+    float: left;
+    margin-left: 20px; }
+    .hotPro li p {
+      margin-bottom: 12px;
+      font-size: 14px; }
+      .hotPro li p .right {
+        float: right; }
+        .hotPro li p .right i {
+          margin-left: 3px; }
+      .hotPro li p .delprice {
+        text-decoration: line-through;
+        color: #999;
+        margin-left: 20px;
+        font-size: 12px; }
+
+.b-nav {
+  overflow: hidden;
+  margin-top: 30px; }
+  .b-nav li {
+    float: left;
+    margin-right: 78px;
+    cursor: pointer; }
+
+.business {
+  padding-bottom: 60px;
+  overflow: hidden; }
+  .business .b-address {
+    float: left;
+    margin-left: 110px; }
+    .business .b-address li {
+      font-size: 14px;
+      margin-top: 10px; }
+    .business .b-address .b-name {
+      margin-bottom: 30px;
+      font-weight: bold;
+      font-size: 16px; }
+
+.b-message {
+  margin-top: 40px; }
+  .b-message .business-map {
+    float: left;
+    width: 420px;
+    height: 284px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee; }
+
+.goodsdetailLeft p {
+  margin: 20px 10px;
+  font-size: 16px; }
+.goodsdetailLeft .b-date {
+  font-size: 12px; }
+.goodsdetailLeft .goodsTbl {
+  font-size: 14px; }
+  .goodsdetailLeft .goodsTbl tr th {
+    font-weight: bold;
+    text-indent: 20px;
+    padding: 12px 8px;
+    background: #F8F8F8; }
+  .goodsdetailLeft .goodsTbl tr td {
+    text-indent: 20px;
+    padding: 12px 8px;
+    border-bottom: 1px solid #D8D8D8; }
+
+.evaluateLeft {
+  float: left;
+  margin-top: 10px; }
+
+.evaluateRight {
+  float: right; }
+
+.ELeftTop {
+  font-size: 14px;
+  overflow: hidden; }
+  .ELeftTop dl {
+    float: left;
+    margin-left: 48px; }
+    .ELeftTop dl dt {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 35px;
+      text-align: center; }
+    .ELeftTop dl dd {
+      margin-bottom: 12px; }
+  .ELeftTop ul {
+    float: left;
+    padding: 0px 160px; }
+    .ELeftTop ul li .evalProg {
+      width: 256px;
+      height: 20px;
+      background: #D8D8D8;
+      position: relative;
+      margin: 0px 18px 10px 18px;
+      display: inline-block;
+      vertical-align: middle; }
+      .ELeftTop ul li .evalProg i {
+        width: 100px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #C70D1B; }
+
+.bgcolor {
+  background: #D8D8D8; }
+
+.ELeftbott {
+  font-size: 12px;
+  width: 850px; }
+  .ELeftbott .progNav {
+    margin: 50px 0px;
+    overflow: hidden;
+    background: #F3F3F3; }
+    .ELeftbott .progNav li {
+      float: left;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer; }
+  .ELeftbott .parents {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-align-items: flex-start;
+    margin-top: 40px;
+    border-bottom: 1px solid #E3E3E3;
+    padding-bottom: 20px; }
+    .ELeftbott .parents .userPic {
+      margin-right: 2em;
+      text-align: center; }
+      .ELeftbott .parents .userPic img {
+        margin-bottom: 6px; }
+    .ELeftbott .parents .evalText {
+      flex: 1;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -ms-flex: 1; }
+      .ELeftbott .parents .evalText li {
+        margin-bottom: 10px;
+        line-height: 18px; }
+      .ELeftbott .parents .evalText .evaluate-Pic {
+        margin-top: 30px; }
+        .ELeftbott .parents .evalText .evaluate-Pic img {
+          margin-right: 10px; }
+
+#marquee {
+  width: 460px;
+  overflow: hidden; }
+  #marquee #marqueeinfo {
+    width: 800%; }
+    #marquee #marqueeinfo div {
+      float: left;
+      margin-right: 8px; }
+
+/*# sourceMappingURL=shopindex.css.map */
