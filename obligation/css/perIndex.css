@@ -213,7 +213,7 @@
       text-overflow: ellipsis; }
 
 .fundrecord {
-  width: 825px;
+  /*width: 825px;*/
   margin: 0 auto;
   background: #fff; }
   .fundrecord p {

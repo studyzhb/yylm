@@ -41,7 +41,7 @@ new Vue({
         },
         getQueueList:function(){
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.order.exchangelist)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.order.backGoodsHis)
                     .then(function(res){
                         if(res.body.code==200){
                             self.queueList=res.body.data;

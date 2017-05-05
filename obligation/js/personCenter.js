@@ -14,11 +14,12 @@ new Vue({
     methods:{
         renderView:function(){
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.oblitaionList+"?status=0")
+           this.$http.get(ajaxAddress.isHasBand)
                     .then(function(res){
                         if(res.body.code==200){
-                            self.queueList=res.body.data;
+                            
                         }else{
+                            open('index.html','_self');
                             self.queueList=[];
                         }
                     })

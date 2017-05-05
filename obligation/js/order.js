@@ -66,10 +66,12 @@ new Vue({
         },
         isHasBand:function(){
             var self=this;
+            var body={};
 			this.$http.get(ajaxAddress.isHasBand)
 				.then(function(res){
 					if(res.body.code==200){
                         if(res.body.data){
+                            console.log(res.body.data)
                             if(this.selected){
                                 this.addressArr.forEach(function(item){
                                     if(item.id==self.selected){
@@ -107,7 +109,7 @@ new Vue({
 					}else{
                         
                         setTimeout(function(){
-                            // open('index.html','_self');
+                            open('index.html','_self');
                         },1000);
                     }
 					

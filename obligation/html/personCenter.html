@@ -119,6 +119,7 @@
             </ul>
             <ul class="right-menu-area">
               <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="gotoPersonCenter">我的e+便利</a></li> 
+             <li class="wd-my-order"><a style="cursor: pointer;" @click="gotoAuthorMoney">债权认证</a></li>
               <!--<li class="wd-my-order"><a>我的订单</a></li>
               <li class="wd-business"><a>招商</a></li>
           -->
@@ -162,7 +163,7 @@
             <div class="perInfo">
                 <div class="perLeft">
                     <dl class="listNav">
-                        <dt @click="selectedIndex=0" data-url="./myperson/perIndex.html" style="cursor: pointer;" :class="{color:selectedIndex==0}" class="personIndex"><span :class="{circleImg:selectedIndex==0}"></span>个人主页</dt>
+                        <dt @click="selectedIndex=0" data-url="./myperson/myaccount.html" style="cursor: pointer;" :class="{color:selectedIndex==0}" class="personIndex"><span :class="{circleImg:selectedIndex==0}"></span>个人主页</dt>
                         <dd>
                             <dl>
                                 <dt><span :class="{circleImg:selectedIndex==1}"></span>我的债权 </dt>
@@ -184,11 +185,12 @@
                                 <dt><span :class="{circleImg:selectedIndex==3}"></span>我的账户</dt>
                                 <!--<dd :class="{color:selectedIndex==3&&selectedSubIndex==0}" @click="(selectedIndex=3)&&(selectedSubIndex=0)" data-url="./myperson/myaccount.html">我的余额</dd>-->
                                 <dd :class="{color:selectedIndex==3&&selectedSubIndex==1}" @click="(selectedIndex=3)&&(selectedSubIndex=1)" data-url="./myperson/accountSet.html">账户设置</dd>
+                                <dd :class="{color:selectedIndex==3&&selectedSubIndex==2}" @click="(selectedIndex=3)&&(selectedSubIndex=2)" data-url="./myperson/banklist.html">我的银行卡</dd>
                             </dl>
                         </dd>
                         <dd style="display: none;">
                             <dl>
-                                <dt data-url="./myperson/mycollect.html" class="personIndex"><span></span>我的收藏</dt>
+                                <dt data-url="./myperson/banklist.html" class="personIndex"><span></span>我的银行卡</dt>
                             </dl>
                         </dd>
                     </dl>

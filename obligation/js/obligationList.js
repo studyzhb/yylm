@@ -45,6 +45,7 @@ new Vue({
                     .then(function(res){
                         if(res.body.code==200){
                             self.queueList=res.body.data;
+                            console.log(self.queueList);
                         }else{
                             self.queueList=[];
                         }

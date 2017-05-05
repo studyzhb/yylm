@@ -20,10 +20,10 @@ var ajaxAddress={
         updateNikeName:'/user/update',
     },
     list:{
-        queuelist:'/bondpc/queueList',
+        queuelist:'/goods/queueList',
         //获取单个队列的数据
         getOneUserQueue:'/bondpc/userQueue',
-        getGoodsInfo:'/bondpc/getPack',
+        getGoodsInfo:'/goods/getPack',
         getAddress:'/bondpc/getAddress',
         oblitaionList:'/bondpc/getBondList'
     },
@@ -42,6 +42,9 @@ var ajaxAddress={
     order:{
         commitOrder:'/bondpc/queueBuy',
         createHtml:'',
-        convertScore:'/bondpc/oneExchange'
+        convertScore:'/bondpc/oneExchange',
+        backGoods:'/bondpc/bayBack',
+        backGoodsHis:'/bondpc/backList',
+        exchangelist:'/bondpc/exchangeList'
     }
 }

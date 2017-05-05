@@ -13,25 +13,18 @@
                 <p>兑换记录：</p>
                 <table class="refundTbl">
                     <tr align="center">
-                        <th>订单号</th>
-                        <th>退款申请时间</th>
-                        <th>退款金额</th>
-                        <th>退款路径</th>
-                        <th>状态</th>
+                        <th>序号</th>
+                        <th>用户</th>
+                        <th>认证金额</th>
+                        <th>债权编号</th>
+                        <th>债权单位</th>
                     </tr>
-                    <tr align="center">
-                        <td>123456789</td>
-                        <td>2017-02-11 16:20</td>
-                        <td>￥9.9</td>
-                        <td>退款到账户余额</td>
-                        <td>退款成功</td>
-                    </tr>
-                    <tr align="center">
-                        <td>123456789</td>
-                        <td>2017-02-11 16:20</td>
-                        <td>￥9.9</td>
-                        <td>退款到账户余额</td>
-                        <td>退款成功</td>
+                    <tr align="center" v-for="(item,index) in queueList">
+                        <td v-text="index+1"></td>
+                        <td v-text="item.name"></td>
+                        <td v-text="item.debt_money">2017-02-11 16:20</td>
+                        <td v-text="item.debtcode">￥9.9</td>
+                        <td v-text="item.debt_units">退款到账户余额</td>
                     </tr>
                 </table>
             </div>

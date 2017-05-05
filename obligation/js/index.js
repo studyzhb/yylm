@@ -39,7 +39,7 @@ new Vue({
 		this.$nextTick(function(){
 			this.renderView();
 		})
-	},
+	}, 
 	methods:{
 		//banner图跳转
 		advertisement:function(item){
@@ -58,6 +58,7 @@ new Vue({
 			var self=this;
 			this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
 				.then(function(res){
+					
 					if(res.body.code==200){
 						self.navData=res.body.data;
 						self.navData.forEach(function(data){
@@ -66,6 +67,9 @@ new Vue({
 						self.navIdArr.forEach(function(item) {
 							self.navfun(item);
 						});
+					}else{
+						cookieUtil.removeCookie('wdusername');
+						layer.msg('请先登录');
 					}
 					
 					

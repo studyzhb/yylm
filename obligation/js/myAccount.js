@@ -41,10 +41,13 @@ new Vue({
         },
         getQueueList:function(){
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.order.exchangelist)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
                     .then(function(res){
                         if(res.body.code==200){
+
                             self.queueList=res.body.data;
+                            self.getOneUserQueueList(self.queueList[0].id);
+                            // self.handleData(res.body.data);   
                         }else{
                             self.queueList=[];
                             
@@ -74,7 +77,7 @@ new Vue({
                         if(res.body.code==200){
 
                             self.userQueueList=res.body.data.data;
-                            console.log(self.userQueueList);
+                           
                             // self.handleData(res.body.data);   
                         }else{
                             self.userQueueList=[];
@@ -158,7 +161,7 @@ new Vue({
                 .then(function(res){
                     
                     if(res.body.code==200){
-                        
+                        self.getQueueList();
                         layer.msg(res.body.msg);
                     }else{
                         layer.msg(res.body.msg);
@@ -167,7 +170,21 @@ new Vue({
                 })
         },
         backGoods:function(id){
-            
+            var self=this;
+            var body={
+                order_id:id
+            }
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.backGoods,body)
+                .then(function(res){
+                    
+                    if(res.body.code==200){
+                        self.getQueueList();
+                        layer.msg(res.body.msg);
+                    }else{
+                        layer.msg(res.body.msg);
+                    }
+        
+                })
         }
     }
 })

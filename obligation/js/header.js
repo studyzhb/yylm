@@ -168,6 +168,7 @@ new Vue({
 			}
 			if(tag){
 				var body=this.loginUser;
+				body.job_num=this.loginUser.phone;
 				var self=this;
 				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.login,body)
 					.then(function(res){
@@ -523,8 +524,27 @@ new Vue({
 				})
 				
 			})
-			console.log(nArr);
+			
 			return nArr;
+		},
+		gotoAuthorMoney:function(){
+			this.$http.get(ajaxAddress.isHasBand)
+				.then(function(res){
+					
+					if(res.body.code==200){
+						if(res.body.data){
+							
+						}else{
+							open('approve.html','_self');
+						}
+						
+					}else{
+						cookieUtil.removeCookie('wdusername');
+						layer.msg('请先登录');
+					}
+					
+					
+				});
 		},
 		active:function(){
 			var self=this;

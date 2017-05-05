@@ -37,8 +37,9 @@
                             <span v-show="userItem.status==4">兑换完成</span>
                         </td>
                         <td>
-                            <span v-show="userItem.take_delivery==0||userItem.take_delivery==1" @click="backGoods(userItem.id)">回购</span>
+                            <span v-show="userItem.take_delivery==0||userItem.take_delivery==1" @click="backGoods(userItem.order_id)">回购</span>
                             <span v-show="userItem.take_delivery==2">提货完成</span>
+                            <span v-show="userItem.take_delivery==3">回购中</span>
                         </td>
                     </tr>
                     
