@@ -46,6 +46,7 @@ new Vue({
                         if(res.body.code==200){
 
                             self.queueList=res.body.data;
+                            self.tabIndex=self.queueList[0].id;
                             self.getOneUserQueueList(self.queueList[0].id);
                             // self.handleData(res.body.data);   
                         }else{
@@ -77,7 +78,7 @@ new Vue({
                         if(res.body.code==200){
 
                             self.userQueueList=res.body.data.data;
-                            console.log(self.userQueueList);
+
                             // self.handleData(res.body.data);   
                         }else{
                             self.userQueueList=[];

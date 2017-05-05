@@ -16,14 +16,15 @@ new Vue({
         addressArr:[],
         goodsInfo:{
             total:'1',
-        }
-        
+        },
+        obligationObj:{}
     },
     methods:{
         renderView:function(){
             this.goodsId=paraObj.id;
             this.getGoodsInfo();
             this.getAddressInfo();
+            this.getObligationId();
         },
         getGoodsInfo:function(){
 
@@ -58,6 +59,18 @@ new Vue({
 					
 				});
         },
+        getObligationId:function(){
+           var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.oblitaionList+"?status=1")
+                    .then(function(res){
+                        if(res.body.code==200){
+                            self.obligationObj=res.body.data[0];
+                            
+                        }else{
+                            self.obligationObj={};
+                        }
+                    })
+        },
         createOrder:function(){
             var body={};
             var self=this;
@@ -79,6 +92,7 @@ new Vue({
                                         body.phone=item.tel;
                                         body.queue=self.goodsId;
                                         body.delivery_point=3;
+                                        body.debt_nexus_id=self.obligationObj.id;
                                         body.desc='121313';
                                         self.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
                                                 .then(function(res){

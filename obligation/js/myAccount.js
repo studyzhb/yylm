@@ -15,7 +15,8 @@ new Vue({
         user:'',
         tabIndex:'0',
         userOrderFilterArr:[],
-        goodsValidCode:''
+        goodsValidCode:'',
+        userBankList:[]
     },
     filters:{
         json2single:function(value){
@@ -39,6 +40,18 @@ new Vue({
             var self=this;
             this.getUserAccountList();
             this.getQueueList();
+            this.getUserBankList();
+        },
+        getUserBankList:function(){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.banklist)
+                    .then(function(res){
+                        if(res.body.code==200){
+                            self.userBankList=res.body.data.list;
+                        }else{
+                            self.userBankList=[];
+                        }
+                    })
         },
         getQueueList:function(){
             var self=this;
@@ -102,7 +115,48 @@ new Vue({
                     })
         },
         outputMoney:function(obj){
+            if(this.userBankList.length==0){
+                layer.msg('请先添加银行卡');
+                return;
+            }
+            var self=this;
+            $('.bankListWrapper').html('');
+            $.each(this.userBankList,function(index,item){
+                $('<option>').appendTo($('.bankListWrapper')).html(item).attr('value',index+1);
+            })
+            layui.use(['form','layer'], function(){
+                var layer = layui.layer;
+                var form=layui.form();
+                layer.open({
+                    type:1,
+                    title:'余额提现',
+                    content: $('#bankFormWrapper'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:['600px','500px'],
+                    maxmin: true,
+                    end:function(){
+                        
+                        $('#bankFormWrapper').hide();
+                    }
+                })
 
+
+                form.on('submit(addBank)',function(formParams){
+
+                    self.$http.post(ajaxAddress.preFix+ajaxAddress.userData.outputMoney,formParams.field)
+                        .then(function(res){
+                            
+                            if(res.body.code==200){
+                                
+                                layer.msg(res.body.msg);
+                            }else{
+                                layer.msg(res.body.msg);
+                            }
+                
+                        })
+                })
+
+            });
         }
     }
 })

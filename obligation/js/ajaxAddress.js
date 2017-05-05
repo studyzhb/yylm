@@ -10,7 +10,7 @@ var ajaxAddress={
         //退出
         exit:'/login/out',
         resetLoginInfo:'/login/foundBack',
-        resetLoginCode:'/login/code',
+        resetLoginCode:'/login/getPhoneCode',
         //
         getRegisterMessCode:'/register/code',
         register:'/register/register',
@@ -18,6 +18,8 @@ var ajaxAddress={
         updateUserInfo:'/User/boundPhone',//提交修改手机号
         updatePassInfo:'/User/updatePassword',
         updateNikeName:'/user/update',
+        userInfo:'/Bondpc/getUserInfo',
+        finishedPayInfo:'/Login/insPayPassword'
     },
     list:{
         queuelist:'/goods/queueList',
@@ -28,7 +30,10 @@ var ajaxAddress={
         oblitaionList:'/bondpc/getBondList',
         banklist:'/userbalance/cardList',
         addBanklist:'/userbalance/cardSave',
-        canShowBankList:'/userbalance/cardConfig'
+        canShowBankList:'/userbalance/cardConfig',
+        addAuthor:'/userbalance/saveRealName',
+        isAuthorPage:'/userbalance/isName',
+        
     },
     detail:{
         goodsDetail:'/goods/GoodsDetail',
@@ -43,7 +48,8 @@ var ajaxAddress={
         userConsume:'/user/toConsume',
         //用户交易信息
         userAccount:'/userBalance/withdrawList',
-        userBalance:'/userbalance/index'
+        userBalance:'/userbalance/index',
+        outputMoney:'/userbalance/balancewithdraw'
     },
     order:{
         commitOrder:'/bondpc/queueBuy',

@@ -13,7 +13,7 @@
     <body>
         <div class="rightWrap" id="app" style="background: #fff">
             <div class="fundrecord">
-                <p>银行卡列表：<span style="display: inline-block;border:1px solid #f00" @click="addBankList">添加银行卡</span></p>
+                <p>银行卡列表：<span class="layui-btn" style="display: inline-block;" @click="addBankList">添加银行卡</span><span class="layui-btn" style="display: inline-block;" v-show="authorStatus" @click="addAuthorList">添加认证</span></p>
                 <table class="refundTbl">
                     <tr align="center">
                         <th>序号</th>
@@ -28,10 +28,10 @@
                         <td v-text="item.counter_fee">￥9.9</td>
                         <td v-text="item.buy_back_price">退款到账户余额</td>
                         <td>
-                            <span v-show="item.status==0">备货中</span>
-                            <span v-show="item.status==1">备货完成</span>
-                            <span v-show="item.status==2">提货完成</span>
-                            <span v-show="item.status==3">回购中</span>
+                            <span style="display: none;" v-show="item.status==0">备货中</span>
+                            <span style="display: none;" v-show="item.status==1">备货完成</span>
+                            <span style="display: none;" v-show="item.status==2">提货完成</span>
+                            <span style="display: none;" v-show="item.status==3">回购中</span>
                         </td>
                     </tr>
                 </table>
@@ -46,7 +46,7 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">银行卡号</label>
                 <div class="layui-input-block">
-                  <input type="text" name="card_num" required  lay-verify="number" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                  <input type="text" name="card_num" required  lay-verify="number" placeholder="请输入银行卡号" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -60,6 +60,27 @@
               <div class="layui-form-item">
                 <div class="layui-input-block">
                   <div class="layui-btn" lay-submit lay-filter="addBank">立即提交</div>
+
+                </div>
+              </div>
+            </form>
+
+          <form class="layui-form" id="userInfoAuthor" action="" style="display: none;font-size: 12px;padding:0 10px;">
+              <div class="layui-form-item">
+                <label class="layui-form-label">真实姓名</label>
+                <div class="layui-input-block">
+                  <input type="text" name="real_name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="id_card" required  lay-verify="identity" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" lay-submit lay-filter="addAuthor">立即提交</div>
 
                 </div>
               </div>

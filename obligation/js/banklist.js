@@ -6,6 +6,14 @@ Vue.http.interceptors.push((request, next) => {
 	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
 	next()
 })
+
+var layer,form;
+
+layui.use(['form','layer'], function(){
+    layer = layui.layer;
+    form=layui.form();
+})
+
 new Vue({
     el:'#app',
     data:{
@@ -16,7 +24,8 @@ new Vue({
         tabIndex:'0',
         userOrderFilterArr:[],
         goodsValidCode:'',
-        bankList:[]
+        bankList:[],
+        authorStatus:true
     },
     filters:{
         json2single:function(value){
@@ -40,6 +49,7 @@ new Vue({
             var self=this;
             this.getQueueList();
             this.getBankList();
+            this.getAuthorStatus();
         },
         getQueueList:function(){
             var self=this;
@@ -49,6 +59,18 @@ new Vue({
                             self.queueList=res.body.data.list;
                         }else{
                             self.queueList=[];
+                            
+                        }
+                    })
+        },
+        getAuthorStatus:function(){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.isAuthorPage)
+                    .then(function(res){
+                        if(res.body.code==200){
+                            self.authorStatus=res.body.data;
+                        }else{
+                           
                             
                         }
                     })
@@ -186,13 +208,13 @@ new Vue({
             
         },
         addBankList:function(){
+            layer.load();
+            var self=this;
             $('.bankListWrapper').html('');
             $.each(this.bankList,function(index,item){
                 $('<option>').appendTo($('.bankListWrapper')).html(item).attr('value',index+1);
             })
-            layui.use(['form','layer'], function(){
-                var layer = layui.layer;
-                var form=layui.form();
+            form.render();
                 layer.open({
                     type:1,
                     title:'添加银行卡',
@@ -201,11 +223,65 @@ new Vue({
                     area:['600px','500px'],
                     maxmin: true,
                     end:function(){
-                        
+                        layer.closeAll('loading');
                         $('#bankFormWrapper').hide();
                     }
                 })
-            });  
-        }   
+
+
+                form.on('submit(addBank)',function(formParams){
+                    $.each(self.bankList,function(index,item){
+                        if(index==formParams.field.card_type-1){
+                            formParams.field.card_tip=item;
+                        }
+                    })
+                    self.$http.post(ajaxAddress.preFix+ajaxAddress.list.addBanklist,formParams.field)
+                        .then(function(res){
+                            
+                            if(res.body.code==200){
+                                layer.closeAll();
+                                layer.msg(res.body.message);
+                            }else{
+                                layer.closeAll();
+                                layer.msg(res.body.message);
+                                
+                            }
+                
+                        })
+                })
+
+ 
+        } ,
+        addAuthorList:function(){
+            layer.load();
+            var self=this;
+            layer.open({
+                    type:1,
+                    title:'实名认证',
+                    content: $('#userInfoAuthor'), //这里content是一个DOM
+                    shade:[0.8,'#000'],
+                    area:['600px','500px'],
+                    maxmin: true,
+                    end:function(){
+                        layer.closeAll();
+                        $('#userInfoAuthor').hide();
+                    }
+                })
+
+             form.on('submit(addAuthor)',function(formParams){
+                    self.$http.post(ajaxAddress.preFix+ajaxAddress.list.addAuthor,formParams.field)
+                        .then(function(res){
+                            
+                            if(res.body.code==200){
+                                layer.closeAll();
+                                layer.msg(res.body.message);
+                            }else{
+                                layer.closeAll();
+                                layer.msg(res.body.message);
+                            }
+                
+                        })
+                })
+        }
     }
 })

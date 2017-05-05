@@ -18,11 +18,11 @@
                     </p>
                     <div class="personMess"  v-show="selectedIndex==0"> 
                          <ul>
-                            <li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span>
-                            <!--<span class="color" @click="changeIndex=1">更换</span>-->
-                            </li>
-                            <li>密 &nbsp;&nbsp;码：<span class="accountpwd"  style="width: 110px;">***********</span><span class="color" @click="changeIndex=2">修改</span></li>
-                            <li>昵 &nbsp;&nbsp;称：<span class="phoneNum"  style="width: 110px;">{{userDetailArr.nickname}}</span><span class="color" @click="changeIndex=3">设置</span></li>
+                            <!--<li>手机号：<span class="phoneNum" style="width: 110px;">{{userDetailArr.tel}}</span>
+                            <span class="color" @click="changeIndex=1">更换</span>
+                            </li>-->
+                            <li><span class="color" v-show="!userObj.id" @click="changeIndex=2">设置支付密码</span></li>
+                            <!--<li>昵 &nbsp;&nbsp;称：<span class="phoneNum"  style="width: 110px;">{{userDetailArr.nickname}}</span><span class="color" @click="changeIndex=3">设置</span></li>-->
                         </ul>
                     </div>
                     <!--个人资料-->
@@ -65,19 +65,31 @@
       </div>
 
        <!--修改密码-->
-        <div class="dialog" style="display: none;" v-show="changeIndex==2" >
+      <div class="dialog" id="dialogReset" style="display: none;" v-show="changeIndex==2">
         <div class="dialog-info"></div>
         <div class="dia-content">
-          <div class=" diaTop" @click="changeIndex=-1"><img src="../../img/delete.png"></div>
+          <div class=" diaTop" @click="loginIndex='-1'"><img src="../../img/delete.png"></div>
           <div class="diaLogo" style="margin:35px 0px 16px 0px;"><img src="../../img/logo.png"></div>
           <div class="dia-main">
             <ul class="sign">
-              
-              <li><input type="password" v-model="changePass.oldpassword" placeholder="原密码"></li>
-              <li><input type="password" v-model="changePass.newpasswordOne" placeholder="新密码"></li>
-              <li><input type="password" v-model="changePass.newpasswordTwo" placeholder="再次输入新密码"></li>
-              
-              <li><span class="reset" @click="updatePassInfo">立即修改</span></li>
+              <li style="padding-left: 124px;text-align: left"><input type="text" readonly  v-model="resetUser.phone" placeholder="注册手机号">
+                <span v-show="!validatorResetUser.phone&&isShowError" style="color: #f00;">手机号不能为空</span>
+              </li>
+              <li class="sign-check" style="padding-left: 124px;text-align: left">
+                <input v-model="resetUser.code" type="text" id="checkText" class="checkText" :class="{'validate-color':!validatorResetUser.code}" @blur="validatorResetUser.code=/^\S+/.test(resetUser.code)" placeholder="验证码">
+                <span class="checkCode" style="background: none;"><img :src="picCode" alt="" style="width: 100%;height: 100%;"></span>
+                <span class="notsee" @click="updatePicCode">看不清楚，换一张</span><span v-show="!validatorResetUser.code&&isShowError" style="color: #f00;">验证码不能为空</span></li>
+              <li class="phone-check" style="padding-left: 124px;text-align: left">
+                <input type="text" v-model="resetUser.phonecode" :class="{'validate-color':!validatorResetUser.phonecode}" @blur="validatorResetUser.phonecode=/^\S+/.test(resetUser.phonecode)" placeholder="短信验证码"><button  class='checkbtn' @click="getResetMesscode">获取短信验证码</button></li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.password}" @blur="validatorResetUser.password=/^\S+/.test(resetUser.password)" v-model="resetUser.password" placeholder="新密码">
+                <span v-show="!validatorResetUser.password&&isShowError" style="color: #f00;">不能为空</span>
+              </li>
+              <li style="padding-left: 124px;text-align: left"><input type="password" :class="{'validate-color':!validatorResetUser.conPassword}" @blur="validatorResetUser.conPassword=/^\S+/.test(resetUser.conPassword)" v-model="resetUser.conPassword" placeholder="确认密码">
+                <span v-show="!resetUser.conPassword" style="color: #f00;">不能为空</span>
+                <span v-show="resetUser.conPassword!=resetUser.password&&isShowError" style="color: #f00;">两次密码不一致</span>
+              </li>
+              <!--<p class="checkagree"><span class="agree">√</span><span class="file">阅读并同意<span class="sign-file">《e+便利用户注册协议》</span></span></p>-->
+              <li><span class="reset" @click="confrimPayPass">确定</span></li>
             </ul>
           </div>
         </div>

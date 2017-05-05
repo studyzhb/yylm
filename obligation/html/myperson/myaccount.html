@@ -6,6 +6,10 @@
         <link href="../../css/reset.css" rel="stylesheet">
         <link href="../../css/perIndex.css" rel="stylesheet">
          <link href="../../iconfont/iconfont.css" rel="stylesheet">
+         <link rel="stylesheet" href="../../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../../css/alertcon.css" />
+      <script src="../../js/jquery-2.1.4.min.js"></script>
+	  <script src="../../common/layui/layui.js"></script>
     </head>
     <body>
         <div class="rightWrap" id="app" style="background: #fff">
@@ -40,13 +44,40 @@
             </div>
             
         </div>
+
+        <form class="layui-form" id="bankFormWrapper" action="" style="display: none;font-size: 12px;padding:0 10px;">
+              <div class="layui-form-item">
+                <label class="layui-form-label">提现金额</label>
+                <div class="layui-input-block">
+                  <input type="text" name="money" required  lay-verify="number" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">银行卡</label>
+                <div class="layui-input-block">
+                  <select name="card_type" class="bankListWrapper" lay-verify="required">
+                    <option ></option>
+                  </select>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">支付密码</label>
+                <div class="layui-input-block">
+                  <input type="password" name="pay_pwd" required  lay-verify="number" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn" lay-submit lay-filter="addBank">立即提交</div>
+
+                </div>
+              </div>
+            </form>
     </body>
     <script src="../../js/common.js"></script>
 <script src="../../js/config.js"></script>
 <script src="../../js/ajaxAddress.js"></script>
-<script src="../../js/jquery-2.1.4.min.js"></script>
-<script src="../../common/layer.js"></script>
-<script src="../../js/lib/vue2.js"></script>
+
 <script src="../../js/lib/vue2.js"></script>
 <script src="../../js/lib/vue-resource.min.js"></script>
 <script src="../../js/myAccount.js" type="text/javascript"></script>

@@ -10,6 +10,8 @@ Vue.http.interceptors.push((request, next) => {
 new Vue({
     el:'#app',
     data:{
+        //倒计时初始值
+		timeNum:2,
         cityId:1,
         navId:1,
         navName:'',
@@ -19,26 +21,41 @@ new Vue({
         selectedIndex:'0',
         hotGoodsArr:[],
         userDetailArr:'',
+        userObj:{},
         changeIndex:'-1',
         picCode:'',
         nikeName:'',
+        isShowError:false,
+        validatorResetUser:{
+			password:'',
+			conPassword:'',
+			phonecode:'',
+			code:''
+		},
         //修改绑定手机号
         registerUser:{
 			phone:'',
+			password:'',
+			conPassword:'',
 			phonecode:'',
 			code:''
 		},
         resetUser:{
             phone:'',
-            phonecode:'',
-            code:'',
-            password:''
+			password:'',
+			conPassword:'',
+			phonecode:'',
+			code:''
         },
         changePass:{
             oldpassword:'',
             newpasswordOne:'',
             newpasswordTwo:''
-        }
+        },
+        payUser:{
+
+        },
+        isClick:true
     },
     filters:{
         json2single:function(value){
@@ -70,10 +87,13 @@ new Vue({
     
         getUserInfo:function(){
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userInfo+'?id='+this.shopId)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.user.userInfo)
                     .then(function(res){
+                        if(res.body.code==200){
+                            self.userObj=res.body.message;
+                            self.resetUser.phone=self.userObj.tel;
+                        }
                         
-                        self.userDetailArr=res.body.data;
                         
                     })
         },
@@ -100,19 +120,85 @@ new Vue({
 						console.log(res);
 					})
 		},
-        //修改密码
-        updatePassInfo:function(){
-			var body=this.changePass;
-            var self=this;
-			this.$http.post(ajaxAddress.preFix+ajaxAddress.user.updatePassInfo,body)
-					.then(function(res){
-						if(res.body.code==200){
-                            layer.msg(res.body.message);
-                            self.changeIndex=-1;
-                        }else{
-                             layer.msg(res.body.message);
-                        }
-					})
+        //忘记密码,重置
+		getResetMesscode:function(){
+			var phone=this.resetUser.phone;
+			var code=this.resetUser.code;
+			var self=this;
+			if(!phone){
+				layer.msg('手机号不能为空');
+				return;
+			}
+			if(!code){
+				layer.msg('验证码不能为空');
+				return;
+			}
+			// layer.load();
+			// if(this.isClick){
+				this.isClick=false;
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code,type:'paypassword'})
+				.then(function(res){
+					if(res.body.code==200){
+						layer.msg('短信验证码发送成功，请注意查收');
+						self.timeOutNum('resetMessageCode');
+					}else{
+						layer.msg(res.body.message);
+					}
+					
+					
+				})
+			// }else{
+			// 	layer.msg('请稍后再试');
+			// }
+			
+		},
+        //设置支付密码
+        timeOutNum:function(code){
+			this[code]=--this.timeNum+'秒后重新发送';
+			var self=this;
+			
+			if(this.timeNum<1){
+				this.isClick=true;
+				this[code]='获取短信验证码';
+				return;
+			}
+			setTimeout(function(){
+				self.timeOutNum(code);
+			},1000);
+		},
+        confrimPayPass:function(){
+			var body=this.resetUser;
+			var tag=true;
+			var self=this;
+			this.isShowError=true;
+			for(var key in this.validatorResetUser){
+				
+				if(!this.validatorResetUser[key]){
+					
+					tag=false;
+					layer.msg('请填写完整内容');
+				}
+			}
+			if(this.resetUser.password!=this.resetUser.conPassword){
+				tag=false;
+				layer.msg('两次输入密码不一致');
+			}
+			if(tag){
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.finishedPayInfo,body)
+				.then(function(res){
+					if(res.body.code==200){
+						self.isShowError=false;
+						self.changeIndex='-1';
+						layer.msg(res.body.message);
+						for(var key in this.resetUser){
+								self.resetUser[key]='';
+							}
+					}else{
+						layer.msg(res.body.message);
+					}
+				})
+			}
+			
 		},
         updateNikeName:function(){
             var self=this;
