@@ -46,7 +46,7 @@
     
 
     // showIframe('index.html',w,h);
-    showSubIframe('./myperson/perIndex.html',sW,sH);
+    showSubIframe('./myperson/myaccount.html',sW,sH);
     var browserVersion = window.navigator.userAgent.toUpperCase();
     var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
     var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;

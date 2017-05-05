@@ -37,16 +37,17 @@ new Vue({
     methods:{
         renderView:function(){
             var self=this;
+            this.getUserAccountList();
             this.getQueueList();
         },
         getQueueList:function(){
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.queuelist)
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userAccount)
                     .then(function(res){
+                        
                         if(res.body.code==200){
 
-                            self.queueList=res.body.data;
-                            self.getOneUserQueueList(self.queueList[0].id);
+                            self.queueList=res.body.data.list.balance_list;
                             // self.handleData(res.body.data);   
                         }else{
                             self.queueList=[];
@@ -54,34 +55,18 @@ new Vue({
                         }
                     })
         },
-        getUserOrder:function(obj){
+        getUserAccountList:function(obj){
             obj=obj||{};
             var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userOder,{params:obj})
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.userData.userBalance,{params:obj})
                     .then(function(res){
                         if(res.body.code==200){
 
-                            self.userOrderArr=res.body.data;
+                            self.userOrderArr=res.body.data.list;
                             
                             // self.handleData(res.body.data);   
                         }else{
-                            self.userOrderArr=[];
-                        }
-                    })
-        },
-        getOneUserQueueList:function(id){
-            var obj={id:id}
-            var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.list.getOneUserQueue,{params:obj})
-                    .then(function(res){
-                        if(res.body.code==200){
-
-                            self.userQueueList=res.body.data.data;
-                           
-                            // self.handleData(res.body.data);   
-                        }else{
-                            self.userQueueList=[];
-                            
+                            self.userOrderArr={};
                         }
                     })
         },
@@ -116,75 +101,8 @@ new Vue({
                         }
                     })
         },
-        handleData:function(arrN){
-            var self=this;
-            var arr=[];
-            
-            arrN.forEach(function(item,index){
-               
-                if(item.status==1){
-                    arr.push(arrN.splice(index,1));
-                }
+        outputMoney:function(obj){
 
-            })
-            self.userOrderArr=arrN;
-            
-            arr[0].forEach(function(item){
-                console.log(item);
-                for(var i=0;i<item.number;i++){
-                    arr.push(item);
-                }
-            })
-            for(var i=0,j=arr;i<j.length;i++){
-                j[i].number=1;
-            }
-            console.log(arr);
-            self.userOrderFilterArr=arr;
-        },
-        checkCode:function(id){
-            var self=this;
-            this.$http.get(ajaxAddress.preFix+ajaxAddress.goods.goodsCode,{params:{id:id}})
-                    .then(function(res){
-                        if(res.body.code==200){
-
-                            self.goodsValidCode=res.body.data;
-                            // self.handleData(res.body.data);   
-                        }
-                    })
-        },
-        convertScore:function(id){
-            var self=this;
-            var body={
-                id:id
-            }
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.convertScore,body)
-                .then(function(res){
-                    
-                    if(res.body.code==200){
-                        self.getQueueList();
-                        layer.msg(res.body.msg);
-                    }else{
-                        layer.msg(res.body.msg);
-                    }
-        
-                })
-        },
-        backGoods:function(id){
-            var self=this;
-            var body={
-                order_id:id
-            }
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.backGoods,body)
-                .then(function(res){
-                    
-                    if(res.body.code==200){
-                        self.getQueueList();
-                        layer.msg(res.body.msg);
-                    }else{
-                        layer.msg(res.body.msg);
-                    }
-        
-                })
         }
     }
 })

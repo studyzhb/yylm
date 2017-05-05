@@ -25,7 +25,10 @@ var ajaxAddress={
         getOneUserQueue:'/bondpc/userQueue',
         getGoodsInfo:'/goods/getPack',
         getAddress:'/bondpc/getAddress',
-        oblitaionList:'/bondpc/getBondList'
+        oblitaionList:'/bondpc/getBondList',
+        banklist:'/userbalance/cardList',
+        addBanklist:'/userbalance/cardSave',
+        canShowBankList:'/userbalance/cardConfig'
     },
     detail:{
         goodsDetail:'/goods/GoodsDetail',
@@ -37,7 +40,10 @@ var ajaxAddress={
         userInfo:'/User/userInfo',//个人详细信息
         userOder:'/User/purchaseOrderLst',
         //展示已消费与未消费的订单
-        userConsume:'/user/toConsume'
+        userConsume:'/user/toConsume',
+        //用户交易信息
+        userAccount:'/userBalance/withdrawList',
+        userBalance:'/userbalance/index'
     },
     order:{
         commitOrder:'/bondpc/queueBuy',
