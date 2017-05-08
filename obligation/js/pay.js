@@ -136,9 +136,10 @@ new Vue({
 				});
         },
         gotoPay:function(){
+            layer.load();
             var num=paraObj.order_id;
             var self=this;
-            console.log();
+            
             if(this.checkType==1){
                 layer.prompt({
                 formType: 2,
@@ -169,11 +170,12 @@ new Vue({
             }
             this.$http.post(ajaxAddress.preFix+ajaxAddress.order.balancePay,body)
                 .then(function(res){
-                    if(res.bod.code==200){
+                    if(res.body.code==200){
                         layer.msg('支付成功');
                         open('index.html','_self');
                     }else{
                         layer.msg(res.body.message)
+                        layer.closeAll('loading');
                     }
                 })
         },  

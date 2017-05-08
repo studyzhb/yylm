@@ -120,11 +120,15 @@ new Vue({
                             }
                         }else if(res.body.data=='0'){
                             layer.msg('认证审核中，请耐心等待');
+
+                            setTimeout(function(){
+                                open('index.html','_self');
+                            },1000)
                         }
                         else{
                             layer.msg('请先认证');
                             setTimeout(function(){
-                                // open('approve.html','_self');
+                                open('approve.html','_self');
                             },500);  
                         }
 					}else{

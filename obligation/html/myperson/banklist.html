@@ -17,22 +17,17 @@
                 <table class="refundTbl">
                     <tr align="center">
                         <th>序号</th>
-                        <th>用户名</th>
                         <th>银行卡号</th>
                         <th>开户行</th>
+                        <th>创建时间</th>
                     </tr>
                     <tr align="center" v-for="(item,index) in queueList">
                         <td v-text="index+1"></td>
-                        <td v-text="item.goods_name"></td>
-                        <td v-text="item.goods_price">2017-02-11 16:20</td>
-                        <td v-text="item.counter_fee">￥9.9</td>
-                        <td v-text="item.buy_back_price">退款到账户余额</td>
-                        <td>
-                            <span style="display: none;" v-show="item.status==0">备货中</span>
-                            <span style="display: none;" v-show="item.status==1">备货完成</span>
-                            <span style="display: none;" v-show="item.status==2">提货完成</span>
-                            <span style="display: none;" v-show="item.status==3">回购中</span>
-                        </td>
+                        <td v-text="item.card_num"></td>
+                        <td v-text="item.card_tip">2017-02-11 16:20</td>
+                        <td v-text="item.create_time">￥9.9</td>
+
+
                     </tr>
                 </table>
             </div>

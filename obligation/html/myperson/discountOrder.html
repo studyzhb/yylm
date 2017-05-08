@@ -19,14 +19,14 @@
                     <tr align="center">
                         <th>订单号</th>
                         <th>订单创建时间</th>
-                        <th>队列位置</th>
+                        <!--<th>队列位置</th>-->
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
                     <tr align="center" v-for="userItem in userQueueList">
                         <td v-text="userItem.order_id">123456789</td>
                         <td v-text="userItem.create_time">2017-02-11 16:20</td>
-                        <td v-text="userItem.displayorder">￥9.9</td>
+                        <!--<td v-text="userItem.displayorder">￥9.9</td>-->
                         <td>
                             <span v-show="userItem.status==-1">违规踢出</span>
                             <span v-show="userItem.status==1">队列中</span>

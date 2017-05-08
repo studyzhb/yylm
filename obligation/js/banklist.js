@@ -59,7 +59,6 @@ new Vue({
                             self.queueList=res.body.data.list;
                         }else{
                             self.queueList=[];
-                            
                         }
                     })
         },
@@ -68,9 +67,9 @@ new Vue({
             this.$http.get(ajaxAddress.preFix+ajaxAddress.list.isAuthorPage)
                     .then(function(res){
                         if(res.body.code==200){
-                            self.authorStatus=res.body.data;
+                            self.authorStatus=res.body.data==0?false:true;
                         }else{
-                           
+                           self.authorStatus=true;
                             
                         }
                     })
