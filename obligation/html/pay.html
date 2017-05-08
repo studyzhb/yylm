@@ -16,7 +16,7 @@
     		<div class="hd">
     			<div class="container">
     				<a href="javascript:;" class="hd-logo">
-    					<img src="../img/pay/logo.png" width="82px",height="54px" style="margin-top: 20px;">
+    					<!--<img src="../img/pay/logo.png" width="82px",height="54px" style="margin-top: 20px;">-->
     				</a>
     				<div class="hd-process">
     					<div class="hd-step">1. 提交订单</div>
@@ -33,38 +33,38 @@
     	<div id="body" class="container clear-fix">
     		<div class="order clear-fix">
     			<span class="block-left">
-    				<div class="order-name">项目：饮悦工坊柠檬水</div>
+    				<div class="order-name">项目:生活服务项目</div>
     			</span>
-    			<span class="block-right"><span>应付金额：<span class="order-price">¥3.30</span></span></span>
+    			<span class="block-right"><span>应付金额：<span class="order-price">¥1400</span></span></span>
     		</div>
     		<div class="payment payment-0">
     			<div class="payment-type">
     				<ul class="payment-menu">
-    					<li class="payment-tab payment-tab-0" data-target="0">支付宝/微信</li>
+    					<li class="payment-tab payment-tab-0" data-target="0">支付宝/余额支付</li>
     				</ul>
     				<div class="payment-list payment-list-0">
     					<ul class="clear-fix">
     						<li>
     							<input type="radio" name="thirdpart_pay" id="thirdpart_pay_wxqrpay" data-type="wxqrpay" data-code="" data-bankcode="" checked="">
-    							<label class="payment-icon" for="thirdpart_pay_wxqrpay"><img src="../img/pay/pc_wxqrpay.png" disabled="" alt="微信"></label>
+    							<label class="payment-icon" for="thirdpart_pay_wxqrpay" @click="checkType=1">余额支付</label>
     							<span class="payment-weak-tip" style="visibility:visible;"></span>
     						</li>
     						<li>
     							<input type="radio" name="thirdpart_pay" id="thirdpart_pay_alipay" data-type="alipay" data-code="" data-bankcode="">
-    							<label class="payment-icon" for="thirdpart_pay_alipay"><img src="../img/pay/alipaypcnew.png" disabled="" alt="支付宝"></label>
+    							<label class="payment-icon" for="thirdpart_pay_alipay" @click="checkType=2"><img src="../img/pay/alipaypcnew.png" disabled="" alt="支付宝"></label>
     							<span class="payment-weak-tip" style="visibility:hidden;"></span>
     						</li>
     					</ul>
     				</div>
     			</div>
-    			<span class="qr">
+    			<!--<span class="qr">
     				<div class="qr-text"><span>手机版</span>扫码支付<br><a  target="_blank">点我下载手机版</a></div>
     				<div class="qr-img"></div>
     			</span>
-    			<img class="qr-guide" src="../img/pay/mt-qrcode-guide.3IN3Gt.png" srcset="./img/mt-qrcode-guide@2x.31tJzs.png 2x">
+    			<img class="qr-guide" src="../img/pay/mt-qrcode-guide.3IN3Gt.png" srcset="./img/mt-qrcode-guide@2x.31tJzs.png 2x">-->
     			<div class="payment-submit-area clear-fix payment-submit-area-padding">
-    				<div class="payment-amount">支付：<span class="payment-price">¥3.30</span></div>
-    				<div class="payment-submit"><a class="btn">去付款</a></div>
+    				<div class="payment-amount">支付：<span class="payment-price">¥1400</span></div>
+    				<div class="payment-submit"><a class="btn" @click="gotoPay">去付款</a></div>
     				<div class="payment-back"><a>返回修改订单</a></div>
     			</div>
     		</div>
@@ -85,4 +85,14 @@
         
     <![endif]-->
 
-</body></html>
+</body>
+<script src="../js/config.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/ajaxAddress.js"></script>
+<script src="../js/jquery-2.1.4.min.js"></script>
+  <script src="../layer/layer.js"></script>
+<script src="../js/lib/vue2.js"></script>
+<script src="../js/lib/vue-resource.min.js"></script>
+
+<script src="../js/pay.js"></script>
+</html>

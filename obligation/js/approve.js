@@ -20,15 +20,15 @@ require(['jquery','main','requestAddress','lay-model','image-upload','log'],func
                     if(data.code==200){
                         
                         layObj.layer.closeAll();
-                        layer.msg('添加成功');
+                        layer.msg('认证成功，等待审核');
                         setTimeout(function(){
-                           
+                        //    open('index.html','_self');
                         },1000);
                         
                     }else{
                         
-                        layObj.layer.closeAll();
-                        layer.msg('网络错误，请稍后重试');
+                        layObj.layer.closeAll('loading');
+                        layer.msg(data.msg);
                         setTimeout(function(){
                             
                            

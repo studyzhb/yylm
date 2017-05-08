@@ -90,9 +90,9 @@ var config={
               if(msg.code&&msg.code=='401'){
                 $(parent.document).find('iframe').remove();
                 // open('login.html','_self');
-                top.location.href="../login.html";
+                top.location.href="../index.html";
               }else if(msg.code&&msg.code=='402'){
-                  top.location.href="../login.html";
+                  top.location.href="../index.html";
                 //   open('login.html','_self');
               }
               else{

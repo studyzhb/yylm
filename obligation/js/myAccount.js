@@ -42,6 +42,17 @@ new Vue({
             this.getQueueList();
             this.getUserBankList();
         },
+        //债权金转余额
+        obligation2Balance:function(){
+            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.obligation2balance)
+                    .then(function(res){
+                        if(res.body.code==200){
+                           layer.msg('操作成功')
+                        }else{
+                            layer.msg('请稍后再试')
+                        }
+                    })
+        },
         getUserBankList:function(){
             var self=this;
             this.$http.get(ajaxAddress.preFix+ajaxAddress.list.banklist)

@@ -15,7 +15,7 @@
         <div class="rightWrap" id="app" style="background: #fff">
             <div class="sumwrap">
                 <div class="sum">
-                    <p>当前积分：<span class="color" v-text="userOrderArr.queue_income">￥0</span><span class="color border recharge" @click="outputMoney(userOrderArr)">提现</span></p>
+                    <p>当前积分：<span class="color" v-text="userOrderArr.queue_income">￥0</span><span class="color border recharge" @click="obligation2Balance">债权金转余额</span> 当前余额：<span class="color" v-text="userOrderArr.balance">￥0</span><span class="color border recharge" @click="outputMoney(userOrderArr)">提现</span></p>
                 </div>
                 <div class="sumdata">
                     <p>交易明细：</p>

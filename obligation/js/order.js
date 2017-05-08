@@ -83,8 +83,8 @@ new Vue({
 			this.$http.get(ajaxAddress.isHasBand)
 				.then(function(res){
 					if(res.body.code==200){
-                        if(res.body.data){
-                            console.log(res.body.data)
+                        if(res.body.data=='1'){
+                            
                             if(this.selected){
                                 this.addressArr.forEach(function(item){
                                     if(item.id==self.selected){
@@ -100,7 +100,8 @@ new Vue({
                                                         
                                                     var orderId=res.body.data.order_id;
                                                     
-                                                    self.getPayHtml(orderId);
+                                                    // self.getPayHtml(orderId);
+                                                    open('pay.html?order_id='+orderId,"_self");
 
                                                     }else if(res.body.code==302){
                                                         cookieUtil.removeCookie('wdusername');
@@ -117,8 +118,14 @@ new Vue({
                                 layer.closeAll('loading');
                                 return;
                             }
-                        }else{
-                            open('approve.html','_self');
+                        }else if(res.body.data=='0'){
+                            layer.msg('认证审核中，请耐心等待');
+                        }
+                        else{
+                            layer.msg('请先认证');
+                            setTimeout(function(){
+                                // open('approve.html','_self');
+                            },500);  
                         }
 					}else{
                         

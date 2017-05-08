@@ -62,7 +62,7 @@ new Vue({
 					if(res.body.code==200){
 						self.navData=res.body.data;
 						self.navData.forEach(function(data){
-							self.navIdArr.push({id:data.id,typeGoods:[],nav_name:data.name,money:data.money,packid:data.pack_id});
+							self.navIdArr.push({id:data.id,typeGoods:[],nav_name:data.name,money:data.money,packid:data.pack_id,total_amount:data.total_amount});
 						})			
 						self.navIdArr.forEach(function(item) {
 							self.navfun(item);

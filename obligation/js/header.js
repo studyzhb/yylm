@@ -178,7 +178,7 @@ new Vue({
 							self.loginIndex='-1';
 							self.isShowError=false;
 							self.loginUserName=res.body.data||'***';
-							cookieUtil.setExpiresDate('wdusername',self.loginUserName,7);
+							cookieUtil.setExpiresDate('wdusername',self.loginUserName,0.1);
 							for(var key in this.loginUser){
 								self.loginUser[key]='';
 							}
@@ -532,9 +532,12 @@ new Vue({
 				.then(function(res){
 					
 					if(res.body.code==200){
-						if(res.body.data){
-							
-						}else{
+						if(res.body.data=='1'){
+							layer.msg('已经认证，可以购买了.')
+						}else if(res.body.data=='0'){
+							layer.msg('认证审核中....请耐心等待')
+						}
+						else{
 							open('approve.html','_self');
 						}
 						

@@ -118,7 +118,7 @@
               <li class="wd-common-login" v-show="isLogin">,欢迎您 <a href="javascript:;" @click="exit" style="cursor: pointer;">退出</a></li>
             </ul>
             <ul class="right-menu-area">
-              <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="gotoPersonCenter">我的e+便利</a></li> 
+              <li class="wd-mye"><a href="javascript:;" data-url="personCenter.html" @click="gotoPersonCenter">个人中心</a></li> 
              <li class="wd-my-order"><a style="cursor: pointer;" @click="gotoAuthorMoney">债权认证</a></li>
               <!--<li class="wd-my-order"><a>我的订单</a></li>
               <li class="wd-business"><a>招商</a></li>
@@ -128,7 +128,7 @@
         </div>
         <div class="wd-logo-container">
           <div class="logoImage"><a href="index.html" style="display: inline-block;"><img src="../img/header/logo.png"></a></div>
-          <div class="wd-search-area">
+          <!--<div class="wd-search-area">
             <div class="tab-shop-goods">
               <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==true}" @click='searchTag=true'>商品</div>
               <div class="tab-item" style="cursor: pointer;" :class="{active:searchTag==false}" @click='searchTag=false'>商家</div>
@@ -137,11 +137,11 @@
               <input type="text" placeholder="万店联盟搜索" class="search-text" v-model="mainCon">
               <input type="button" value="搜索" class="search-btn" @click="searchInfoFromData">
             </div>
-            <!--<div class="hotwords"><a>奶糖</a><a>红枣</a></div>-->
-          </div>
+            <div class="hotwords"><a>奶糖</a><a>红枣</a></div>
+          </div>-->
         </div>
       </header>
-      <div class="wd-nav-area-bg">
+      <!--<div class="wd-nav-area-bg">
         <ul class="wd-nav-area">
           <li class="all-category Notclear"> <a class="allcat">全部分类</a>
             <dl class="menuList" style="display: none;" v-show="isShowAllSortIndex==0">
@@ -155,7 +155,7 @@
           <li v-for="navItem in navData" ><a href="javascript:;" v-on:click="parseUrl(navItem)" v-bind:data-id="navItem.id" v-text="navItem.name"></a></li>
           <li ><a href="javascript:;" data-url="">同城便利</a></li>          
         </ul>
-      </div>
+      </div>-->
     </div>
 
 

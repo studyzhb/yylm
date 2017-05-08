@@ -54,9 +54,12 @@ var ajaxAddress={
     order:{
         commitOrder:'/bondpc/queueBuy',
         createHtml:'',
+        //债权金转余额
+        obligation2balance:'/Turnin/applyTurn',
         convertScore:'/bondpc/oneExchange',
         backGoods:'/bondpc/bayBack',
         backGoodsHis:'/bondpc/backList',
-        exchangelist:'/bondpc/exchangeList'
+        exchangelist:'/bondpc/exchangeList',
+        balancePay:"/pay/yuezhifu"
     }
 }
