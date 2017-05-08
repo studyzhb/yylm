@@ -14,17 +14,20 @@
                 <table class="refundTbl">
                     <tr align="center">
                         <th>序号</th>
-                        <th>用户</th>
-                        <th>认证金额</th>
-                        <th>债权编号</th>
-                        <th>债权单位</th>
+                        <th>订单</th>
+                        <th>抵扣债券金额</th>
+                        <th>兑换金额</th>
+                        <th>状态</th>
                     </tr>
                     <tr align="center" v-for="(item,index) in queueList">
                         <td v-text="index+1"></td>
-                        <td v-text="item.name"></td>
-                        <td v-text="item.debt_money">2017-02-11 16:20</td>
-                        <td v-text="item.debtcode">￥9.9</td>
-                        <td v-text="item.debt_units">退款到账户余额</td>
+                        <td v-text="item.orders"></td>
+                        <td v-text="item.dikou">2017-02-11 16:20</td>
+                        <td v-text="item.total">￥9.9</td>
+                        <td >
+                            <span v-show="item.status==0">兑换中</span>
+                            <span v-show="item.status==1">兑换完成</span>
+                        </td>
                     </tr>
                 </table>
             </div>

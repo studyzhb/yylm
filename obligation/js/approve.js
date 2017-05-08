@@ -22,7 +22,7 @@ require(['jquery','main','requestAddress','lay-model','image-upload','log'],func
                         layObj.layer.closeAll();
                         layer.msg('认证成功，等待审核');
                         setTimeout(function(){
-                        //    open('index.html','_self');
+                           open('index.html','_self');
                         },1000);
                         
                     }else{
