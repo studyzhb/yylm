@@ -23,7 +23,7 @@ new Vue({
         renderView:function(){
             this.goodsId=paraObj.id;
             this.getGoodsInfo();
-            this.getAddressInfo();
+            // this.getAddressInfo();
             this.getObligationId();
         },
         getGoodsInfo:function(){
@@ -85,39 +85,43 @@ new Vue({
 					if(res.body.code==200){
                         if(res.body.data=='1'){
                             
-                            if(this.selected){
-                                this.addressArr.forEach(function(item){
-                                    if(item.id==self.selected){
-                                        body.username=item.sname;
-                                        body.phone=item.tel;
-                                        body.queue=self.goodsId;
-                                        body.delivery_point=3;
-                                        body.debt_nexus_id=self.obligationObj.id;
-                                        body.desc='121313';
-                                        self.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
-                                                .then(function(res){
-                                                    if(res.body.code==200){
-                                                        
-                                                    var orderId=res.body.data.order_id;
-                                                    
-                                                    // self.getPayHtml(orderId);
-                                                    open('pay.html?order_id='+orderId,"_self");
+                            // if(this.selected){
+                            //     this.addressArr.forEach(function(item){
+                            //         if(item.id==self.selected){
+                            //             body.username=item.sname;
+                            //             body.phone=item.tel;
+                                       
+                            //             return false;
+                            //         }
+                            //     })
+                            // }else{
+                            //     layer.msg('请选择地址');
+                            //     layer.closeAll('loading');
+                            //     return;
+                            // }
 
-                                                    }else if(res.body.code==302){
-                                                        cookieUtil.removeCookie('wdusername');
-                                                        layer.msg(res.body.message);
-                                                    }else{
-                                                        layer.msg(res.body.message);
-                                                    }
-                                                })
-                                        return false;
-                                    }
-                                })
-                            }else{
-                                layer.msg('请选择地址');
-                                layer.closeAll('loading');
-                                return;
-                            }
+                             body.queue=self.goodsId;
+                            // body.delivery_point=3;
+                            body.debt_nexus_id=self.obligationObj.id;
+                            body.desc='121313';
+                            self.$http.post(ajaxAddress.preFix+ajaxAddress.order.commitOrder,body)
+                                    .then(function(res){
+                                        if(res.body.code==200){
+                                            
+                                        var orderId=res.body.data.order_id;
+                                        
+                                        // self.getPayHtml(orderId);
+                                        open('pay.html?order_id='+orderId,"_self");
+
+                                        }else if(res.body.code==302){
+                                            cookieUtil.removeCookie('wdusername');
+                                            layer.msg(res.body.message);
+                                        }else{
+                                            layer.msg(res.body.message);
+                                        }
+                                    })
+
+
                         }else if(res.body.data=='0'){
                             layer.msg('认证审核中，请耐心等待');
 

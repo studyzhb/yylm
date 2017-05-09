@@ -14,6 +14,9 @@
                 <ul class="orderNav">
                     <li>队列模式>></li>
                     <li v-for="item in queueList" :class="{bg_color:tabIndex==item.id}" @click="showOrderList(item.id)" v-text="item.name">全部</li>
+                    <li>
+                        <a href="javascript:top.location.href='../index.html'" >再次购买</a>
+                    </li>
                 </ul>
                 <table class="refundTbl">
                     <tr align="center">

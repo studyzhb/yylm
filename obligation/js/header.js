@@ -233,8 +233,10 @@ new Vue({
 			var tag=true;
 			this.isShowError=true;
 			var body=this.registerUser;
+			body.tel=this.registerUser.phone;
 			body.password=hex_md5(body.password +'5f843e288bb1cabb834b9d20eea3d8c0');
 			body.conPassword=hex_md5(body.conPassword + '5f843e288bb1cabb834b9d20eea3d8c0');
+			body.code=body.phonecode;
 			body.parame="regis";
 			for(var key in this.validatorRegisterUser){
 				if(!this.validatorRegisterUser[key]){
@@ -285,6 +287,7 @@ new Vue({
 			
 			var phone=this.registerUser.phone;
 			var code=this.registerUser.code;
+
 			var self=this;
 			if(!phone){
 				layer.msg('手机号不能为空');
@@ -297,14 +300,14 @@ new Vue({
 			// layer.load();
 			if(this.isClick){
 				this.isClick=false;
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code,type:''})
+				this.$http.post(ajaxAddress.registerPreFix+ajaxAddress.user.registMessCode,{tel:phone,code:code,parame:'regis'})
 					.then(function(res){
 						
 						if(res.body.code==200){
 							layer.msg('短信验证码发送成功，请注意查收');
 							self.timeOutNum('registerMessageCode');
 						}else{
-							layer.msg(res.body.msg);
+							layer.msg(res.body.message);
 						}
 						
 					})
@@ -335,7 +338,7 @@ new Vue({
 						layer.msg('短信验证码发送成功，请注意查收');
 						self.timeOutNum('resetMessageCode');
 					}else{
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 					}
 					
 					

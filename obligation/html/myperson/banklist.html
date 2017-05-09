@@ -13,7 +13,7 @@
     <body>
         <div class="rightWrap" id="app" style="background: #fff">
             <div class="fundrecord">
-                <p>银行卡列表：<span class="layui-btn" style="display: inline-block;" @click="addBankList">添加银行卡</span><span class="layui-btn" style="display: inline-block;" v-show="authorStatus" @click="addAuthorList">添加认证</span></p>
+                <p>银行卡列表：<span class="layui-btn" style="display: inline-block;" @click="addBankList">添加银行卡</span><span class="layui-btn" style="display: inline-block;" v-show="!authorStatus" @click="addAuthorList">添加认证</span></p>
                 <table class="refundTbl">
                     <tr align="center">
                         <th>序号</th>

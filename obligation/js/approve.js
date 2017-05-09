@@ -39,6 +39,6 @@ require(['jquery','main','requestAddress','lay-model','image-upload','log'],func
             return false;
         })
 
-    },1000);
+    },500);
 
 })

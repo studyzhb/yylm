@@ -27,10 +27,10 @@
                         <td v-text="item.counter_fee">￥9.9</td>
                         <td v-text="item.buy_back_price">退款到账户余额</td>
                         <td>
-                            <span v-show="item.status==0">备货中</span>
-                            <span v-show="item.status==1">备货完成</span>
-                            <span v-show="item.status==2">提货完成</span>
-                            <span v-show="item.status==3">回购中</span>
+                            <span v-show="item.status==0">回购申请中</span>
+                            <span v-show="item.status==1">回购完成</span>
+                            <!--<span v-show="item.status==2">提货完成</span>
+                            <span v-show="item.status==3">回购中</span>-->
                         </td>
                     </tr>
                 </table>

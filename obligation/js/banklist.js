@@ -240,8 +240,12 @@ new Vue({
                             if(res.body.code==200){
                                 layer.closeAll();
                                 layer.msg(res.body.message);
+                                setTimeout(function(){
+                                    location.reload();
+                                },500);
+                                
                             }else{
-                                layer.closeAll();
+                                
                                 layer.msg(res.body.message);
                                 
                             }

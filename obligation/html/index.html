@@ -43,7 +43,7 @@
                   </li>
                   <li><div class="submit" @click="userLogin">登录</div></li>
                   <li><span class="forgetPwd color" @click="loginIndex='1'">忘记密码</span>
-                  <!--<span class="color dialogin" @click="loginIndex='2'">点击注册</span>-->
+                  <span class="color dialogin" @click="loginIndex='2'">点击注册</span>
                   </li>
                   <li v-if="isShowOther"><em></em><span class="otherSign">使用第三方账号登录</span><em></em></li>
                   <li v-if="isShowOther"><img src="../img/weixin.png"><img src="../img/QQ.png"></li>
@@ -304,9 +304,8 @@
               <div class="single-item-goods-wrapper" v-for="proItem in mainItem.typeGoods"><a href="javascript:;" @click="goToGoodsDetail(mainItem.id)"><img v-bind:src="proItem.goods_logo"></a>
                 <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_pay"></em></p>
               </div>
-              
             </div>
-          </div>
+          </div>  
           <!--<div class="common-active-goods-wrapper">
             <div class="single-item-active-goods" v-for="proItem in mainItem.typeGoodsAd"><a href="javascript:;" @click="goToGoodsDetail(proItem.id)"><img v-bind:src="proItem.goods_logo | json2single(2)"></a>
               <p><span v-text="proItem.goodsname"></span><em v-text="proItem.price_sell"></em></p>
@@ -376,6 +375,7 @@
   <script src="../js/lib/vee-validate.min.js"></script>
   <script src="../js/ajaxAddress.js"></script>
   <script src="../js/jquery-2.1.4.min.js"></script>
+  <script src="../js/MD5.js"></script>
   <script src="../layer/layer.js"></script>
   <script src="../js/header.js"></script>
   <script src="../js/index.js" type="text/javascript"></script>

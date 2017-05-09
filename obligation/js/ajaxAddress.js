@@ -4,6 +4,8 @@ var ajaxAddress={
     formFix:'',
     payHtml:'/public/index.php/bondpc/pay',
     isHasBand:'/public/index.php/bondpc/bondpc/isHasBand',
+    //支付宝充值
+    rechargePayMoney:'/pay/rechargePay',
     user:{
         getPicCode:'/login/getcode',
         getLoginMessCode:'/login/code',
@@ -12,7 +14,8 @@ var ajaxAddress={
         exit:'/login/out',
         resetLoginInfo:'/login/foundBack',
         resetLoginCode:'/login/getPhoneCode',
-        //
+        //注册验证码
+        registMessCode:'/code/index',
         getRegisterMessCode:'/register/code',
         register:'/enroll/index',
         getUpdateMessCode:'/User/getcode',//修改绑定手机号,获取图片验证码

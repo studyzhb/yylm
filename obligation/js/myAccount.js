@@ -41,17 +41,27 @@ new Vue({
             this.getUserAccountList();
             this.getQueueList();
             this.getUserBankList();
+            this.getUserInfo();
         },
         //债权金转余额
         obligation2Balance:function(){
-            this.$http.post(ajaxAddress.preFix+ajaxAddress.order.obligation2balance)
-                    .then(function(res){
-                        if(res.body.code==200){
-                           layer.msg('操作成功')
-                        }else{
-                            layer.msg('请稍后再试')
-                        }
-                    })
+            var self=this;
+            layui.use(['form','layer'], function(){
+                var layer = layui.layer;
+                layer.confirm('确认执行此操作？',function(index){
+                    layer.close(index);
+                    self.$http.post(ajaxAddress.preFix+ajaxAddress.order.obligation2balance)
+                        .then(function(res){
+                            if(res.body.code==200){
+                                layer.msg('操作成功');
+                                location.reload();
+                            }else{
+                                layer.msg(res.body.message);
+                            }
+                        })
+                })
+            })
+
         },
         getUserBankList:function(){
             var self=this;
@@ -126,18 +136,23 @@ new Vue({
                     })
         },
         outputMoney:function(obj){
-            if(this.userBankList.length==0){
-                layer.msg('请先添加银行卡');
-                return;
-            }
+            
             var self=this;
-            $('.bankListWrapper').html('');
-            $.each(this.userBankList,function(index,item){
-                $('<option>').appendTo($('.bankListWrapper')).html(item).attr('value',index+1);
-            })
+            
             layui.use(['form','layer'], function(){
                 var layer = layui.layer;
                 var form=layui.form();
+
+                if(self.userBankList.length==0){
+                    layer.msg('请先添加银行卡');
+                    return;
+                }
+
+                $('.bankListWrapper').html('');
+                $.each(this.userBankList,function(index,item){
+                    $('<option>').appendTo($('.bankListWrapper')).html(item).attr('value',index+1);
+                })
+
                 layer.open({
                     type:1,
                     title:'余额提现',
@@ -156,16 +171,57 @@ new Vue({
 
                     self.$http.post(ajaxAddress.preFix+ajaxAddress.userData.outputMoney,formParams.field)
                         .then(function(res){
-                            
+                            layer.closeAll();
                             if(res.body.code==200){
                                 
                                 layer.msg(res.body.msg);
+                                // location.reload();
                             }else{
                                 layer.msg(res.body.msg);
                             }
                 
                         })
                 })
+
+            });
+        },
+        //获取用户信息
+        getUserInfo:function(){
+            var self=this;
+            this.$http.get(ajaxAddress.preFix+ajaxAddress.user.userInfo)
+                    .then(function(res){
+                        if(res.body.code==200){
+                            self.userObj=res.body.message;
+                            // self.resetUser.phone=self.userObj.tel;
+                        }
+                    })
+        },
+        rechargeMoney:function(){
+            var self=this;
+            layui.use(['form','layer'], function(){
+                var layer = layui.layer;
+                var form=layui.form();
+
+                layer.prompt({
+                    formType: 0,
+                    value: '0',
+                    title: '请输入充值金额',
+                }, function(value, index, elem){
+                    layer.load();
+                    layer.close(index);
+                    top.location.href=ajaxAddress.preFix+ajaxAddress.rechargePayMoney+'?uid='+self.userObj.user_id+'&money='+value.trim();
+                    // open(ajaxAddress.preFix+ajaxAddress.rechargePayMoney+'?uid='+self.userObj.id+'&money='+value.trim(),"_self");
+                    // self.$http.post(ajaxAddress.preFix+ajaxAddress.rechargePayMoney,{uid:self.userObj.id,money:value.trim()})
+                    // .then(function(res){
+                    //     if(res.body.code==200){
+                    //        layer.msg();
+                    //     }else{
+                    //         layer.msg();
+                    //     }
+                    // })
+
+                });
+
 
             });
         }
