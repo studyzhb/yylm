@@ -45,12 +45,12 @@
     				<div class="payment-list payment-list-0">
     					<ul class="clear-fix">
     						<li>
-    							<input type="radio" name="thirdpart_pay" id="thirdpart_pay_wxqrpay" data-type="wxqrpay" data-code="" data-bankcode="" checked="">
+    							<input type="radio" @click="checkType=1" name="thirdpart_pay" id="thirdpart_pay_wxqrpay" data-type="wxqrpay" data-code="" data-bankcode="" checked="">
     							<label class="payment-icon" for="thirdpart_pay_wxqrpay" @click="checkType=1">余额支付</label>
     							<span class="payment-weak-tip" style="visibility:visible;"></span>
     						</li>
     						<li>
-    							<input type="radio" name="thirdpart_pay" id="thirdpart_pay_alipay" data-type="alipay" data-code="" data-bankcode="">
+    							<input type="radio" @click="checkType=2" name="thirdpart_pay" id="thirdpart_pay_alipay" data-type="alipay" data-code="" data-bankcode="">
     							<label class="payment-icon" for="thirdpart_pay_alipay" @click="checkType=2"><img src="../img/pay/alipaypcnew.png" disabled="" alt="支付宝"></label>
     							<span class="payment-weak-tip" style="visibility:hidden;"></span>
     						</li>

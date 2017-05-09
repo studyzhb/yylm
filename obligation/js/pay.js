@@ -142,8 +142,8 @@ new Vue({
             
             if(this.checkType==1){
                 layer.prompt({
-                formType: 2,
-                value: '请输入支付密码',
+                formType: 0,
+                placeholder: '请输入支付密码',
                 title: '支付密码',
                 area: ['400px', '40px'] //自定义文本域宽高
                 },function(value, index, elem){

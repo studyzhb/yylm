@@ -233,6 +233,9 @@ new Vue({
 			var tag=true;
 			this.isShowError=true;
 			var body=this.registerUser;
+			body.password=hex_md5(body.password +'5f843e288bb1cabb834b9d20eea3d8c0');
+			body.conPassword=hex_md5(body.conPassword + '5f843e288bb1cabb834b9d20eea3d8c0');
+			body.parame="regis";
 			for(var key in this.validatorRegisterUser){
 				if(!this.validatorRegisterUser[key]){
 					tag=false;
@@ -248,7 +251,7 @@ new Vue({
 				layer.msg('两次输入密码不一致');
 			}
 			if(tag){
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.register,body)
+				this.$http.post(ajaxAddress.registerPreFix+ajaxAddress.user.register,body)
 					.then(function(res){
 						
 						if(res.body.code==200){
@@ -294,7 +297,7 @@ new Vue({
 			// layer.load();
 			if(this.isClick){
 				this.isClick=false;
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code})
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.getRegisterMessCode,{phone:phone,code:code,type:''})
 					.then(function(res){
 						
 						if(res.body.code==200){
@@ -326,7 +329,7 @@ new Vue({
 			// layer.load();
 			if(this.isClick){
 				this.isClick=false;
-				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code})
+				this.$http.post(ajaxAddress.preFix+ajaxAddress.user.resetLoginCode,{phone:phone,code:code,type:'found'})
 				.then(function(res){
 					if(res.body.code==200){
 						layer.msg('短信验证码发送成功，请注意查收');

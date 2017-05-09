@@ -1,5 +1,6 @@
 var ajaxAddress={
     preFix:'/public/index.php/bondpc',
+    registerPreFix:'/public/index.php/capp',
     formFix:'',
     payHtml:'/public/index.php/bondpc/pay',
     isHasBand:'/public/index.php/bondpc/bondpc/isHasBand',
@@ -13,7 +14,7 @@ var ajaxAddress={
         resetLoginCode:'/login/getPhoneCode',
         //
         getRegisterMessCode:'/register/code',
-        register:'/register/register',
+        register:'/enroll/index',
         getUpdateMessCode:'/User/getcode',//修改绑定手机号,获取图片验证码
         updateUserInfo:'/User/boundPhone',//提交修改手机号
         updatePassInfo:'/User/updatePassword',
