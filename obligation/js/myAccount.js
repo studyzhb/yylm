@@ -142,20 +142,26 @@ new Vue({
             layui.use(['form','layer'], function(){
                 var layer = layui.layer;
                 var form=layui.form();
-
+                
                 if(self.userBankList.length==0){
                     layer.msg('请先添加银行卡');
                     return;
                 }
 
                 $('.bankListWrapper').html('');
-                $.each(this.userBankList,function(index,item){
-                    $('<option>').appendTo($('.bankListWrapper')).html(item).attr('value',index+1);
+                
+                $.each(self.userBankList,function(index,item){
+                    if(index==0){
+                         $('<option selected>').appendTo($('.bankListWrapper')).html(item.card_num).attr('value',item.id);
+                    }else{
+                         $('<option>').appendTo($('.bankListWrapper')).html(item.card_num).attr('value',item.id);
+                    }
+                   
                 })
-
+                form.render();
                 layer.open({
                     type:1,
-                    title:'余额提现',
+                    title:'余额提现,提示：如果没有设置支付密码，支付密码与登录密码相同',
                     content: $('#bankFormWrapper'), //这里content是一个DOM
                     shade:[0.8,'#000'],
                     area:['600px','500px'],
@@ -174,10 +180,10 @@ new Vue({
                             layer.closeAll();
                             if(res.body.code==200){
                                 
-                                layer.msg(res.body.msg);
+                                layer.msg(res.body.message);
                                 // location.reload();
                             }else{
-                                layer.msg(res.body.msg);
+                                layer.msg(res.body.message);
                             }
                 
                         })

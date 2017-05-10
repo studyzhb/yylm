@@ -178,7 +178,7 @@ new Vue({
 							self.loginIndex='-1';
 							self.isShowError=false;
 							self.loginUserName=res.body.data||'***';
-							cookieUtil.setExpiresDate('wdusername',self.loginUserName,0.1);
+							cookieUtil.setExpiresDate('wdusername',self.loginUserName,1/96);
 							for(var key in this.loginUser){
 								self.loginUser[key]='';
 							}
@@ -215,12 +215,12 @@ new Vue({
 					if(res.body.code==200){
 						self.isShowError=false;
 						self.loginIndex='-1';
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 						for(var key in this.resetUser){
 								self.resetUser[key]='';
 							}
 					}else{
-						layer.msg(res.body.message);
+						layer.msg(res.body.msg);
 					}
 				})
 			}
