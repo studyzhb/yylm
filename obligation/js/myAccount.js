@@ -1,7 +1,7 @@
 Vue.http.options.emulateJSON = true;
 Vue.http.options.emulateHTTP = true;
 // Vue.http.options.xhr = { withCredentials: true }
-Vue.http.interceptors.push((request, next) => {
+Vue.http.interceptors.push(function(request, next){
 	request.credentials = true;
 	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
 	next()
@@ -161,7 +161,7 @@ new Vue({
                 form.render();
                 layer.open({
                     type:1,
-                    title:'余额提现,提示：如果没有设置支付密码，支付密码与登录密码相同',
+                    title:'余额提现,提示：如果没有设置支付密码，支付密码与登录密码相同或手机号后六位',
                     content: $('#bankFormWrapper'), //这里content是一个DOM
                     shade:[0.8,'#000'],
                     area:['600px','500px'],

@@ -1,7 +1,7 @@
 Vue.http.options.emulateJSON = true;
 Vue.http.options.emulateHTTP = true;
 // Vue.http.options.xhr = { withCredentials: true }
-Vue.http.interceptors.push((request, next) => {
+Vue.http.interceptors.push(function(request, next){
 	request.credentials = true;
 	// request.headers.set('Content-Type','application/x-www-form-urlencoded');
 	next()

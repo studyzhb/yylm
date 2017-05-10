@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+  <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+	<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    <link rel="stylesheet" href="../common/layui/css/layui.css" />
+  	<link rel="stylesheet" href="../css/alertcon.css" />
+	  <script src="../common/layui/layui.js"></script>
+    <script src="../utf8-php/ueditor.config.js"></script>
+    <script src="../utf8-php/ueditor.all.min.js"></script>
+    <script data-main="../js/domain" src="../js/require.min.js"></script>
+
+    <style>
+      .tab-content dl dd {
+            margin-left: 0; 
+        }
+        .detail-image-col-2 .image-content{
+            position:absolute;
+            width:100%;
+            height:100%;
+            opacity:0;
+            left:0;
+            top:0;
+        }
+        
+        div.moving{
+                border: 1px dashed gray;
+                background: white;
+        }
+        div.draging{
+            width: 300px;
+            height: 180px;
+            position: absolute;
+            background: goldenrod;
+            box-shadow: 0 0 4px 2px #555;
+            border-radius: 5px; 
+            z-index: 500;
+        }
+    </style>
+</head>
+<body>
+	<!-- 框架结构	 -->
+	<div class="layui-layout layui-layout-admin">
+
+	<!-- ============================主要内容区================================ -->
+
+	<div class="lay-main">
+	 
+     <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+       <ul class="layui-tab-title">
+          <li class="layui-this">
+            债权人认证
+          </li>
+        </ul>
+        <div class="layui-content" style="padding-top:20px;">
+          <div class="layui-tab-item layui-show">
+            <form class="layui-form layui-form-pane menuForm" method="POST"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">债权人姓名</label>
+                <div class="layui-input-block">
+                  <input type="text" name="name" lay-verify="required" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">电话</label>
+                <div class="layui-input-block">
+                  <input type="text" name="tel" lay-verify="phone" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <!--<div class="layui-form-item">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="cardID" lay-verify="identity" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>-->
+              <div class="layui-form-item">
+                <label class="layui-form-label">债权金额</label>
+                <div class="layui-input-block">
+                  <input type="text" name="money" lay-verify="number" placeholder="请输入" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <!--<div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">身份证图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="cardpic" lay-verify="required" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>  
+               </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">债权单位</label>
+                <div class="layui-input-block">
+                  <input type="text" name="debtunits" lay-verify="required" value="" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+              </div>    
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">手持身份证图片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="handcardpic" lay-verify="required" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>  
+               </div>   
+               <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">债权证明照片</label>
+                <div class="layui-input-block" style="margin-top:10px;">
+                  <div class="image-suolve" style="position:relative;height:200px;border: 1px solid #e6e6e6;">
+                           <div class="detail-image-col-2 imageadd">   
+                                                     </div>
+                          
+                  </div>
+                  <input type="hidden" name="proofdebtpic" lay-verify="required" value="" placeholder="请输入" autocomplete="off" class="layui-input shopinput">
+                </div>  
+               </div>        -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">债权金编号</label>
+                <div class="layui-input-block">
+                  <input type="text" name="debtcode" lay-verify="required" placeholder="如1-1-1-00" value="" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+
+              <script type="text/plain" id="j_ueditorupload" style="height:5px;display:none;" ></script>
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <div class="layui-btn commitMenu" lay-submit lay-filter="shopInfo" >保存</div>
+                </div>
+              </div>
+              
+            </form>
+
+            
+
+          </div>
+        </div>
+     </div>
+
+    </div> 
+ 
+
+  <!-- =======================弹出窗========================= -->
+
+
+<!-- ========================================================= -->
+
+	<script id="slider" type="text/html">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">{{d.name}}</a>
+    <dl class="layui-nav-child">
+    {{#  layui.each(d.children,function(index, item){ }}
+      {{# if(d.thisselc.indexOf(item.path)>-1){ }}
+      <dd class="layui-this">
+        <a href="{{item.path}}">{{item.name}}</a>
+      </dd>
+      {{# }else{ }}
+        <dd>
+          <a href="{{item.path}}">{{item.name}}</a>
+        </dd>
+      {{# } }}
+    {{#  }); }}
+      
+    </dl>
+  </li>
+</script>
+
+
+
+</div>
+
+
+<script type="text/template" id="image-suolve">
+     <div class="detail-image-col-2 detail-banner-split" data-imgsrc="{imgsrc}">
+         <div class="opacity-z-index"></div>
+        <i class="layui-icon icon-display" data-info="{imgsrc}">&#xe640;</i>
+        <!--<div class="left-block"></div>
+        <div class="right-block"></div>-->
+        <img src="{imgsrc}" width="100%" height="100%" />    
+    </div>
+</script>
+<script src="../js/hideRegister.js"></script>
+</body>
+</html>
