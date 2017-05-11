@@ -174,7 +174,7 @@ new Vue({
 
 
                 form.on('submit(addBank)',function(formParams){
-
+                    layer.load();
                     self.$http.post(ajaxAddress.preFix+ajaxAddress.userData.outputMoney,formParams.field)
                         .then(function(res){
                             layer.closeAll();
